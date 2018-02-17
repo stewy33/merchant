@@ -1,3 +1,0 @@
-:- module mercury_json.
-:- interface.
-:- import_module json.
