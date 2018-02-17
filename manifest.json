@@ -1,9 +1,5 @@
 {
-    "name": "packageName",
-    "author": "Christopher Xu",
-    "dependencies": {
-        "name1": "url1",
-        "name2": "url2",
-        "name3": "url3"
-    }
+    name: package_name,
+    author: package_author,
+    dependencies: {}
 }
