@@ -1,0 +1,5 @@
+{
+    name: package_name,
+    author: package_author,
+    dependencies: {}
+}
