@@ -1,0 +1,3 @@
+:- module (json.char_buffer).
+:- interface.
+:- type char_buffer.

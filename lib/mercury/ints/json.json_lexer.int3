@@ -1,0 +1,3 @@
+:- module (json.json_lexer).
+:- interface.
+:- type token(Error).

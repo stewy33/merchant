@@ -1,0 +1,222 @@
+/*
+** Automatically generated from `json.string_reader.m'
+** by the Mercury compiler,
+** version 14.01.1-2jessie0, configured for x86_64-pc-linux-gnu.
+** Do not edit.
+**
+** The autoconfigured grade settings governing
+** the generation of this C file were
+**
+** TAG_BITS=3
+** UNBOXED_FLOAT=yes
+** PREGENERATED_DIST=no
+** HIGHLEVEL_CODE=yes
+**
+** END_OF_C_GRADE_INFO
+*/
+
+
+/* :- module json.string_reader. */
+/* :- interface. */
+
+#ifndef MR_HEADER_GUARD_json__string_reader
+#define MR_HEADER_GUARD_json__string_reader
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "mercury.h"
+
+
+#ifndef JSON__STRING_READER_DECL_GUARD
+#define JSON__STRING_READER_DECL_GUARD
+#include "json.mih"
+
+#endif
+
+
+
+
+#line 42 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.string_reader.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__string_reader__json__string_reader__type_ctor_info_reader_mutable_info_0;
+
+#line 45 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.string_reader.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__string_reader__json__string_reader__type_ctor_info_string_reader_0;
+
+#line 48 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.string_reader.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__string_reader__json__string_reader__type_ctor_info_string_reader_error_0;
+
+#line 51 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.string_reader.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__string_reader__json__string_reader__type_ctor_info_string_reader_state_0;
+
+#line 54 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.string_reader.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_stream__stream__arity2__json__string_reader__string_reader__arity0__json__string_reader__string_reader_state__arity0__[6];
+
+#line 57 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.string_reader.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_stream__reader__arity4__json__string_reader__string_reader__arity0__character__arity0__json__string_reader__string_reader_state__arity0__json__string_reader__string_reader_error__arity0__[6];
+
+#line 60 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.string_reader.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_stream__putback__arity4__json__string_reader__string_reader__arity0__character__arity0__json__string_reader__string_reader_state__arity0__json__string_reader__string_reader_error__arity0__[6];
+
+#line 63 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.string_reader.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_stream__line_oriented__arity2__json__string_reader__string_reader__arity0__json__string_reader__string_reader_state__arity0__[7];
+
+#line 66 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.string_reader.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_stream__input__arity2__json__string_reader__string_reader__arity0__json__string_reader__string_reader_state__arity0__[5];
+
+#line 69 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.string_reader.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_stream__error__arity1__json__string_reader__string_reader_error__arity0__[6];
+
+#line 72 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.string_reader.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_store__store__arity1__json__string_reader__string_reader_state__arity0__[5];
+
+#line 128 "json.string_reader.m"
+MR_String MR_CALL 
+json__string_reader__f_85_110_117_115_101_100_65_114_103_115_95_95_102_117_110_99_95_95_67_108_97_115_115_77_101_116_104_111_100_95_102_111_114_95_115_116_114_101_97_109_95_95_101_114_114_111_114_95_95_95_95_106_115_111_110_95_95_115_116_114_105_110_103_95_114_101_97_100_101_114_95_95_115_116_114_105_110_103_95_114_101_97_100_101_114_95_101_114_114_111_114_95_95_97_114_105_116_121_48_95_95_95_95_95_95_115_116_114_101_97_109_95_95_101_114_114_111_114_95_109_101_115_115_97_103_101_95_49_95_95_91_49_93_95_48_1_f_0(void);
+
+#line 86 "json.string_reader.m"
+void MR_CALL 
+json__string_reader__f_85_110_117_115_101_100_65_114_103_115_95_95_112_114_101_100_95_95_95_95_67_111_109_112_97_114_101_95_95_95_106_115_111_110_95_95_115_116_114_105_110_103_95_114_101_97_100_101_114_95_95_115_116_114_105_110_103_95_114_101_97_100_101_114_95_115_116_97_116_101_95_48_95_95_91_50_44_32_51_93_95_48_3_p_0(
+#line 86 "json.string_reader.m"
+  MR_Word * json__string_reader__param_1);
+
+#line 86 "json.string_reader.m"
+MR_bool MR_CALL 
+json__string_reader__f_85_110_117_115_101_100_65_114_103_115_95_95_112_114_101_100_95_95_95_95_85_110_105_102_121_95_95_95_106_115_111_110_95_95_115_116_114_105_110_103_95_114_101_97_100_101_114_95_95_115_116_114_105_110_103_95_114_101_97_100_101_114_95_115_116_97_116_101_95_48_95_95_91_49_44_32_50_93_95_48_2_p_0(void);
+
+#line 40 "json.string_reader.m"
+void MR_CALL 
+json__string_reader__f_85_110_117_115_101_100_65_114_103_115_95_95_112_114_101_100_95_95_95_95_67_111_109_112_97_114_101_95_95_95_106_115_111_110_95_95_115_116_114_105_110_103_95_114_101_97_100_101_114_95_95_115_116_114_105_110_103_95_114_101_97_100_101_114_95_101_114_114_111_114_95_48_95_95_91_50_44_32_51_93_95_48_3_p_0(
+#line 40 "json.string_reader.m"
+  MR_Word * json__string_reader__param_1);
+
+#line 40 "json.string_reader.m"
+MR_bool MR_CALL 
+json__string_reader__f_85_110_117_115_101_100_65_114_103_115_95_95_112_114_101_100_95_95_95_95_85_110_105_102_121_95_95_95_106_115_111_110_95_95_115_116_114_105_110_103_95_114_101_97_100_101_114_95_95_115_116_114_105_110_103_95_114_101_97_100_101_114_95_101_114_114_111_114_95_48_95_95_91_49_44_32_50_93_95_48_2_p_0(void);
+
+#line 132 "json.string_reader.m"
+void MR_CALL 
+json__string_reader__ClassMethod_for_stream__stream____json__string_reader__string_reader__arity0__json__string_reader__string_reader_state__arity0______stream__name_4_4_p_0(
+#line 132 "json.string_reader.m"
+  MR_Word json__string_reader__param_1,
+#line 132 "json.string_reader.m"
+  MR_String * json__string_reader__param_2);
+
+#line 148 "json.string_reader.m"
+void MR_CALL 
+json__string_reader__ClassMethod_for_stream__reader____json__string_reader__string_reader__arity0__character__arity0__json__string_reader__string_reader_state__arity0__json__string_reader__string_reader_error__arity0______stream__get_4_4_p_0(
+#line 148 "json.string_reader.m"
+  MR_Word json__string_reader__param_1,
+#line 148 "json.string_reader.m"
+  MR_Word * json__string_reader__param_2);
+
+#line 168 "json.string_reader.m"
+void MR_CALL 
+json__string_reader__ClassMethod_for_stream__putback____json__string_reader__string_reader__arity0__character__arity0__json__string_reader__string_reader_state__arity0__json__string_reader__string_reader_error__arity0______stream__unget_4_4_p_0(
+#line 168 "json.string_reader.m"
+  MR_Word json__string_reader__param_1,
+#line 168 "json.string_reader.m"
+  MR_Char json__string_reader__param_2);
+
+#line 197 "json.string_reader.m"
+void MR_CALL 
+json__string_reader__ClassMethod_for_stream__line_oriented____json__string_reader__string_reader__arity0__json__string_reader__string_reader_state__arity0______stream__set_line_4_4_p_0(
+#line 197 "json.string_reader.m"
+  MR_Word json__string_reader__param_1,
+#line 197 "json.string_reader.m"
+  MR_Integer json__string_reader__param_2);
+
+#line 192 "json.string_reader.m"
+void MR_CALL 
+json__string_reader__ClassMethod_for_stream__line_oriented____json__string_reader__string_reader__arity0__json__string_reader__string_reader_state__arity0______stream__get_line_4_4_p_0(
+#line 192 "json.string_reader.m"
+  MR_Word json__string_reader__param_1,
+#line 192 "json.string_reader.m"
+  MR_Integer * json__string_reader__param_2);
+
+#line 128 "json.string_reader.m"
+MR_String MR_CALL 
+json__string_reader__ClassMethod_for_stream__error____json__string_reader__string_reader_error__arity0______stream__error_message_1_1_f_0(void);
+
+#line 86 "json.string_reader.m"
+void MR_CALL 
+json__string_reader____Compare____string_reader_state_0_0(
+#line 86 "json.string_reader.m"
+  MR_Word * json__string_reader__param_1);
+
+#line 86 "json.string_reader.m"
+MR_bool MR_CALL 
+json__string_reader____Unify____string_reader_state_0_0(void);
+
+#line 40 "json.string_reader.m"
+void MR_CALL 
+json__string_reader____Compare____string_reader_error_0_0(
+#line 40 "json.string_reader.m"
+  MR_Word * json__string_reader__param_1);
+
+#line 40 "json.string_reader.m"
+MR_bool MR_CALL 
+json__string_reader____Unify____string_reader_error_0_0(void);
+
+#line 93 "json.string_reader.m"
+void MR_CALL 
+json__string_reader____Compare____string_reader_0_0(
+#line 93 "json.string_reader.m"
+  MR_Word * json__string_reader__param_1,
+#line 93 "json.string_reader.m"
+  MR_Word json__string_reader__param_2,
+#line 93 "json.string_reader.m"
+  MR_Word json__string_reader__param_3);
+
+#line 93 "json.string_reader.m"
+MR_bool MR_CALL 
+json__string_reader____Unify____string_reader_0_0(
+#line 93 "json.string_reader.m"
+  MR_Word json__string_reader__param_1,
+#line 93 "json.string_reader.m"
+  MR_Word json__string_reader__param_2);
+
+#line 102 "json.string_reader.m"
+void MR_CALL 
+json__string_reader____Compare____reader_mutable_info_0_0(
+#line 102 "json.string_reader.m"
+  MR_Word * json__string_reader__param_1,
+#line 102 "json.string_reader.m"
+  MR_Word json__string_reader__param_2,
+#line 102 "json.string_reader.m"
+  MR_Word json__string_reader__param_3);
+
+#line 102 "json.string_reader.m"
+MR_bool MR_CALL 
+json__string_reader____Unify____reader_mutable_info_0_0(
+#line 102 "json.string_reader.m"
+  MR_Word json__string_reader__param_1,
+#line 102 "json.string_reader.m"
+  MR_Word json__string_reader__param_2);
+
+#line 56 "json.string_reader.m"
+void MR_CALL 
+json__string_reader__init_string_reader_5_p_0(
+#line 56 "json.string_reader.m"
+  MR_Word json__string_reader__param_1,
+#line 56 "json.string_reader.m"
+  MR_String json__string_reader__param_2,
+#line 56 "json.string_reader.m"
+  MR_Word * json__string_reader__param_3);
+
+#line 52 "json.string_reader.m"
+void MR_CALL 
+json__string_reader__init_string_state_1_p_0(void);
+
+void mercury__json__string_reader__init(void);
+void mercury__json__string_reader__init_type_tables(void);
+void mercury__json__string_reader__init_debugger(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* MR_HEADER_GUARD_json.string_reader */
+
+/* :- end_interface json.string_reader. */

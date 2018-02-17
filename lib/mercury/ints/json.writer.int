@@ -1,0 +1,10 @@
+:- module (json.writer).
+:- interface.
+:- pred pretty_put_value(Stream, json.allow_infinities, json.member_filter, json.value, State, State) <= (stream.writer(Stream, char.char, State), stream.writer(Stream, string, State)).
+:- mode pretty_put_value((builtin.in), (builtin.in), builtin.in((json.member_filter)), (builtin.in), (builtin.di), (builtin.uo)) is det.
+:- pred put_eol_comment(Stream, string, State, State) <= (stream.writer(Stream, char.char, State), stream.writer(Stream, string, State)).
+:- mode put_eol_comment((builtin.in), (builtin.in), (builtin.di), (builtin.uo)) is det.
+:- pred put_multiline_comment(Stream, string, State, State) <= (stream.writer(Stream, char.char, State), stream.writer(Stream, string, State)).
+:- mode put_multiline_comment((builtin.in), (builtin.in), (builtin.di), (builtin.uo)) is det.
+:- pred raw_put_value(Stream, json.allow_infinities, json.member_filter, json.value, State, State) <= (stream.writer(Stream, char.char, State), stream.writer(Stream, string, State)).
+:- mode raw_put_value((builtin.in), (builtin.in), builtin.in((json.member_filter)), (builtin.in), (builtin.di), (builtin.uo)) is det.

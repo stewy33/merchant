@@ -1,0 +1,3 @@
+:- module (json.json_parser).
+:- interface.
+:- type nesting_depth == int.

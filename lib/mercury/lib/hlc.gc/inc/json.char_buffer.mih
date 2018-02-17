@@ -1,0 +1,199 @@
+/*
+** Automatically generated from `json.char_buffer.m'
+** by the Mercury compiler,
+** version 14.01.1-2jessie0, configured for x86_64-pc-linux-gnu.
+** Do not edit.
+**
+** The autoconfigured grade settings governing
+** the generation of this C file were
+**
+** TAG_BITS=3
+** UNBOXED_FLOAT=yes
+** PREGENERATED_DIST=no
+** HIGHLEVEL_CODE=yes
+**
+** END_OF_C_GRADE_INFO
+*/
+
+
+/* :- module json.char_buffer. */
+/* :- interface. */
+
+#ifndef MR_HEADER_GUARD_json__char_buffer
+#define MR_HEADER_GUARD_json__char_buffer
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "mercury.h"
+
+
+#ifndef JSON__CHAR_BUFFER_DECL_GUARD
+#define JSON__CHAR_BUFFER_DECL_GUARD
+#include "json.mih"
+#line 56 "json.char_buffer.m"
+
+
+#include "mercury_float.h"    /* For MR_FLT_FMT. */
+#include "mercury_memory.h"
+#include "mercury_string.h"
+
+#include <stdio.h>  /* For sscanf. */
+
+/*
+** Defining the macro MJSON_DEBUG_BUFFER will cause some debugging traces
+** to be printed to the standard error.
+*/
+
+/*
+** The initial size of the character buffer in bytes.
+** You probably don't need to change this, but if you do it must be >= 5.
+** (We always reserve space for four bytes -- the maximum required for a
+** code point -- plus a nul terminator.
+*/
+#define MJSON_INITIAL_BUFFER_SIZE 512
+
+/*
+** The C version of a character buffer.  It contains the following fields:
+**
+** last_char    The character code of the last character that was added
+**              to the buffer.  If the buffer is empty then this == 0.
+**
+** num_bytes    The number of bytes used to hold characters in the buffer.
+**
+** max_bytes    The maximum number of bytes the buffer can currently hold.
+**
+** contents     The contents of the buffer -- stored as a UTF-8 encoded
+**              string.
+*/
+typedef struct {
+    MR_Char     last_char;
+    size_t      num_bytes;
+    size_t      max_bytes;
+    MR_String   contents;
+} MJSON_buffer;
+
+
+#endif
+
+
+
+
+#line 84 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.char_buffer.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__char_buffer__json__char_buffer__type_ctor_info_char_buffer_0;
+
+#line 87 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.char_buffer.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__char_buffer__json__char_buffer__type_ctor_info_char_buffer_rep_0;
+
+#line 206 "json.char_buffer.m"
+void MR_CALL 
+json__char_buffer____Compare____char_buffer_rep_0_0(
+#line 206 "json.char_buffer.m"
+  MR_Word * json__char_buffer__param_1,
+#line 206 "json.char_buffer.m"
+  MR_Word json__char_buffer__param_2,
+#line 206 "json.char_buffer.m"
+  MR_Word json__char_buffer__param_3);
+
+#line 206 "json.char_buffer.m"
+MR_bool MR_CALL 
+json__char_buffer____Unify____char_buffer_rep_0_0(
+#line 206 "json.char_buffer.m"
+  MR_Word json__char_buffer__param_1,
+#line 206 "json.char_buffer.m"
+  MR_Word json__char_buffer__param_2);
+
+#line 203 "json.char_buffer.m"
+void MR_CALL 
+json__char_buffer____Compare____char_buffer_0_0(
+#line 203 "json.char_buffer.m"
+  MR_Word * json__char_buffer__param_1,
+#line 203 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_2,
+#line 203 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_3);
+
+#line 203 "json.char_buffer.m"
+MR_bool MR_CALL 
+json__char_buffer____Unify____char_buffer_0_0(
+#line 203 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_1,
+#line 203 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_2);
+
+#line 25 "json.char_buffer.m"
+void MR_CALL 
+json__char_buffer__reset_3_p_0(
+#line 25 "json.char_buffer.m"
+  MR_Word json__char_buffer__param_1,
+#line 25 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_2,
+#line 25 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_3,
+#line 25 "json.char_buffer.m"
+  MR_Box * json__char_buffer__param_4);
+
+#line 23 "json.char_buffer.m"
+MR_bool MR_CALL 
+json__char_buffer__last_3_p_0(
+#line 23 "json.char_buffer.m"
+  MR_Word json__char_buffer__param_1,
+#line 23 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_2,
+#line 23 "json.char_buffer.m"
+  MR_Char * json__char_buffer__param_3,
+#line 23 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_4);
+
+#line 21 "json.char_buffer.m"
+MR_Float MR_CALL 
+json__char_buffer__det_to_float_2_f_0(
+#line 21 "json.char_buffer.m"
+  MR_Word json__char_buffer__param_1,
+#line 21 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_2,
+#line 21 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_3);
+
+#line 19 "json.char_buffer.m"
+MR_String MR_CALL 
+json__char_buffer__to_string_2_f_0(
+#line 19 "json.char_buffer.m"
+  MR_Word json__char_buffer__param_1,
+#line 19 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_2,
+#line 19 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_3);
+
+#line 17 "json.char_buffer.m"
+void MR_CALL 
+json__char_buffer__add_4_p_0(
+#line 17 "json.char_buffer.m"
+  MR_Word json__char_buffer__param_1,
+#line 17 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_2,
+#line 17 "json.char_buffer.m"
+  MR_Char json__char_buffer__param_3,
+#line 17 "json.char_buffer.m"
+  MR_Box json__char_buffer__param_4,
+#line 17 "json.char_buffer.m"
+  MR_Box * json__char_buffer__param_5);
+
+#line 15 "json.char_buffer.m"
+void MR_CALL 
+json__char_buffer__init_1_p_0(
+#line 15 "json.char_buffer.m"
+  MR_Box * json__char_buffer__param_1);
+
+void mercury__json__char_buffer__init(void);
+void mercury__json__char_buffer__init_type_tables(void);
+void mercury__json__char_buffer__init_debugger(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* MR_HEADER_GUARD_json.char_buffer */
+
+/* :- end_interface json.char_buffer. */

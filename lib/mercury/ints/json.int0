@@ -1,0 +1,451 @@
+:- module json.
+:- interface.
+:- pragma foreign_import_module("C", json).
+:- pragma foreign_import_module("C#", json).
+:- pragma foreign_import_module("Java", json).
+:- pragma foreign_import_module("Erlang", json).
+:- import_module array.
+:- import_module array2d.
+:- import_module assoc_list.
+:- import_module bag.
+:- import_module bimap.
+:- import_module bitmap.
+:- import_module bool.
+:- import_module calendar.
+:- import_module char.
+:- import_module cord.
+:- import_module digraph.
+:- import_module integer.
+:- import_module io.
+:- import_module list.
+:- import_module map.
+:- import_module maybe.
+:- import_module pair.
+:- import_module pqueue.
+:- import_module queue.
+:- import_module rational.
+:- import_module rbtree.
+:- import_module set_bbbtree.
+:- import_module set_ctree234.
+:- import_module set_ordlist.
+:- import_module set_tree234.
+:- import_module set_unordlist.
+:- import_module stream.
+:- import_module unit.
+:- import_module version_array.
+:- type allow_comments
+	--->	allow_comments 
+	;	do_not_allow_comments .
+:- type allow_infinities
+	--->	allow_infinities 
+	;	do_not_allow_infinities .
+:- type allow_repeated_members
+	--->	do_not_allow_repeated_members 
+	;	allow_repeated_members_keep_first 
+	;	allow_repeated_members_keep_last .
+:- type allow_trailing_commas
+	--->	allow_trailing_commas 
+	;	do_not_allow_trailing_commas .
+:- type array == list.list(json.value).
+:- type comment
+	--->	comment_eol(string)
+	;	comment_multiline(string).
+:- type context
+	--->	context((json.stream_name) :: string, (json.line_number) :: int, (json.column_number) :: int).
+:- type error_desc
+	--->	unexpected_eof(maybe.maybe(string))
+	;	syntax_error(string, maybe.maybe(string))
+	;	invalid_character_escape(char.char)
+	;	unexpected_value(string, maybe.maybe(string))
+	;	duplicate_object_member(string)
+	;	unterminated_multiline_comment 
+	;	invalid_unicode_character(string)
+	;	unpaired_leading_utf16_surrogate(string)
+	;	unpaired_trailing_utf16_surrogate(string)
+	;	invalid_trailing_utf16_surrogate(string)
+	;	null_character 
+	;	unescaped_control_character(int)
+	;	illegal_start_character(char.char)
+	;	illegal_unicode_escape_character(char.char)
+	;	non_finite_number(string)
+	;	illegal_negation(char.char)
+	;	illegal_comment_start(char.char)
+	;	bad_signed_exponent(char.char, char.char)
+	;	bad_exponent(char.char, char.char)
+	;	expected_eof(string)
+	;	maximum_nesting_depth_reached .
+:- type from_string_result
+	--->	ok(json.value)
+	;	error(json.context, json.error_desc).
+:- type maximum_nesting_depth
+	--->	no_maximum_nesting_depth 
+	;	maximum_nesting_depth(int).
+:- type member_filter
+	--->	no_member_filter 
+	;	member_filter(pred(string, json.value)).
+:- type non_finite_number_error
+	--->	non_finite_number_error(string).
+:- type object == map.map(string, json.value).
+:- type output_style
+	--->	compact 
+	;	pretty .
+:- type pointer.
+:- type reader_params
+	--->	reader_params((json.allow_comments) :: json.allow_comments, (json.allow_trailing_commas) :: json.allow_trailing_commas, (json.allow_repeated_members) :: json.allow_repeated_members, (json.allow_infinities) :: json.allow_infinities, (json.maximum_nesting_depth) :: json.maximum_nesting_depth).
+:- type value
+	--->	null 
+	;	bool(bool.bool)
+	;	string(string)
+	;	number(float)
+	;	object(json.object)
+	;	array(json.array).
+:- type writer_params
+	--->	writer_params((json.output_style) :: json.output_style, (json.output_allow_infinities) :: json.allow_infinities, (json.output_member_filter) :: json.member_filter).
+:- type error(Error)
+	--->	stream_error(Error)
+	;	json_error((json.error_context) :: json.context, (json.error_desc) :: json.error_desc).
+:- type res(Error) == stream.res(json.error(Error)).
+:- type reader(Stream).
+:- type writer(Stream).
+:- type maybe_partial_res(T, Error) == stream.maybe_partial_res(T, json.error(Error)).
+:- type res(T, Error) == stream.res(T, json.error(Error)).
+:- type result(T, Error) == stream.result(T, json.error(Error)).
+:- inst (member_filter) == bound(member_filter((pred((builtin.in), (builtin.in)) is semidet)) ; no_member_filter).
+:- inst (writer_params) == bound(writer_params(ground, ground, (json.member_filter))).
+:- typeclass from_json(T) where [
+	func from_json(json.value) = maybe.maybe_error(T)
+].
+:- typeclass to_json(T) where [
+	func to_json(T) = json.value
+].
+:- instance (json.from_json(bitmap.bitmap)).
+:- instance (json.from_json(bool.bool)).
+:- instance (json.from_json(calendar.date)).
+:- instance (json.from_json(calendar.duration)).
+:- instance (json.from_json(char.char)).
+:- instance (json.from_json(integer.integer)).
+:- instance (json.from_json(json.pointer)).
+:- instance (json.from_json(json.value)).
+:- instance (json.from_json(rational.rational)).
+:- instance (json.from_json(unit.unit)).
+:- instance (json.from_json(int)).
+:- instance (json.from_json(float)).
+:- instance (json.from_json(string)).
+:- instance (json.to_json(bitmap.bitmap)).
+:- instance (json.to_json(bool.bool)).
+:- instance (json.to_json(calendar.date)).
+:- instance (json.to_json(calendar.duration)).
+:- instance (json.to_json(char.char)).
+:- instance (json.to_json(integer.integer)).
+:- instance (json.to_json(json.pointer)).
+:- instance (json.to_json(json.value)).
+:- instance (json.to_json(rational.rational)).
+:- instance (json.to_json(unit.unit)).
+:- instance (json.to_json(int)).
+:- instance (json.to_json(float)).
+:- instance (json.to_json(string)).
+:- instance (json.from_json(array.array(T))) <= (json.from_json(T)).
+:- instance (json.from_json(array2d.array2d(T))) <= (json.from_json(T)).
+:- instance (json.from_json(bag.bag(T))) <= (json.from_json(T)).
+:- instance (json.from_json(cord.cord(T))) <= (json.from_json(T)).
+:- instance (json.from_json(digraph.digraph(T))) <= (json.from_json(T)).
+:- instance (json.from_json(list.list(T))) <= (json.from_json(T)).
+:- instance (json.from_json(maybe.maybe(T))) <= (json.from_json(T)).
+:- instance (json.from_json(queue.queue(T))) <= (json.from_json(T)).
+:- instance (json.from_json(set_bbbtree.set_bbbtree(T))) <= (json.from_json(T)).
+:- instance (json.from_json(set_ctree234.set_ctree234(T))) <= (json.from_json(T)).
+:- instance (json.from_json(set_ordlist.set_ordlist(T))) <= (json.from_json(T)).
+:- instance (json.from_json(set_tree234.set_tree234(T))) <= (json.from_json(T)).
+:- instance (json.from_json(set_unordlist.set_unordlist(T))) <= (json.from_json(T)).
+:- instance (json.from_json(version_array.version_array(T))) <= (json.from_json(T)).
+:- instance (json.from_json(bimap.bimap(K, V))) <= (json.from_json(K), json.from_json(V)).
+:- instance (json.from_json(map.map(K, V))) <= (json.from_json(K), json.from_json(V)).
+:- instance (json.from_json(maybe.maybe_error(T, E))) <= (json.from_json(T), json.from_json(E)).
+:- instance (json.from_json(pair.pair(A, B))) <= (json.from_json(A), json.from_json(B)).
+:- instance (json.from_json(pqueue.pqueue(K, V))) <= (json.from_json(K), json.from_json(V)).
+:- instance (json.from_json(rbtree.rbtree(K, V))) <= (json.from_json(K), json.from_json(V)).
+:- instance (json.to_json(array.array(T))) <= (json.to_json(T)).
+:- instance (json.to_json(array2d.array2d(T))) <= (json.to_json(T)).
+:- instance (json.to_json(bag.bag(T))) <= (json.to_json(T)).
+:- instance (json.to_json(cord.cord(T))) <= (json.to_json(T)).
+:- instance (json.to_json(digraph.digraph(T))) <= (json.to_json(T)).
+:- instance (json.to_json(list.list(T))) <= (json.to_json(T)).
+:- instance (json.to_json(maybe.maybe(T))) <= (json.to_json(T)).
+:- instance (json.to_json(queue.queue(T))) <= (json.to_json(T)).
+:- instance (json.to_json(set_bbbtree.set_bbbtree(T))) <= (json.to_json(T)).
+:- instance (json.to_json(set_ctree234.set_ctree234(T))) <= (json.to_json(T)).
+:- instance (json.to_json(set_ordlist.set_ordlist(T))) <= (json.to_json(T)).
+:- instance (json.to_json(set_tree234.set_tree234(T))) <= (json.to_json(T)).
+:- instance (json.to_json(set_unordlist.set_unordlist(T))) <= (json.to_json(T)).
+:- instance (json.to_json(version_array.version_array(T))) <= (json.to_json(T)).
+:- instance (json.to_json(bimap.bimap(K, V))) <= (json.to_json(K), json.to_json(V)).
+:- instance (json.to_json(map.map(K, V))) <= (json.to_json(K), json.to_json(V)).
+:- instance (json.to_json(maybe.maybe_error(T, E))) <= (json.to_json(T), json.to_json(E)).
+:- instance (json.to_json(pair.pair(A, B))) <= (json.to_json(A), json.to_json(B)).
+:- instance (json.to_json(pqueue.pqueue(K, V))) <= (json.to_json(K), json.to_json(V)).
+:- instance (json.to_json(rbtree.rbtree(K, V))) <= (json.to_json(K), json.to_json(V)).
+:- instance (stream.error(json.error(Error))) <= (stream.error(Error)).
+:- instance (stream.input(json.reader(Stream), io.io)) <= (stream.input(Stream, io.io)).
+:- instance (stream.reader(json.reader(Stream), json.value, io.io, json.error(Error))) <= (stream.line_oriented(Stream, io.io), stream.putback(Stream, char.char, io.io, Error)).
+:- instance (stream.stream(json.reader(Stream), io.io)) <= (stream.stream(Stream, io.io)).
+:- pred array_fold(json.reader(Stream), pred(json.value, A, A), A, json.maybe_partial_res(A, Error), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode array_fold((builtin.in), builtin.in((pred((builtin.in), (builtin.in), (builtin.out)) is det)), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- mode array_fold((builtin.in), builtin.in((pred((builtin.in), (builtin.in), (builtin.out)) is cc_multi)), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is cc_multi.
+:- pred array_fold_state(json.reader(Stream), pred(json.value, A, A, State, State), A, json.maybe_partial_res(A, Error), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode array_fold_state((builtin.in), builtin.in((pred((builtin.in), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det)), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- mode array_fold_state((builtin.in), builtin.in((pred((builtin.in), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is cc_multi)), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is cc_multi.
+:- func det_from_string(string) = json.value.
+:- func det_from_string(json.reader_params, string) = json.value.
+:- func det_get_array(json.value) = json.array.
+:- func det_get_bool(json.value) = bool.bool.
+:- func det_get_int(json.value) = int.
+:- func det_get_number(json.value) = float.
+:- func det_get_object(json.value) = json.object.
+:- func det_get_string(json.value) = string.
+:- func det_make_object(assoc_list.assoc_list(string, json.value)) = json.value.
+:- func det_resolve(json.pointer, json.value) = json.value.
+:- func det_string_to_pointer(string) = json.pointer.
+:- func error_context_and_desc_to_string(json.context, json.error_desc) = string.
+:- pred from_string(string, json.value).
+:- mode from_string((builtin.in), (builtin.out)) is semidet.
+:- pred from_string(json.reader_params, string, json.value).
+:- mode from_string((builtin.in), (builtin.in), (builtin.out)) is semidet.
+:- func from_type(T) = json.value <= (json.to_json(T)).
+:- pred get_array(json.value, json.array).
+:- mode get_array((builtin.in), (builtin.out)) is semidet.
+:- pred get_array(json.reader(Stream), json.result(json.array, Error), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode get_array((builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- pred get_bool(json.value, bool.bool).
+:- mode get_bool((builtin.in), (builtin.out)) is semidet.
+:- pred get_int(json.value, int).
+:- mode get_int((builtin.in), (builtin.out)) is semidet.
+:- pred get_number(json.value, float).
+:- mode get_number((builtin.in), (builtin.out)) is semidet.
+:- pred get_object(json.value, json.object).
+:- mode get_object((builtin.in), (builtin.out)) is semidet.
+:- pred get_object(json.reader(Stream), json.result(json.object, Error), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode get_object((builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- pred get_string(json.value, string).
+:- mode get_string((builtin.in), (builtin.out)) is semidet.
+:- pred get_value(json.reader(Stream), json.result(json.value, Error), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode get_value((builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- pred init_reader(Stream, json.reader(Stream), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode init_reader((builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- pred init_reader(Stream, json.reader_params, json.reader(Stream), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode init_reader((builtin.in), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- pred init_writer(Stream, json.writer(Stream), State, State) <= (stream.writer(Stream, char.char, State), stream.writer(Stream, string, State)).
+:- mode init_writer((builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- pred init_writer(Stream, json.writer_params, json.writer(Stream), State, State) <= (stream.writer(Stream, char.char, State), stream.writer(Stream, string, State)).
+:- mode init_writer((builtin.in), builtin.in((json.writer_params)), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- func int(int) = json.value.
+:- pred is_array(json.value).
+:- mode is_array((builtin.in)) is semidet.
+:- pred is_bool(json.value).
+:- mode is_bool((builtin.in)) is semidet.
+:- pred is_null(json.value).
+:- mode is_null((builtin.in)) is semidet.
+:- pred is_number(json.value).
+:- mode is_number((builtin.in)) is semidet.
+:- pred is_object(json.value).
+:- mode is_object((builtin.in)) is semidet.
+:- pred is_string(json.value).
+:- mode is_string((builtin.in)) is semidet.
+:- func lookup_array(json.object, string) = json.array.
+:- func lookup_bool(json.object, string) = bool.bool.
+:- func lookup_int(json.object, string) = int.
+:- func lookup_number(json.object, string) = float.
+:- func lookup_object(json.object, string) = json.object.
+:- func lookup_string(json.object, string) = string.
+:- pred make_object(assoc_list.assoc_list(string, json.value), json.value).
+:- mode make_object((builtin.in), (builtin.out)) is semidet.
+:- func maybe_from_string(string) = json.from_string_result.
+:- func maybe_from_string(json.reader_params, string) = json.from_string_result.
+:- pred object_fold(json.reader(Stream), pred(string, json.value, A, A), A, json.maybe_partial_res(A, Error), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode object_fold((builtin.in), builtin.in((pred((builtin.in), (builtin.in), (builtin.in), (builtin.out)) is det)), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- mode object_fold((builtin.in), builtin.in((pred((builtin.in), (builtin.in), (builtin.in), (builtin.out)) is cc_multi)), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is cc_multi.
+:- pred object_fold_state(json.reader(Stream), pred(string, json.value, A, A, State, State), A, json.maybe_partial_res(A, Error), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode object_fold_state((builtin.in), builtin.in((pred((builtin.in), (builtin.in), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det)), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- mode object_fold_state((builtin.in), builtin.in((pred((builtin.in), (builtin.in), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is cc_multi)), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is cc_multi.
+:- func pointer_to_string(json.pointer) = string.
+:- pred put_comment(json.writer(Stream), json.comment, State, State) <= (stream.writer(Stream, char.char, State), stream.writer(Stream, string, State)).
+:- mode put_comment((builtin.in), (builtin.in), (builtin.di), (builtin.uo)) is det.
+:- pred put_value(json.writer(Stream), json.value, State, State) <= (stream.writer(Stream, char.char, State), stream.writer(Stream, string, State)).
+:- mode put_value((builtin.in), (builtin.in), (builtin.di), (builtin.uo)) is det.
+:- pred read_array(json.reader(Stream), json.result(json.array, Error), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode read_array((builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- pred read_object(json.reader(Stream), json.result(json.object, Error), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode read_object((builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- pred read_value(json.reader(Stream), json.result(json.value, Error), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode read_value((builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- func reader_params(json.allow_comments, json.allow_trailing_commas, json.allow_repeated_members, json.allow_infinities) = json.reader_params.
+:- pred resolve(json.pointer, json.value, json.value).
+:- mode resolve((builtin.in), (builtin.in), (builtin.out)) is semidet.
+:- func search_array(json.object, string, json.array) = json.array.
+:- func search_array_or_null(json.object, string, json.array) = json.array.
+:- func search_bool(json.object, string, bool.bool) = bool.bool.
+:- func search_int(json.object, string, int) = int.
+:- func search_number(json.object, string, float) = float.
+:- func search_object(json.object, string, json.object) = json.object.
+:- func search_object_or_null(json.object, string, json.object) = json.object.
+:- func search_string(json.object, string, string) = string.
+:- func search_string_or_null(json.object, string, string) = string.
+:- pred string_to_pointer(string, json.pointer).
+:- mode string_to_pointer((builtin.in), (builtin.out)) is semidet.
+:- func to_string(json.value) = string.
+:- func to_type(json.value) = maybe.maybe_error(T) <= (json.from_json(T)).
+:- pred write_compact(json.value, io.io, io.io).
+:- mode write_compact((builtin.in), (builtin.di), (builtin.uo)) is det.
+:- pred write_compact(io.text_output_stream, json.value, io.io, io.io).
+:- mode write_compact((builtin.in), (builtin.in), (builtin.di), (builtin.uo)) is det.
+:- pred write_pretty(json.value, io.io, io.io).
+:- mode write_pretty((builtin.in), (builtin.di), (builtin.uo)) is det.
+:- pred write_pretty(io.text_output_stream, json.value, io.io, io.io).
+:- mode write_pretty((builtin.in), (builtin.in), (builtin.di), (builtin.uo)) is det.
+:- func writer_params(json.output_style, json.allow_infinities) = json.writer_params.
+:- mode writer_params((builtin.in), (builtin.in)) = builtin.out((json.writer_params)) is det.
+:- implementation.
+:- import_module array.
+:- import_module array2d.
+:- import_module assoc_list.
+:- import_module bag.
+:- import_module bimap.
+:- import_module bitmap.
+:- import_module bool.
+:- import_module calendar.
+:- import_module char.
+:- import_module cord.
+:- import_module digraph.
+:- import_module integer.
+:- import_module io.
+:- import_module list.
+:- import_module map.
+:- import_module maybe.
+:- import_module pair.
+:- import_module pqueue.
+:- import_module queue.
+:- import_module rational.
+:- import_module rbtree.
+:- import_module set_bbbtree.
+:- import_module set_ctree234.
+:- import_module set_ordlist.
+:- import_module set_tree234.
+:- import_module set_unordlist.
+:- import_module stream.
+:- import_module unit.
+:- import_module version_array.
+:- include_module (json.char_buffer).
+:- include_module (json.json_lexer).
+:- include_module (json.json_parser).
+:- include_module (json.marshal).
+:- include_module (json.pointer).
+:- include_module (json.string_reader).
+:- include_module (json.unmarshal).
+:- include_module (json.writer).
+:- import_module float.
+:- import_module int.
+:- import_module mutvar.
+:- import_module require.
+:- import_module string.
+:- import_module univ.
+:- import_module (json.char_buffer).
+:- import_module (json.json_lexer).
+:- import_module (json.json_parser).
+:- import_module (json.marshal).
+:- import_module (json.pointer).
+:- import_module (json.string_reader).
+:- import_module (json.unmarshal).
+:- import_module (json.writer).
+:- import_module (string.builder).
+:- type pointer
+	--->	pointer(list.list(string)).
+:- type reader(Stream)
+	--->	json_reader((json.json_reader_stream) :: Stream, (json.json_comments) :: json.allow_comments, (json.json_trailing_commas) :: json.allow_trailing_commas, (json.json_repeated_members) :: json.allow_repeated_members, (json.json_infinities) :: json.allow_infinities, (json.json_maximum_nesting_depth) :: json.maximum_nesting_depth, (json.json_column_number) :: mutvar.mutvar(int), (json.json_char_buffer) :: json.char_buffer.char_buffer).
+:- type writer(Stream)
+	--->	json_writer((json.json_writer_stream) :: Stream, (json.json_output_style) :: json.output_style, (json.json_output_infinities) :: json.allow_infinities, (json.json_member_filter) :: json.member_filter).
+:- instance (json.from_json(bitmap.bitmap)).
+:- instance (json.from_json(bool.bool)).
+:- instance (json.from_json(calendar.date)).
+:- instance (json.from_json(calendar.duration)).
+:- instance (json.from_json(char.char)).
+:- instance (json.from_json(integer.integer)).
+:- instance (json.from_json(json.pointer)).
+:- instance (json.from_json(json.value)).
+:- instance (json.from_json(rational.rational)).
+:- instance (json.from_json(unit.unit)).
+:- instance (json.from_json(int)).
+:- instance (json.from_json(float)).
+:- instance (json.from_json(string)).
+:- instance (json.to_json(bitmap.bitmap)).
+:- instance (json.to_json(bool.bool)).
+:- instance (json.to_json(calendar.date)).
+:- instance (json.to_json(calendar.duration)).
+:- instance (json.to_json(char.char)).
+:- instance (json.to_json(integer.integer)).
+:- instance (json.to_json(json.pointer)).
+:- instance (json.to_json(json.value)).
+:- instance (json.to_json(rational.rational)).
+:- instance (json.to_json(unit.unit)).
+:- instance (json.to_json(int)).
+:- instance (json.to_json(float)).
+:- instance (json.to_json(string)).
+:- instance (json.from_json(array.array(T))) <= (json.from_json(T)).
+:- instance (json.from_json(array2d.array2d(T))) <= (json.from_json(T)).
+:- instance (json.from_json(bag.bag(T))) <= (json.from_json(T)).
+:- instance (json.from_json(cord.cord(T))) <= (json.from_json(T)).
+:- instance (json.from_json(digraph.digraph(T))) <= (json.from_json(T)).
+:- instance (json.from_json(list.list(T))) <= (json.from_json(T)).
+:- instance (json.from_json(maybe.maybe(T))) <= (json.from_json(T)).
+:- instance (json.from_json(queue.queue(T))) <= (json.from_json(T)).
+:- instance (json.from_json(set_bbbtree.set_bbbtree(T))) <= (json.from_json(T)).
+:- instance (json.from_json(set_ctree234.set_ctree234(T))) <= (json.from_json(T)).
+:- instance (json.from_json(set_ordlist.set_ordlist(T))) <= (json.from_json(T)).
+:- instance (json.from_json(set_tree234.set_tree234(T))) <= (json.from_json(T)).
+:- instance (json.from_json(set_unordlist.set_unordlist(T))) <= (json.from_json(T)).
+:- instance (json.from_json(version_array.version_array(T))) <= (json.from_json(T)).
+:- instance (json.from_json(bimap.bimap(K, V))) <= (json.from_json(K), json.from_json(V)).
+:- instance (json.from_json(map.map(K, V))) <= (json.from_json(K), json.from_json(V)).
+:- instance (json.from_json(maybe.maybe_error(T, E))) <= (json.from_json(T), json.from_json(E)).
+:- instance (json.from_json(pair.pair(A, B))) <= (json.from_json(A), json.from_json(B)).
+:- instance (json.from_json(pqueue.pqueue(K, V))) <= (json.from_json(K), json.from_json(V)).
+:- instance (json.from_json(rbtree.rbtree(K, V))) <= (json.from_json(K), json.from_json(V)).
+:- instance (json.to_json(array.array(T))) <= (json.to_json(T)).
+:- instance (json.to_json(array2d.array2d(T))) <= (json.to_json(T)).
+:- instance (json.to_json(bag.bag(T))) <= (json.to_json(T)).
+:- instance (json.to_json(cord.cord(T))) <= (json.to_json(T)).
+:- instance (json.to_json(digraph.digraph(T))) <= (json.to_json(T)).
+:- instance (json.to_json(list.list(T))) <= (json.to_json(T)).
+:- instance (json.to_json(maybe.maybe(T))) <= (json.to_json(T)).
+:- instance (json.to_json(queue.queue(T))) <= (json.to_json(T)).
+:- instance (json.to_json(set_bbbtree.set_bbbtree(T))) <= (json.to_json(T)).
+:- instance (json.to_json(set_ctree234.set_ctree234(T))) <= (json.to_json(T)).
+:- instance (json.to_json(set_ordlist.set_ordlist(T))) <= (json.to_json(T)).
+:- instance (json.to_json(set_tree234.set_tree234(T))) <= (json.to_json(T)).
+:- instance (json.to_json(set_unordlist.set_unordlist(T))) <= (json.to_json(T)).
+:- instance (json.to_json(version_array.version_array(T))) <= (json.to_json(T)).
+:- instance (json.to_json(bimap.bimap(K, V))) <= (json.to_json(K), json.to_json(V)).
+:- instance (json.to_json(map.map(K, V))) <= (json.to_json(K), json.to_json(V)).
+:- instance (json.to_json(maybe.maybe_error(T, E))) <= (json.to_json(T), json.to_json(E)).
+:- instance (json.to_json(pair.pair(A, B))) <= (json.to_json(A), json.to_json(B)).
+:- instance (json.to_json(pqueue.pqueue(K, V))) <= (json.to_json(K), json.to_json(V)).
+:- instance (json.to_json(rbtree.rbtree(K, V))) <= (json.to_json(K), json.to_json(V)).
+:- instance (stream.error(json.error(Error))) <= (stream.error(Error)).
+:- instance (stream.input(json.reader(Stream), io.io)) <= (stream.input(Stream, io.io)).
+:- instance (stream.reader(json.reader(Stream), json.value, io.io, json.error(Error))) <= (stream.line_oriented(Stream, io.io), stream.putback(Stream, char.char, io.io, Error)).
+:- instance (stream.stream(json.reader(Stream), io.io)) <= (stream.stream(Stream, io.io)).
+:- pred cast_member_filter_to_pred(json.member_filter, json.member_filter).
+:- mode cast_member_filter_to_pred((builtin.in), builtin.out((json.member_filter))) is det.
+:- func default_reader_params = json.reader_params.
+:- func describe_char(char.char) = string.
+:- pred det_add_member(pair.pair(string, json.value), json.object, json.object).
+:- mode det_add_member((builtin.in), (builtin.in), (builtin.out)) is det.
+:- pred make_error_context(json.reader(Stream), json.context, State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode make_error_context((builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- func make_error_message(json.error(Error)) = string <= (stream.error(Error)).
+:- pred make_syntax_error(json.reader(Stream), string, maybe.maybe(string), json.error(Error), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode make_syntax_error((builtin.in), (builtin.in), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- pred make_unexpected_eof_error(json.reader(Stream), maybe.maybe(string), json.error(Error), State, State) <= (stream.line_oriented(Stream, State), stream.putback(Stream, char.char, State, Error)).
+:- mode make_unexpected_eof_error((builtin.in), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- pred semidet_add_member(pair.pair(string, json.value), json.object, json.object).
+:- mode semidet_add_member((builtin.in), (builtin.in), (builtin.out)) is semidet.
+:- func unexpected_type_error(string, string, json.value) = V_1 is erroneous.
+:- func value_desc(json.value) = string.

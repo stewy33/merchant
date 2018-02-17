@@ -1,0 +1,13 @@
+module(1, "json.unmarshal.m",
+	(json.unmarshal),
+	{json},
+	{builtin, private_builtin},
+	{builtin, type_desc, private_builtin},
+	{},
+	{},
+	{},
+	{},
+	{},
+	no_foreign_export,
+	no_main
+).
