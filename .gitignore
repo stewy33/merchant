@@ -12,3 +12,5 @@ Mercury.modules
 *.d
 *.c_date
 .DS_Store
+*.swp
+.packages

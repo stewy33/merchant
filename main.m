@@ -16,14 +16,9 @@
 
 :- import_module
     init_package,
-    manifest.
-
-:- pred system(string::in, io::di, io::uo) is det.
-:- pred do_system_stuff(string::in, string::in, io::di, io::uo) is det.
-:- pragma foreign_proc("C", system(String::in, IO0::di, IO::uo), [will_not_call_mercury, promise_pure], 
-    "
-      system(String);
-    ").
+    install_packages,
+    manifest,
+    util.
 
 main(!IO) :-
     handle_command_line_args(MaybeOptionTable, !IO),
@@ -44,26 +39,20 @@ main(!IO) :-
         init_package(!IO)
       ;
         Init = no
-      )
+      ),
+
+      getopt.lookup_bool_option(OptionTable, install, Install),
+      (
+        Install = yes,
+        install_packages(!IO)
+      ;
+        Install = no
+       )
     ;
       MaybeOptionTable = error(OptionErrorMsg),
       string.format("error: %s.\n", [s(OptionErrorMsg)], ErrorMsg),
-      io_write_error(ErrorMsg, !IO)
+      util.io_write_error(ErrorMsg, !IO)
     ).
-    /*manifest_from_file(MaybeManifest, !IO),
-    (
-      MaybeManifest = ok(Manifest),
-      io_write_manifest(Manifest, !IO)
-    ;
-      MaybeManifest = error(ErrorMsg),
-      io_write_error(ErrorMsg, !IO),
-      io.set_exit_status(1, !IO)
-    ).*/
-
-:- pred io_write_error(string::in, io::di, io::uo) is det.
-io_write_error(ErrorMsg, !IO) :-
-    io.stderr_stream(Stderr, !IO),
-    io.write_string(Stderr, ErrorMsg, !IO).
 
 :- pred handle_command_line_args(maybe_option_table(option)::out, io::di, io::uo) is det.
 handle_command_line_args(MaybeOptionTable, !IO) :-
@@ -77,18 +66,22 @@ handle_command_line_args(MaybeOptionTable, !IO) :-
 
 :- pred usage(io::di, io::uo) is det.
 usage(!IO) :-
-   io_write_error("help message\n", !IO). 
+   util.io_write_error("help message\n", !IO). 
 
 :- type option ---> init
+               ;    install
                ;    help.
 
 :- pred short_option(char::in, option::out) is semidet.
+short_option('i', install).
 short_option('h', help).
 
 :- pred long_option(string::in, option::out) is semidet.
 long_option("init", init).
+long_option("install", install).
 long_option("help", help).
 
 :- pred option_default(option::out, option_data::out) is multi.
 option_default(init, bool(no)).
+option_default(install, bool(no)).
 option_default(help, bool(no)).

@@ -30,7 +30,9 @@ init_package(!IO) :-
 :- func default_manifest = string.
 default_manifest =
 "{
-    name: package_name,
-    author: package_author,
-    dependencies: {}
+    \"name\": \"package_name\",
+    \"author\": \"package_author\",
+    \"dependencies\": {
+        \"mercury_json\": \"https://github.com/juliensf/mercury-json.git\"
+    }
 }\n".
