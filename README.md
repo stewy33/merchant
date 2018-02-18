@@ -21,12 +21,17 @@ Commands:
 
 Installation
 
-we provided experimental binaries for Linux and Mac.  NOTE: This project
-has not been tested on windows.
+Recommended: cd into the "hophacks2018" folder then run the 
+command 'chmod +x install_merchant.sh' then run './install_merchant.sh'
+afterwards, you should be able to use merchant commands.
 
-To use, place the "build_package.sh", "install_libraries.sh" and
-the binary (depending on your operating system) in the project
-folder.  Run with "./main -- <command>".
+Alternatively,we provided experimental binaries for Linux and Mac.
+
+ALSO: make sure you have install_packages.sh and build_libraries.sh
+        in the project folder before running the merchant command
+
+NOTE: this project has never been tested on Windows.  Mac and Linux
+only
 
 If you're compiling from source,
 This project depends on juliensf's json parser:
