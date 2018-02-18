@@ -8,4 +8,4 @@ cd hophacks2018/client
 mmc --make merchant
 sudo mv merchant /usr/local/bin/merchant
 
-sudo rm -r hophacks2018
+sudo rm -r /usr/local/bin/merchant/hophacks2018
