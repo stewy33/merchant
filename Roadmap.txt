@@ -12,4 +12,7 @@
    j. Learn to download package from a registry using this tool.
 
 
-1. Make the registry...
+2. Make the registry...
+
+Completed: 
+1: a,c,d

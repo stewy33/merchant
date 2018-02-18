@@ -11,3 +11,8 @@ Mercury.modules
 *.beams
 *.d
 *.c_date
+.DS_Store
+.directory
+*.swp
+.packages
+lib/
