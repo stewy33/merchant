@@ -19,6 +19,7 @@ Commands:
         returns a help message
 ========================================================================
 Installation
+========================================================================
 
 we provided experimental binaries for Linux and Mac.  NOTE: This project
 has not been tested on windows.
