@@ -1,5 +1,4 @@
 #!/bin/bash
-
 output="mmc --make $1 --grade hlc.gc"
 for i in "${@:2}"
 do 
@@ -7,3 +6,4 @@ do
 done
 echo $output
 $output
+cd ../../..
