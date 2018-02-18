@@ -1,0 +1,13 @@
+module(1, "json.char_buffer.m",
+	(json.char_buffer),
+	{json},
+	{builtin, private_builtin},
+	{builtin, mutvar, private_builtin},
+	{},
+	{},
+	{},
+	{"C"},
+	{"C" - (json.char_buffer)},
+	no_foreign_export,
+	no_main
+).

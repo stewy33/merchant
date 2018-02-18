@@ -1,0 +1,16 @@
+:- module (json.json_lexer).
+:- interface.
+:- type token(Error)
+	--->	token_left_curly_bracket 
+	;	token_right_curly_bracket 
+	;	token_left_square_bracket 
+	;	token_right_square_bracket 
+	;	token_comma 
+	;	token_colon 
+	;	token_string(string)
+	;	token_number(float)
+	;	token_false 
+	;	token_true 
+	;	token_null 
+	;	token_eof 
+	;	token_error(json.error(Error)).

@@ -1,0 +1,2391 @@
+/*
+** Automatically generated from `json.m'
+** by the Mercury compiler,
+** version 14.01.1-2jessie0, configured for x86_64-pc-linux-gnu.
+** Do not edit.
+**
+** The autoconfigured grade settings governing
+** the generation of this C file were
+**
+** TAG_BITS=3
+** UNBOXED_FLOAT=yes
+** PREGENERATED_DIST=no
+** HIGHLEVEL_CODE=yes
+**
+** END_OF_C_GRADE_INFO
+*/
+
+
+/* :- module json. */
+/* :- interface. */
+
+#ifndef MR_HEADER_GUARD_json
+#define MR_HEADER_GUARD_json
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "mercury.h"
+
+
+#ifndef JSON_DECL_GUARD
+#define JSON_DECL_GUARD
+
+#endif
+
+
+
+
+#line 41 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_allow_comments_0;
+
+#line 44 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_allow_infinities_0;
+
+#line 47 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_allow_repeated_members_0;
+
+#line 50 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_allow_trailing_commas_0;
+
+#line 53 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_array_0;
+
+#line 56 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_comment_0;
+
+#line 59 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_context_0;
+
+#line 62 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_error_1;
+
+#line 65 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_error_desc_0;
+
+#line 68 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_from_string_result_0;
+
+#line 71 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_maximum_nesting_depth_0;
+
+#line 74 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_maybe_partial_res_2;
+
+#line 77 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_member_filter_0;
+
+#line 80 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_non_finite_number_error_0;
+
+#line 83 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_object_0;
+
+#line 86 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_output_style_0;
+
+#line 89 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_pointer_0;
+
+#line 92 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_reader_1;
+
+#line 95 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_reader_params_0;
+
+#line 98 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_res_2;
+
+#line 101 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_res_1;
+
+#line 104 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_result_2;
+
+#line 107 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_value_0;
+
+#line 110 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_writer_1;
+
+#line 113 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeCtorInfo_Struct json__json__type_ctor_info_writer_params_0;
+
+#line 116 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_stream__stream__arity2__json__reader__arity1__io__state__arity0__[6];
+
+#line 119 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_stream__reader__arity4__json__reader__arity1__json__value__arity0__io__state__arity0__json__error__arity1__[6];
+
+#line 122 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_stream__input__arity2__json__reader__arity1__io__state__arity0__[5];
+
+#line 125 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_stream__error__arity1__json__error__arity1__[6];
+
+#line 128 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__json__pointer__arity0__[6];
+
+#line 131 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__json__value__arity0__[6];
+
+#line 134 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__digraph__digraph__arity1__[6];
+
+#line 137 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__queue__queue__arity1__[6];
+
+#line 140 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__unit__unit__arity0__[6];
+
+#line 143 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__bimap__bimap__arity2__[6];
+
+#line 146 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__rbtree__rbtree__arity2__[6];
+
+#line 149 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__tree234__tree234__arity2__[6];
+
+#line 152 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__maybe__maybe_error__arity2__[6];
+
+#line 155 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__maybe__maybe__arity1__[6];
+
+#line 158 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__set_bbbtree__set_bbbtree__arity1__[6];
+
+#line 161 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__set_ctree234__set_ctree234__arity1__[6];
+
+#line 164 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__set_tree234__set_tree234__arity1__[6];
+
+#line 167 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__set_unordlist__set_unordlist__arity1__[6];
+
+#line 170 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__set_ordlist__set_ordlist__arity1__[6];
+
+#line 173 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__rational__rational__arity0__[6];
+
+#line 176 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__pqueue__pqueue__arity2__[6];
+
+#line 179 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__bitmap__bitmap__arity0__[6];
+
+#line 182 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__version_array__version_array__arity1__[6];
+
+#line 185 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__array2d__array2d__arity1__[6];
+
+#line 188 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__array__array__arity1__[6];
+
+#line 191 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__cord__cord__arity1__[6];
+
+#line 194 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__list__list__arity1__[6];
+
+#line 197 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__pair__pair__arity2__[6];
+
+#line 200 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__calendar__duration__arity0__[6];
+
+#line 203 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__calendar__date__arity0__[6];
+
+#line 206 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__integer__integer__arity0__[6];
+
+#line 209 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__bool__bool__arity0__[6];
+
+#line 212 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__string__arity0__[6];
+
+#line 215 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__character__arity0__[6];
+
+#line 218 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__float__arity0__[6];
+
+#line 221 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__int__arity0__[6];
+
+#line 224 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__to_json__arity1__bag__bag__arity1__[6];
+
+#line 227 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__json__pointer__arity0__[6];
+
+#line 230 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__json__value__arity0__[6];
+
+#line 233 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__digraph__digraph__arity1__[6];
+
+#line 236 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__queue__queue__arity1__[6];
+
+#line 239 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__unit__unit__arity0__[6];
+
+#line 242 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__bimap__bimap__arity2__[6];
+
+#line 245 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__rbtree__rbtree__arity2__[6];
+
+#line 248 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__tree234__tree234__arity2__[6];
+
+#line 251 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__maybe__maybe_error__arity2__[6];
+
+#line 254 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__maybe__maybe__arity1__[6];
+
+#line 257 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__set_bbbtree__set_bbbtree__arity1__[6];
+
+#line 260 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__set_ctree234__set_ctree234__arity1__[6];
+
+#line 263 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__set_tree234__set_tree234__arity1__[6];
+
+#line 266 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__set_unordlist__set_unordlist__arity1__[6];
+
+#line 269 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__set_ordlist__set_ordlist__arity1__[6];
+
+#line 272 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__pqueue__pqueue__arity2__[6];
+
+#line 275 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__bitmap__bitmap__arity0__[6];
+
+#line 278 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__rational__rational__arity0__[6];
+
+#line 281 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__version_array__version_array__arity1__[6];
+
+#line 284 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__array2d__array2d__arity1__[6];
+
+#line 287 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__array__array__arity1__[6];
+
+#line 290 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__cord__cord__arity1__[6];
+
+#line 293 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__list__list__arity1__[6];
+
+#line 296 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__pair__pair__arity2__[6];
+
+#line 299 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__calendar__duration__arity0__[6];
+
+#line 302 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__calendar__date__arity0__[6];
+
+#line 305 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__integer__integer__arity0__[6];
+
+#line 308 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__bool__bool__arity0__[6];
+
+#line 311 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__string__arity0__[6];
+
+#line 314 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__character__arity0__[6];
+
+#line 317 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__float__arity0__[6];
+
+#line 320 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__int__arity0__[6];
+
+#line 323 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_BaseTypeclassInfo base_typeclass_info_json__from_json__arity1__bag__bag__arity1__[6];
+
+#line 326 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeClassDeclStruct json__json__type_class_decl_to_json_1;
+
+#line 329 "Mercury/hlc.gc/x86_64-pc-linux-gnu/Mercury/mihs/json.mih.tmp"
+extern const MR_TypeClassDeclStruct json__json__type_class_decl_from_json_1;
+
+#line 1375 "json.m"
+MR_Word MR_CALL 
+json__f_85_110_117_115_101_100_65_114_103_115_95_95_102_117_110_99_95_95_67_108_97_115_115_77_101_116_104_111_100_95_102_111_114_95_106_115_111_110_95_95_116_111_95_106_115_111_110_95_95_95_95_117_110_105_116_95_95_117_110_105_116_95_95_97_114_105_116_121_48_95_95_95_95_95_95_106_115_111_110_95_95_116_111_95_106_115_111_110_95_49_95_95_91_49_93_95_48_1_f_0(void);
+
+#line 1518 "json.m"
+void MR_CALL 
+json__f_85_110_117_115_101_100_65_114_103_115_95_95_112_114_101_100_95_95_109_97_107_101_95_101_114_114_111_114_95_99_111_110_116_101_120_116_95_95_91_50_93_95_48_4_p_0(
+#line 1518 "json.m"
+  MR_Word json__param_1,
+#line 1518 "json.m"
+  MR_Word json__param_2,
+#line 1518 "json.m"
+  MR_Word * json__param_3,
+#line 1518 "json.m"
+  MR_Box json__param_4,
+#line 1518 "json.m"
+  MR_Box * json__param_5);
+
+#line 642 "json.m"
+void MR_CALL 
+json__f_85_110_117_115_101_100_65_114_103_115_95_95_112_114_101_100_95_95_105_110_105_116_95_119_114_105_116_101_114_95_95_91_50_93_95_48_5_p_0(
+#line 642 "json.m"
+  MR_Word json__param_1,
+#line 642 "json.m"
+  MR_Box json__param_2,
+#line 642 "json.m"
+  MR_Word json__param_3,
+#line 642 "json.m"
+  MR_Word * json__param_4,
+#line 642 "json.m"
+  MR_Box json__param_5,
+#line 642 "json.m"
+  MR_Box * json__param_6);
+
+#line 633 "json.m"
+void MR_CALL 
+json__f_85_110_117_115_101_100_65_114_103_115_95_95_112_114_101_100_95_95_105_110_105_116_95_119_114_105_116_101_114_95_95_91_50_93_95_48_4_p_0(
+#line 633 "json.m"
+  MR_Word json__param_1,
+#line 633 "json.m"
+  MR_Box json__param_2,
+#line 633 "json.m"
+  MR_Word * json__param_3,
+#line 633 "json.m"
+  MR_Box json__param_4,
+#line 633 "json.m"
+  MR_Box * json__param_5);
+
+#line 284 "json.m"
+void MR_CALL 
+json__f_85_110_117_115_101_100_65_114_103_115_95_95_112_114_101_100_95_95_105_110_105_116_95_114_101_97_100_101_114_95_95_91_50_93_95_48_5_p_0(
+#line 284 "json.m"
+  MR_Word json__param_1,
+#line 284 "json.m"
+  MR_Box json__param_2,
+#line 284 "json.m"
+  MR_Word json__param_3,
+#line 284 "json.m"
+  MR_Word * json__param_4,
+#line 284 "json.m"
+  MR_Box json__param_5,
+#line 284 "json.m"
+  MR_Box * json__param_6);
+
+#line 272 "json.m"
+void MR_CALL 
+json__f_85_110_117_115_101_100_65_114_103_115_95_95_112_114_101_100_95_95_105_110_105_116_95_114_101_97_100_101_114_95_95_91_50_93_95_48_4_p_0(
+#line 272 "json.m"
+  MR_Word json__param_1,
+#line 272 "json.m"
+  MR_Box json__param_2,
+#line 272 "json.m"
+  MR_Word * json__param_3,
+#line 272 "json.m"
+  MR_Box json__param_4,
+#line 272 "json.m"
+  MR_Box * json__param_5);
+
+#line 1709 "json.m"
+void MR_CALL 
+json__ClassMethod_for_stream__stream____json__reader__arity1__io__state__arity0______stream__name_4_4_p_0(
+#line 1709 "json.m"
+  MR_Word json__param_1,
+#line 1709 "json.m"
+  MR_Word json__param_2,
+#line 1709 "json.m"
+  MR_String * json__param_3);
+
+#line 1724 "json.m"
+void MR_CALL 
+json__ClassMethod_for_stream__reader____json__reader__arity1__json__value__arity0__io__state__arity0__json__error__arity1______stream__get_4_4_p_0(
+#line 1724 "json.m"
+  MR_Word json__param_1,
+#line 1724 "json.m"
+  MR_Word json__param_2,
+#line 1724 "json.m"
+  MR_Word json__param_3,
+#line 1724 "json.m"
+  MR_Word * json__param_4);
+
+#line 1539 "json.m"
+MR_String MR_CALL 
+json__ClassMethod_for_stream__error____json__error__arity1______stream__error_message_1_1_f_0(
+#line 1539 "json.m"
+  MR_Word json__param_1,
+#line 1539 "json.m"
+  MR_Word json__param_2);
+
+#line 1291 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____bag__bag__arity1______json__to_json_1_1_f_0(
+#line 1291 "json.m"
+  MR_Word json__param_1,
+#line 1291 "json.m"
+  MR_Word json__param_2);
+
+#line 1294 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____int__arity0______json__to_json_1_1_f_0(
+#line 1294 "json.m"
+  MR_Integer json__param_1);
+
+#line 1297 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____float__arity0______json__to_json_1_1_f_0(
+#line 1297 "json.m"
+  MR_Float json__param_1);
+
+#line 1300 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____character__arity0______json__to_json_1_1_f_0(
+#line 1300 "json.m"
+  MR_Char json__param_1);
+
+#line 1303 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____string__arity0______json__to_json_1_1_f_0(
+#line 1303 "json.m"
+  MR_String json__param_1);
+
+#line 1306 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____bool__bool__arity0______json__to_json_1_1_f_0(
+#line 1306 "json.m"
+  MR_Word json__param_1);
+
+#line 1309 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____integer__integer__arity0______json__to_json_1_1_f_0(
+#line 1309 "json.m"
+  MR_Word json__param_1);
+
+#line 1312 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____calendar__date__arity0______json__to_json_1_1_f_0(
+#line 1312 "json.m"
+  MR_Word json__param_1);
+
+#line 1315 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____calendar__duration__arity0______json__to_json_1_1_f_0(
+#line 1315 "json.m"
+  MR_Word json__param_1);
+
+#line 1318 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____pair__pair__arity2______json__to_json_1_1_f_0(
+#line 1318 "json.m"
+  MR_Word json__param_1,
+#line 1318 "json.m"
+  MR_Word json__param_2,
+#line 1318 "json.m"
+  MR_Word json__param_3);
+
+#line 1321 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____list__list__arity1______json__to_json_1_1_f_0(
+#line 1321 "json.m"
+  MR_Word json__param_1,
+#line 1321 "json.m"
+  MR_Word json__param_2);
+
+#line 1324 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____cord__cord__arity1______json__to_json_1_1_f_0(
+#line 1324 "json.m"
+  MR_Word json__param_1,
+#line 1324 "json.m"
+  MR_Word json__param_2);
+
+#line 1327 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____array__array__arity1______json__to_json_1_1_f_0(
+#line 1327 "json.m"
+  MR_Word json__param_1,
+#line 1327 "json.m"
+  MR_ArrayPtr json__param_2);
+
+#line 1330 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____array2d__array2d__arity1______json__to_json_1_1_f_0(
+#line 1330 "json.m"
+  MR_Word json__param_1,
+#line 1330 "json.m"
+  MR_Word json__param_2);
+
+#line 1333 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____version_array__version_array__arity1______json__to_json_1_1_f_0(
+#line 1333 "json.m"
+  MR_Word json__param_1,
+#line 1333 "json.m"
+  MR_Box json__param_2);
+
+#line 1336 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____bitmap__bitmap__arity0______json__to_json_1_1_f_0(
+#line 1336 "json.m"
+  MR_Box json__param_1);
+
+#line 1339 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____pqueue__pqueue__arity2______json__to_json_1_1_f_0(
+#line 1339 "json.m"
+  MR_Word json__param_1,
+#line 1339 "json.m"
+  MR_Word json__param_2,
+#line 1339 "json.m"
+  MR_Word json__param_3);
+
+#line 1342 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____rational__rational__arity0______json__to_json_1_1_f_0(
+#line 1342 "json.m"
+  MR_Word json__param_1);
+
+#line 1345 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____set_ordlist__set_ordlist__arity1______json__to_json_1_1_f_0(
+#line 1345 "json.m"
+  MR_Word json__param_1,
+#line 1345 "json.m"
+  MR_Word json__param_2);
+
+#line 1348 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____set_unordlist__set_unordlist__arity1______json__to_json_1_1_f_0(
+#line 1348 "json.m"
+  MR_Word json__param_1,
+#line 1348 "json.m"
+  MR_Word json__param_2);
+
+#line 1351 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____set_tree234__set_tree234__arity1______json__to_json_1_1_f_0(
+#line 1351 "json.m"
+  MR_Word json__param_1,
+#line 1351 "json.m"
+  MR_Word json__param_2);
+
+#line 1354 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____set_ctree234__set_ctree234__arity1______json__to_json_1_1_f_0(
+#line 1354 "json.m"
+  MR_Word json__param_1,
+#line 1354 "json.m"
+  MR_Word json__param_2);
+
+#line 1357 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____set_bbbtree__set_bbbtree__arity1______json__to_json_1_1_f_0(
+#line 1357 "json.m"
+  MR_Word json__param_1,
+#line 1357 "json.m"
+  MR_Word json__param_2);
+
+#line 1360 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____maybe__maybe__arity1______json__to_json_1_1_f_0(
+#line 1360 "json.m"
+  MR_Word json__param_1,
+#line 1360 "json.m"
+  MR_Word json__param_2);
+
+#line 1363 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____maybe__maybe_error__arity2______json__to_json_1_1_f_0(
+#line 1363 "json.m"
+  MR_Word json__param_1,
+#line 1363 "json.m"
+  MR_Word json__param_2,
+#line 1363 "json.m"
+  MR_Word json__param_3);
+
+#line 1366 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____tree234__tree234__arity2______json__to_json_1_1_f_0(
+#line 1366 "json.m"
+  MR_Word json__param_1,
+#line 1366 "json.m"
+  MR_Word json__param_2,
+#line 1366 "json.m"
+  MR_Word json__param_3);
+
+#line 1369 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____rbtree__rbtree__arity2______json__to_json_1_1_f_0(
+#line 1369 "json.m"
+  MR_Word json__param_1,
+#line 1369 "json.m"
+  MR_Word json__param_2,
+#line 1369 "json.m"
+  MR_Word json__param_3);
+
+#line 1372 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____bimap__bimap__arity2______json__to_json_1_1_f_0(
+#line 1372 "json.m"
+  MR_Word json__param_1,
+#line 1372 "json.m"
+  MR_Word json__param_2,
+#line 1372 "json.m"
+  MR_Word json__param_3);
+
+#line 1375 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____unit__unit__arity0______json__to_json_1_1_f_0(void);
+
+#line 1378 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____queue__queue__arity1______json__to_json_1_1_f_0(
+#line 1378 "json.m"
+  MR_Word json__param_1,
+#line 1378 "json.m"
+  MR_Word json__param_2);
+
+#line 1381 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____digraph__digraph__arity1______json__to_json_1_1_f_0(
+#line 1381 "json.m"
+  MR_Word json__param_1,
+#line 1381 "json.m"
+  MR_Word json__param_2);
+
+#line 1384 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____json__value__arity0______json__to_json_1_1_f_0(
+#line 1384 "json.m"
+  MR_Word json__param_1);
+
+#line 1387 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__to_json____json__pointer__arity0______json__to_json_1_1_f_0(
+#line 1387 "json.m"
+  MR_Word json__param_1);
+
+#line 1393 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____bag__bag__arity1______json__from_json_1_1_f_0(
+#line 1393 "json.m"
+  MR_Word json__param_1,
+#line 1393 "json.m"
+  MR_Word json__param_2);
+
+#line 1396 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____int__arity0______json__from_json_1_1_f_0(
+#line 1396 "json.m"
+  MR_Word json__param_1);
+
+#line 1399 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____float__arity0______json__from_json_1_1_f_0(
+#line 1399 "json.m"
+  MR_Word json__param_1);
+
+#line 1402 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____character__arity0______json__from_json_1_1_f_0(
+#line 1402 "json.m"
+  MR_Word json__param_1);
+
+#line 1405 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____string__arity0______json__from_json_1_1_f_0(
+#line 1405 "json.m"
+  MR_Word json__param_1);
+
+#line 1408 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____bool__bool__arity0______json__from_json_1_1_f_0(
+#line 1408 "json.m"
+  MR_Word json__param_1);
+
+#line 1411 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____integer__integer__arity0______json__from_json_1_1_f_0(
+#line 1411 "json.m"
+  MR_Word json__param_1);
+
+#line 1414 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____calendar__date__arity0______json__from_json_1_1_f_0(
+#line 1414 "json.m"
+  MR_Word json__param_1);
+
+#line 1417 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____calendar__duration__arity0______json__from_json_1_1_f_0(
+#line 1417 "json.m"
+  MR_Word json__param_1);
+
+#line 1420 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____pair__pair__arity2______json__from_json_1_1_f_0(
+#line 1420 "json.m"
+  MR_Word json__param_1,
+#line 1420 "json.m"
+  MR_Word json__param_2,
+#line 1420 "json.m"
+  MR_Word json__param_3);
+
+#line 1423 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____list__list__arity1______json__from_json_1_1_f_0(
+#line 1423 "json.m"
+  MR_Word json__param_1,
+#line 1423 "json.m"
+  MR_Word json__param_2);
+
+#line 1426 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____cord__cord__arity1______json__from_json_1_1_f_0(
+#line 1426 "json.m"
+  MR_Word json__param_1,
+#line 1426 "json.m"
+  MR_Word json__param_2);
+
+#line 1429 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____array__array__arity1______json__from_json_1_1_f_0(
+#line 1429 "json.m"
+  MR_Word json__param_1,
+#line 1429 "json.m"
+  MR_Word json__param_2);
+
+#line 1432 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____array2d__array2d__arity1______json__from_json_1_1_f_0(
+#line 1432 "json.m"
+  MR_Word json__param_1,
+#line 1432 "json.m"
+  MR_Word json__param_2);
+
+#line 1435 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____version_array__version_array__arity1______json__from_json_1_1_f_0(
+#line 1435 "json.m"
+  MR_Word json__param_1,
+#line 1435 "json.m"
+  MR_Word json__param_2);
+
+#line 1438 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____rational__rational__arity0______json__from_json_1_1_f_0(
+#line 1438 "json.m"
+  MR_Word json__param_1);
+
+#line 1441 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____bitmap__bitmap__arity0______json__from_json_1_1_f_0(
+#line 1441 "json.m"
+  MR_Word json__param_1);
+
+#line 1444 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____pqueue__pqueue__arity2______json__from_json_1_1_f_0(
+#line 1444 "json.m"
+  MR_Word json__param_1,
+#line 1444 "json.m"
+  MR_Word json__param_2,
+#line 1444 "json.m"
+  MR_Word json__param_3);
+
+#line 1447 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____set_ordlist__set_ordlist__arity1______json__from_json_1_1_f_0(
+#line 1447 "json.m"
+  MR_Word json__param_1,
+#line 1447 "json.m"
+  MR_Word json__param_2);
+
+#line 1450 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____set_unordlist__set_unordlist__arity1______json__from_json_1_1_f_0(
+#line 1450 "json.m"
+  MR_Word json__param_1,
+#line 1450 "json.m"
+  MR_Word json__param_2);
+
+#line 1453 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____set_tree234__set_tree234__arity1______json__from_json_1_1_f_0(
+#line 1453 "json.m"
+  MR_Word json__param_1,
+#line 1453 "json.m"
+  MR_Word json__param_2);
+
+#line 1456 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____set_ctree234__set_ctree234__arity1______json__from_json_1_1_f_0(
+#line 1456 "json.m"
+  MR_Word json__param_1,
+#line 1456 "json.m"
+  MR_Word json__param_2);
+
+#line 1459 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____set_bbbtree__set_bbbtree__arity1______json__from_json_1_1_f_0(
+#line 1459 "json.m"
+  MR_Word json__param_1,
+#line 1459 "json.m"
+  MR_Word json__param_2);
+
+#line 1462 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____maybe__maybe__arity1______json__from_json_1_1_f_0(
+#line 1462 "json.m"
+  MR_Word json__param_1,
+#line 1462 "json.m"
+  MR_Word json__param_2);
+
+#line 1465 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____maybe__maybe_error__arity2______json__from_json_1_1_f_0(
+#line 1465 "json.m"
+  MR_Word json__param_1,
+#line 1465 "json.m"
+  MR_Word json__param_2,
+#line 1465 "json.m"
+  MR_Word json__param_3);
+
+#line 1468 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____tree234__tree234__arity2______json__from_json_1_1_f_0(
+#line 1468 "json.m"
+  MR_Word json__param_1,
+#line 1468 "json.m"
+  MR_Word json__param_2,
+#line 1468 "json.m"
+  MR_Word json__param_3);
+
+#line 1471 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____rbtree__rbtree__arity2______json__from_json_1_1_f_0(
+#line 1471 "json.m"
+  MR_Word json__param_1,
+#line 1471 "json.m"
+  MR_Word json__param_2,
+#line 1471 "json.m"
+  MR_Word json__param_3);
+
+#line 1474 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____bimap__bimap__arity2______json__from_json_1_1_f_0(
+#line 1474 "json.m"
+  MR_Word json__param_1,
+#line 1474 "json.m"
+  MR_Word json__param_2,
+#line 1474 "json.m"
+  MR_Word json__param_3);
+
+#line 1477 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____unit__unit__arity0______json__from_json_1_1_f_0(
+#line 1477 "json.m"
+  MR_Word json__param_1);
+
+#line 1480 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____queue__queue__arity1______json__from_json_1_1_f_0(
+#line 1480 "json.m"
+  MR_Word json__param_1,
+#line 1480 "json.m"
+  MR_Word json__param_2);
+
+#line 1483 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____digraph__digraph__arity1______json__from_json_1_1_f_0(
+#line 1483 "json.m"
+  MR_Word json__param_1,
+#line 1483 "json.m"
+  MR_Word json__param_2);
+
+#line 1486 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____json__value__arity0______json__from_json_1_1_f_0(
+#line 1486 "json.m"
+  MR_Word json__param_1);
+
+#line 1489 "json.m"
+MR_Word MR_CALL 
+json__ClassMethod_for_json__from_json____json__pointer__arity0______json__from_json_1_1_f_0(
+#line 1489 "json.m"
+  MR_Word json__param_1);
+
+#line 598 "json.m"
+void MR_CALL 
+json____Compare____writer_params_0_0(
+#line 598 "json.m"
+  MR_Word * json__param_1,
+#line 598 "json.m"
+  MR_Word json__param_2,
+#line 598 "json.m"
+  MR_Word json__param_3);
+
+#line 598 "json.m"
+MR_bool MR_CALL 
+json____Unify____writer_params_0_0(
+#line 598 "json.m"
+  MR_Word json__param_1,
+#line 598 "json.m"
+  MR_Word json__param_2);
+
+#line 1184 "json.m"
+void MR_CALL 
+json____Compare____writer_1_0(
+#line 1184 "json.m"
+  MR_Word json__param_1,
+#line 1184 "json.m"
+  MR_Word * json__param_2,
+#line 1184 "json.m"
+  MR_Word json__param_3,
+#line 1184 "json.m"
+  MR_Word json__param_4);
+
+#line 1184 "json.m"
+MR_bool MR_CALL 
+json____Unify____writer_1_0(
+#line 1184 "json.m"
+  MR_Word json__param_1,
+#line 1184 "json.m"
+  MR_Word json__param_2,
+#line 1184 "json.m"
+  MR_Word json__param_3);
+
+#line 53 "json.m"
+void MR_CALL 
+json____Compare____value_0_0(
+#line 53 "json.m"
+  MR_Word * json__param_1,
+#line 53 "json.m"
+  MR_Word json__param_2,
+#line 53 "json.m"
+  MR_Word json__param_3);
+
+#line 53 "json.m"
+MR_bool MR_CALL 
+json____Unify____value_0_0(
+#line 53 "json.m"
+  MR_Word json__param_1,
+#line 53 "json.m"
+  MR_Word json__param_2);
+
+#line 420 "json.m"
+void MR_CALL 
+json____Compare____result_2_0(
+#line 420 "json.m"
+  MR_Word json__param_1,
+#line 420 "json.m"
+  MR_Word json__param_2,
+#line 420 "json.m"
+  MR_Word * json__param_3,
+#line 420 "json.m"
+  MR_Word json__param_4,
+#line 420 "json.m"
+  MR_Word json__param_5);
+
+#line 420 "json.m"
+MR_bool MR_CALL 
+json____Unify____result_2_0(
+#line 420 "json.m"
+  MR_Word json__param_1,
+#line 420 "json.m"
+  MR_Word json__param_2,
+#line 420 "json.m"
+  MR_Word json__param_3,
+#line 420 "json.m"
+  MR_Word json__param_4);
+
+#line 416 "json.m"
+void MR_CALL 
+json____Compare____res_2_0(
+#line 416 "json.m"
+  MR_Word json__param_1,
+#line 416 "json.m"
+  MR_Word json__param_2,
+#line 416 "json.m"
+  MR_Word * json__param_3,
+#line 416 "json.m"
+  MR_Word json__param_4,
+#line 416 "json.m"
+  MR_Word json__param_5);
+
+#line 416 "json.m"
+MR_bool MR_CALL 
+json____Unify____res_2_0(
+#line 416 "json.m"
+  MR_Word json__param_1,
+#line 416 "json.m"
+  MR_Word json__param_2,
+#line 416 "json.m"
+  MR_Word json__param_3,
+#line 416 "json.m"
+  MR_Word json__param_4);
+
+#line 418 "json.m"
+void MR_CALL 
+json____Compare____res_1_0(
+#line 418 "json.m"
+  MR_Word json__param_1,
+#line 418 "json.m"
+  MR_Word * json__param_2,
+#line 418 "json.m"
+  MR_Word json__param_3,
+#line 418 "json.m"
+  MR_Word json__param_4);
+
+#line 418 "json.m"
+MR_bool MR_CALL 
+json____Unify____res_1_0(
+#line 418 "json.m"
+  MR_Word json__param_1,
+#line 418 "json.m"
+  MR_Word json__param_2,
+#line 418 "json.m"
+  MR_Word json__param_3);
+
+#line 210 "json.m"
+void MR_CALL 
+json____Compare____reader_params_0_0(
+#line 210 "json.m"
+  MR_Word * json__param_1,
+#line 210 "json.m"
+  MR_Word json__param_2,
+#line 210 "json.m"
+  MR_Word json__param_3);
+
+#line 210 "json.m"
+MR_bool MR_CALL 
+json____Unify____reader_params_0_0(
+#line 210 "json.m"
+  MR_Word json__param_1,
+#line 210 "json.m"
+  MR_Word json__param_2);
+
+#line 939 "json.m"
+void MR_CALL 
+json____Compare____reader_1_0(
+#line 939 "json.m"
+  MR_Word json__param_1,
+#line 939 "json.m"
+  MR_Word * json__param_2,
+#line 939 "json.m"
+  MR_Word json__param_3,
+#line 939 "json.m"
+  MR_Word json__param_4);
+
+#line 939 "json.m"
+MR_bool MR_CALL 
+json____Unify____reader_1_0(
+#line 939 "json.m"
+  MR_Word json__param_1,
+#line 939 "json.m"
+  MR_Word json__param_2,
+#line 939 "json.m"
+  MR_Word json__param_3);
+
+#line 1918 "json.m"
+void MR_CALL 
+json____Compare____pointer_0_0(
+#line 1918 "json.m"
+  MR_Word * json__param_1,
+#line 1918 "json.m"
+  MR_Word json__param_2,
+#line 1918 "json.m"
+  MR_Word json__param_3);
+
+#line 1918 "json.m"
+MR_bool MR_CALL 
+json____Unify____pointer_0_0(
+#line 1918 "json.m"
+  MR_Word json__param_1,
+#line 1918 "json.m"
+  MR_Word json__param_2);
+
+#line 614 "json.m"
+void MR_CALL 
+json____Compare____output_style_0_0(
+#line 614 "json.m"
+  MR_Word * json__param_1,
+#line 614 "json.m"
+  MR_Word json__param_2,
+#line 614 "json.m"
+  MR_Word json__param_3);
+
+#line 614 "json.m"
+MR_bool MR_CALL 
+json____Unify____output_style_0_0(
+#line 614 "json.m"
+  MR_Word json__param_1,
+#line 614 "json.m"
+  MR_Word json__param_2);
+
+#line 61 "json.m"
+void MR_CALL 
+json____Compare____object_0_0(
+#line 61 "json.m"
+  MR_Word * json__param_1,
+#line 61 "json.m"
+  MR_Word json__param_2,
+#line 61 "json.m"
+  MR_Word json__param_3);
+
+#line 61 "json.m"
+MR_bool MR_CALL 
+json____Unify____object_0_0(
+#line 61 "json.m"
+  MR_Word json__param_1,
+#line 61 "json.m"
+  MR_Word json__param_2);
+
+#line 408 "json.m"
+void MR_CALL 
+json____Compare____non_finite_number_error_0_0(
+#line 408 "json.m"
+  MR_Word * json__param_1,
+#line 408 "json.m"
+  MR_Word json__param_2,
+#line 408 "json.m"
+  MR_Word json__param_3);
+
+#line 408 "json.m"
+MR_bool MR_CALL 
+json____Unify____non_finite_number_error_0_0(
+#line 408 "json.m"
+  MR_Word json__param_1,
+#line 408 "json.m"
+  MR_Word json__param_2);
+
+#line 622 "json.m"
+void MR_CALL 
+json____Compare____member_filter_0_0(
+#line 622 "json.m"
+  MR_Word * json__param_1,
+#line 622 "json.m"
+  MR_Word json__param_2,
+#line 622 "json.m"
+  MR_Word json__param_3);
+
+#line 622 "json.m"
+MR_bool MR_CALL 
+json____Unify____member_filter_0_0(
+#line 622 "json.m"
+  MR_Word json__param_1,
+#line 622 "json.m"
+  MR_Word json__param_2);
+
+#line 422 "json.m"
+void MR_CALL 
+json____Compare____maybe_partial_res_2_0(
+#line 422 "json.m"
+  MR_Word json__param_1,
+#line 422 "json.m"
+  MR_Word json__param_2,
+#line 422 "json.m"
+  MR_Word * json__param_3,
+#line 422 "json.m"
+  MR_Word json__param_4,
+#line 422 "json.m"
+  MR_Word json__param_5);
+
+#line 422 "json.m"
+MR_bool MR_CALL 
+json____Unify____maybe_partial_res_2_0(
+#line 422 "json.m"
+  MR_Word json__param_1,
+#line 422 "json.m"
+  MR_Word json__param_2,
+#line 422 "json.m"
+  MR_Word json__param_3,
+#line 422 "json.m"
+  MR_Word json__param_4);
+
+#line 262 "json.m"
+void MR_CALL 
+json____Compare____maximum_nesting_depth_0_0(
+#line 262 "json.m"
+  MR_Word * json__param_1,
+#line 262 "json.m"
+  MR_Word json__param_2,
+#line 262 "json.m"
+  MR_Word json__param_3);
+
+#line 262 "json.m"
+MR_bool MR_CALL 
+json____Unify____maximum_nesting_depth_0_0(
+#line 262 "json.m"
+  MR_Word json__param_1,
+#line 262 "json.m"
+  MR_Word json__param_2);
+
+#line 729 "json.m"
+void MR_CALL 
+json____Compare____from_string_result_0_0(
+#line 729 "json.m"
+  MR_Word * json__param_1,
+#line 729 "json.m"
+  MR_Word json__param_2,
+#line 729 "json.m"
+  MR_Word json__param_3);
+
+#line 729 "json.m"
+MR_bool MR_CALL 
+json____Unify____from_string_result_0_0(
+#line 729 "json.m"
+  MR_Word json__param_1,
+#line 729 "json.m"
+  MR_Word json__param_2);
+
+#line 318 "json.m"
+void MR_CALL 
+json____Compare____error_desc_0_0(
+#line 318 "json.m"
+  MR_Word * json__param_1,
+#line 318 "json.m"
+  MR_Word json__param_2,
+#line 318 "json.m"
+  MR_Word json__param_3);
+
+#line 318 "json.m"
+void MR_CALL 
+json____Index____error_desc_0_0(
+#line 318 "json.m"
+  MR_Word json__param_1,
+#line 318 "json.m"
+  MR_Integer * json__param_2);
+
+#line 318 "json.m"
+MR_bool MR_CALL 
+json____Unify____error_desc_0_0(
+#line 318 "json.m"
+  MR_Word json__param_1,
+#line 318 "json.m"
+  MR_Word json__param_2);
+
+#line 309 "json.m"
+void MR_CALL 
+json____Compare____error_1_0(
+#line 309 "json.m"
+  MR_Word json__param_1,
+#line 309 "json.m"
+  MR_Word * json__param_2,
+#line 309 "json.m"
+  MR_Word json__param_3,
+#line 309 "json.m"
+  MR_Word json__param_4);
+
+#line 309 "json.m"
+MR_bool MR_CALL 
+json____Unify____error_1_0(
+#line 309 "json.m"
+  MR_Word json__param_1,
+#line 309 "json.m"
+  MR_Word json__param_2,
+#line 309 "json.m"
+  MR_Word json__param_3);
+
+#line 299 "json.m"
+void MR_CALL 
+json____Compare____context_0_0(
+#line 299 "json.m"
+  MR_Word * json__param_1,
+#line 299 "json.m"
+  MR_Word json__param_2,
+#line 299 "json.m"
+  MR_Word json__param_3);
+
+#line 299 "json.m"
+MR_bool MR_CALL 
+json____Unify____context_0_0(
+#line 299 "json.m"
+  MR_Word json__param_1,
+#line 299 "json.m"
+  MR_Word json__param_2);
+
+#line 660 "json.m"
+void MR_CALL 
+json____Compare____comment_0_0(
+#line 660 "json.m"
+  MR_Word * json__param_1,
+#line 660 "json.m"
+  MR_Word json__param_2,
+#line 660 "json.m"
+  MR_Word json__param_3);
+
+#line 660 "json.m"
+MR_bool MR_CALL 
+json____Unify____comment_0_0(
+#line 660 "json.m"
+  MR_Word json__param_1,
+#line 660 "json.m"
+  MR_Word json__param_2);
+
+#line 63 "json.m"
+void MR_CALL 
+json____Compare____array_0_0(
+#line 63 "json.m"
+  MR_Word * json__param_1,
+#line 63 "json.m"
+  MR_Word json__param_2,
+#line 63 "json.m"
+  MR_Word json__param_3);
+
+#line 63 "json.m"
+MR_bool MR_CALL 
+json____Unify____array_0_0(
+#line 63 "json.m"
+  MR_Word json__param_1,
+#line 63 "json.m"
+  MR_Word json__param_2);
+
+#line 236 "json.m"
+void MR_CALL 
+json____Compare____allow_trailing_commas_0_0(
+#line 236 "json.m"
+  MR_Word * json__param_1,
+#line 236 "json.m"
+  MR_Word json__param_2,
+#line 236 "json.m"
+  MR_Word json__param_3);
+
+#line 236 "json.m"
+MR_bool MR_CALL 
+json____Unify____allow_trailing_commas_0_0(
+#line 236 "json.m"
+  MR_Word json__param_1,
+#line 236 "json.m"
+  MR_Word json__param_2);
+
+#line 250 "json.m"
+void MR_CALL 
+json____Compare____allow_repeated_members_0_0(
+#line 250 "json.m"
+  MR_Word * json__param_1,
+#line 250 "json.m"
+  MR_Word json__param_2,
+#line 250 "json.m"
+  MR_Word json__param_3);
+
+#line 250 "json.m"
+MR_bool MR_CALL 
+json____Unify____allow_repeated_members_0_0(
+#line 250 "json.m"
+  MR_Word json__param_1,
+#line 250 "json.m"
+  MR_Word json__param_2);
+
+#line 243 "json.m"
+void MR_CALL 
+json____Compare____allow_infinities_0_0(
+#line 243 "json.m"
+  MR_Word * json__param_1,
+#line 243 "json.m"
+  MR_Word json__param_2,
+#line 243 "json.m"
+  MR_Word json__param_3);
+
+#line 243 "json.m"
+MR_bool MR_CALL 
+json____Unify____allow_infinities_0_0(
+#line 243 "json.m"
+  MR_Word json__param_1,
+#line 243 "json.m"
+  MR_Word json__param_2);
+
+#line 229 "json.m"
+void MR_CALL 
+json____Compare____allow_comments_0_0(
+#line 229 "json.m"
+  MR_Word * json__param_1,
+#line 229 "json.m"
+  MR_Word json__param_2,
+#line 229 "json.m"
+  MR_Word json__param_3);
+
+#line 229 "json.m"
+MR_bool MR_CALL 
+json____Unify____allow_comments_0_0(
+#line 229 "json.m"
+  MR_Word json__param_1,
+#line 229 "json.m"
+  MR_Word json__param_2);
+
+#line 1816 "json.m"
+MR_Box MR_CALL 
+json__unexpected_type_error_3_f_0(
+#line 1816 "json.m"
+  MR_Word json__param_1,
+#line 1816 "json.m"
+  MR_String json__param_2,
+#line 1816 "json.m"
+  MR_String json__param_3,
+#line 1816 "json.m"
+  MR_Word json__param_4);
+
+#line 1748 "json.m"
+void MR_CALL 
+json__det_add_member_3_p_0(
+#line 1748 "json.m"
+  MR_Word json__param_1,
+#line 1748 "json.m"
+  MR_Word json__param_2,
+#line 1748 "json.m"
+  MR_Word * json__param_3);
+
+#line 1737 "json.m"
+MR_bool MR_CALL 
+json__semidet_add_member_3_p_0(
+#line 1737 "json.m"
+  MR_Word json__param_1,
+#line 1737 "json.m"
+  MR_Word json__param_2,
+#line 1737 "json.m"
+  MR_Word * json__param_3);
+
+#line 1689 "json.m"
+MR_String MR_CALL 
+json__value_desc_1_f_0(
+#line 1689 "json.m"
+  MR_Word json__param_1);
+
+#line 1675 "json.m"
+MR_String MR_CALL 
+json__describe_char_1_f_0(
+#line 1675 "json.m"
+  MR_Char json__param_1);
+
+#line 1542 "json.m"
+MR_String MR_CALL 
+json__make_error_message_1_f_0(
+#line 1542 "json.m"
+  MR_Word json__param_1,
+#line 1542 "json.m"
+  MR_Word json__param_2);
+
+#line 1518 "json.m"
+void MR_CALL 
+json__make_error_context_4_p_0(
+#line 1518 "json.m"
+  MR_Word json__param_1,
+#line 1518 "json.m"
+  MR_Word json__param_2,
+#line 1518 "json.m"
+  MR_Word json__param_3,
+#line 1518 "json.m"
+  MR_Word * json__param_4,
+#line 1518 "json.m"
+  MR_Box json__param_5,
+#line 1518 "json.m"
+  MR_Box * json__param_6);
+
+#line 1507 "json.m"
+void MR_CALL 
+json__make_syntax_error_6_p_0(
+#line 1507 "json.m"
+  MR_Word json__param_1,
+#line 1507 "json.m"
+  MR_Word json__param_2,
+#line 1507 "json.m"
+  MR_Word json__param_3,
+#line 1507 "json.m"
+  MR_String json__param_4,
+#line 1507 "json.m"
+  MR_Word json__param_5,
+#line 1507 "json.m"
+  MR_Word * json__param_6,
+#line 1507 "json.m"
+  MR_Box json__param_7,
+#line 1507 "json.m"
+  MR_Box * json__param_8);
+
+#line 1496 "json.m"
+void MR_CALL 
+json__make_unexpected_eof_error_5_p_0(
+#line 1496 "json.m"
+  MR_Word json__param_1,
+#line 1496 "json.m"
+  MR_Word json__param_2,
+#line 1496 "json.m"
+  MR_Word json__param_3,
+#line 1496 "json.m"
+  MR_Word json__param_4,
+#line 1496 "json.m"
+  MR_Word * json__param_5,
+#line 1496 "json.m"
+  MR_Box json__param_6,
+#line 1496 "json.m"
+  MR_Box * json__param_7);
+
+#line 1229 "json.m"
+void MR_CALL 
+json__cast_member_filter_to_pred_2_p_0(
+#line 1229 "json.m"
+  MR_Word json__param_1,
+#line 1229 "json.m"
+  MR_Word * json__param_2);
+
+#line 960 "json.m"
+MR_Word MR_CALL 
+json__default_reader_params_0_f_0(void);
+
+#line 901 "json.m"
+MR_Word MR_CALL 
+json__to_type_1_f_0(
+#line 901 "json.m"
+  MR_Word json__param_1,
+#line 901 "json.m"
+  MR_Word json__param_2);
+
+#line 860 "json.m"
+MR_Word MR_CALL 
+json__from_json_1_f_0(
+#line 860 "json.m"
+  MR_Word json__param_1,
+#line 860 "json.m"
+  MR_Word json__param_2);
+
+#line 855 "json.m"
+MR_Word MR_CALL 
+json__from_type_1_f_0(
+#line 855 "json.m"
+  MR_Word json__param_1,
+#line 855 "json.m"
+  MR_Box json__param_2);
+
+#line 816 "json.m"
+MR_Word MR_CALL 
+json__to_json_1_f_0(
+#line 816 "json.m"
+  MR_Word json__param_1,
+#line 816 "json.m"
+  MR_Box json__param_2);
+
+#line 742 "json.m"
+MR_String MR_CALL 
+json__error_context_and_desc_to_string_2_f_0(
+#line 742 "json.m"
+  MR_Word json__param_1,
+#line 742 "json.m"
+  MR_Word json__param_2);
+
+#line 740 "json.m"
+MR_Word MR_CALL 
+json__maybe_from_string_2_f_0(
+#line 740 "json.m"
+  MR_Word json__param_1,
+#line 740 "json.m"
+  MR_String json__param_2);
+
+#line 736 "json.m"
+MR_Word MR_CALL 
+json__maybe_from_string_1_f_0(
+#line 736 "json.m"
+  MR_String json__param_1);
+
+#line 727 "json.m"
+MR_Word MR_CALL 
+json__det_from_string_2_f_0(
+#line 727 "json.m"
+  MR_Word json__param_1,
+#line 727 "json.m"
+  MR_String json__param_2);
+
+#line 726 "json.m"
+MR_Word MR_CALL 
+json__det_from_string_1_f_0(
+#line 726 "json.m"
+  MR_String json__param_1);
+
+#line 721 "json.m"
+MR_bool MR_CALL 
+json__from_string_3_p_0(
+#line 721 "json.m"
+  MR_Word json__param_1,
+#line 721 "json.m"
+  MR_String json__param_2,
+#line 721 "json.m"
+  MR_Word * json__param_3);
+
+#line 717 "json.m"
+MR_bool MR_CALL 
+json__from_string_2_p_0(
+#line 717 "json.m"
+  MR_String json__param_1,
+#line 717 "json.m"
+  MR_Word * json__param_2);
+
+#line 712 "json.m"
+MR_String MR_CALL 
+json__to_string_1_f_0(
+#line 712 "json.m"
+  MR_Word json__param_1);
+
+#line 700 "json.m"
+void MR_CALL 
+json__write_pretty_4_p_0(
+#line 700 "json.m"
+  MR_Word json__param_1,
+#line 700 "json.m"
+  MR_Word json__param_2);
+
+#line 694 "json.m"
+void MR_CALL 
+json__write_compact_4_p_0(
+#line 694 "json.m"
+  MR_Word json__param_1,
+#line 694 "json.m"
+  MR_Word json__param_2);
+
+#line 689 "json.m"
+void MR_CALL 
+json__write_pretty_3_p_0(
+#line 689 "json.m"
+  MR_Word json__param_1);
+
+#line 684 "json.m"
+void MR_CALL 
+json__write_compact_3_p_0(
+#line 684 "json.m"
+  MR_Word json__param_1);
+
+#line 666 "json.m"
+void MR_CALL 
+json__put_comment_4_p_0(
+#line 666 "json.m"
+  MR_Word json__param_1,
+#line 666 "json.m"
+  MR_Word json__param_2,
+#line 666 "json.m"
+  MR_Word json__param_3,
+#line 666 "json.m"
+  MR_Word json__param_4,
+#line 666 "json.m"
+  MR_Box json__param_5,
+#line 666 "json.m"
+  MR_Box * json__param_6);
+
+#line 653 "json.m"
+void MR_CALL 
+json__put_value_4_p_0(
+#line 653 "json.m"
+  MR_Word json__param_1,
+#line 653 "json.m"
+  MR_Word json__param_2,
+#line 653 "json.m"
+  MR_Word json__param_3,
+#line 653 "json.m"
+  MR_Word json__param_4,
+#line 653 "json.m"
+  MR_Box json__param_5,
+#line 653 "json.m"
+  MR_Box * json__param_6);
+
+#line 642 "json.m"
+void MR_CALL 
+json__init_writer_5_p_0(
+#line 642 "json.m"
+  MR_Word json__param_1,
+#line 642 "json.m"
+  MR_Word json__param_2,
+#line 642 "json.m"
+  MR_Box json__param_3,
+#line 642 "json.m"
+  MR_Word json__param_4,
+#line 642 "json.m"
+  MR_Word * json__param_5,
+#line 642 "json.m"
+  MR_Box json__param_6,
+#line 642 "json.m"
+  MR_Box * json__param_7);
+
+#line 633 "json.m"
+void MR_CALL 
+json__init_writer_4_p_0(
+#line 633 "json.m"
+  MR_Word json__param_1,
+#line 633 "json.m"
+  MR_Word json__param_2,
+#line 633 "json.m"
+  MR_Box json__param_3,
+#line 633 "json.m"
+  MR_Word * json__param_4,
+#line 633 "json.m"
+  MR_Box json__param_5,
+#line 633 "json.m"
+  MR_Box * json__param_6);
+
+#line 608 "json.m"
+MR_Word MR_CALL 
+json__writer_params_2_f_0(
+#line 608 "json.m"
+  MR_Word json__param_1,
+#line 608 "json.m"
+  MR_Word json__param_2);
+
+#line 566 "json.m"
+void MR_CALL 
+json__array_fold_state_6_p_1(
+#line 566 "json.m"
+  MR_Word json__param_1,
+#line 566 "json.m"
+  MR_Word json__param_2,
+#line 566 "json.m"
+  MR_Word json__param_3,
+#line 566 "json.m"
+  MR_Word json__param_4,
+#line 566 "json.m"
+  MR_Word json__param_5,
+#line 566 "json.m"
+  MR_Box json__param_6,
+#line 566 "json.m"
+  MR_Word * json__param_7,
+#line 566 "json.m"
+  MR_Box json__param_8,
+#line 566 "json.m"
+  MR_Box * json__param_9);
+
+#line 564 "json.m"
+void MR_CALL 
+json__array_fold_state_6_p_0(
+#line 564 "json.m"
+  MR_Word json__param_1,
+#line 564 "json.m"
+  MR_Word json__param_2,
+#line 564 "json.m"
+  MR_Word json__param_3,
+#line 564 "json.m"
+  MR_Word json__param_4,
+#line 564 "json.m"
+  MR_Word json__param_5,
+#line 564 "json.m"
+  MR_Box json__param_6,
+#line 564 "json.m"
+  MR_Word * json__param_7,
+#line 564 "json.m"
+  MR_Box json__param_8,
+#line 564 "json.m"
+  MR_Box * json__param_9);
+
+#line 552 "json.m"
+void MR_CALL 
+json__array_fold_6_p_1(
+#line 552 "json.m"
+  MR_Word json__param_1,
+#line 552 "json.m"
+  MR_Word json__param_2,
+#line 552 "json.m"
+  MR_Word json__param_3,
+#line 552 "json.m"
+  MR_Word json__param_4,
+#line 552 "json.m"
+  MR_Word json__param_5,
+#line 552 "json.m"
+  MR_Box json__param_6,
+#line 552 "json.m"
+  MR_Word * json__param_7,
+#line 552 "json.m"
+  MR_Box json__param_8,
+#line 552 "json.m"
+  MR_Box * json__param_9);
+
+#line 550 "json.m"
+void MR_CALL 
+json__array_fold_6_p_0(
+#line 550 "json.m"
+  MR_Word json__param_1,
+#line 550 "json.m"
+  MR_Word json__param_2,
+#line 550 "json.m"
+  MR_Word json__param_3,
+#line 550 "json.m"
+  MR_Word json__param_4,
+#line 550 "json.m"
+  MR_Word json__param_5,
+#line 550 "json.m"
+  MR_Box json__param_6,
+#line 550 "json.m"
+  MR_Word * json__param_7,
+#line 550 "json.m"
+  MR_Box json__param_8,
+#line 550 "json.m"
+  MR_Box * json__param_9);
+
+#line 534 "json.m"
+void MR_CALL 
+json__object_fold_state_6_p_1(
+#line 534 "json.m"
+  MR_Word json__param_1,
+#line 534 "json.m"
+  MR_Word json__param_2,
+#line 534 "json.m"
+  MR_Word json__param_3,
+#line 534 "json.m"
+  MR_Word json__param_4,
+#line 534 "json.m"
+  MR_Word json__param_5,
+#line 534 "json.m"
+  MR_Box json__param_6,
+#line 534 "json.m"
+  MR_Word * json__param_7,
+#line 534 "json.m"
+  MR_Box json__param_8,
+#line 534 "json.m"
+  MR_Box * json__param_9);
+
+#line 532 "json.m"
+void MR_CALL 
+json__object_fold_state_6_p_0(
+#line 532 "json.m"
+  MR_Word json__param_1,
+#line 532 "json.m"
+  MR_Word json__param_2,
+#line 532 "json.m"
+  MR_Word json__param_3,
+#line 532 "json.m"
+  MR_Word json__param_4,
+#line 532 "json.m"
+  MR_Word json__param_5,
+#line 532 "json.m"
+  MR_Box json__param_6,
+#line 532 "json.m"
+  MR_Word * json__param_7,
+#line 532 "json.m"
+  MR_Box json__param_8,
+#line 532 "json.m"
+  MR_Box * json__param_9);
+
+#line 520 "json.m"
+void MR_CALL 
+json__object_fold_6_p_1(
+#line 520 "json.m"
+  MR_Word json__param_1,
+#line 520 "json.m"
+  MR_Word json__param_2,
+#line 520 "json.m"
+  MR_Word json__param_3,
+#line 520 "json.m"
+  MR_Word json__param_4,
+#line 520 "json.m"
+  MR_Word json__param_5,
+#line 520 "json.m"
+  MR_Box json__param_6,
+#line 520 "json.m"
+  MR_Word * json__param_7,
+#line 520 "json.m"
+  MR_Box json__param_8,
+#line 520 "json.m"
+  MR_Box * json__param_9);
+
+#line 518 "json.m"
+void MR_CALL 
+json__object_fold_6_p_0(
+#line 518 "json.m"
+  MR_Word json__param_1,
+#line 518 "json.m"
+  MR_Word json__param_2,
+#line 518 "json.m"
+  MR_Word json__param_3,
+#line 518 "json.m"
+  MR_Word json__param_4,
+#line 518 "json.m"
+  MR_Word json__param_5,
+#line 518 "json.m"
+  MR_Box json__param_6,
+#line 518 "json.m"
+  MR_Word * json__param_7,
+#line 518 "json.m"
+  MR_Box json__param_8,
+#line 518 "json.m"
+  MR_Box * json__param_9);
+
+#line 498 "json.m"
+void MR_CALL 
+json__get_array_4_p_0(
+#line 498 "json.m"
+  MR_Word json__param_1,
+#line 498 "json.m"
+  MR_Word json__param_2,
+#line 498 "json.m"
+  MR_Word json__param_3,
+#line 498 "json.m"
+  MR_Word * json__param_4,
+#line 498 "json.m"
+  MR_Box json__param_5,
+#line 498 "json.m"
+  MR_Box * json__param_6);
+
+#line 488 "json.m"
+void MR_CALL 
+json__get_object_4_p_0(
+#line 488 "json.m"
+  MR_Word json__param_1,
+#line 488 "json.m"
+  MR_Word json__param_2,
+#line 488 "json.m"
+  MR_Word json__param_3,
+#line 488 "json.m"
+  MR_Word * json__param_4,
+#line 488 "json.m"
+  MR_Box json__param_5,
+#line 488 "json.m"
+  MR_Box * json__param_6);
+
+#line 478 "json.m"
+void MR_CALL 
+json__get_value_4_p_0(
+#line 478 "json.m"
+  MR_Word json__param_1,
+#line 478 "json.m"
+  MR_Word json__param_2,
+#line 478 "json.m"
+  MR_Word json__param_3,
+#line 478 "json.m"
+  MR_Word * json__param_4,
+#line 478 "json.m"
+  MR_Box json__param_5,
+#line 478 "json.m"
+  MR_Box * json__param_6);
+
+#line 458 "json.m"
+void MR_CALL 
+json__read_array_4_p_0(
+#line 458 "json.m"
+  MR_Word json__param_1,
+#line 458 "json.m"
+  MR_Word json__param_2,
+#line 458 "json.m"
+  MR_Word json__param_3,
+#line 458 "json.m"
+  MR_Word * json__param_4,
+#line 458 "json.m"
+  MR_Box json__param_5,
+#line 458 "json.m"
+  MR_Box * json__param_6);
+
+#line 448 "json.m"
+void MR_CALL 
+json__read_object_4_p_0(
+#line 448 "json.m"
+  MR_Word json__param_1,
+#line 448 "json.m"
+  MR_Word json__param_2,
+#line 448 "json.m"
+  MR_Word json__param_3,
+#line 448 "json.m"
+  MR_Word * json__param_4,
+#line 448 "json.m"
+  MR_Box json__param_5,
+#line 448 "json.m"
+  MR_Box * json__param_6);
+
+#line 438 "json.m"
+void MR_CALL 
+json__read_value_4_p_0(
+#line 438 "json.m"
+  MR_Word json__param_1,
+#line 438 "json.m"
+  MR_Word json__param_2,
+#line 438 "json.m"
+  MR_Word json__param_3,
+#line 438 "json.m"
+  MR_Word * json__param_4,
+#line 438 "json.m"
+  MR_Box json__param_5,
+#line 438 "json.m"
+  MR_Box * json__param_6);
+
+#line 284 "json.m"
+void MR_CALL 
+json__init_reader_5_p_0(
+#line 284 "json.m"
+  MR_Word json__param_1,
+#line 284 "json.m"
+  MR_Word json__param_2,
+#line 284 "json.m"
+  MR_Box json__param_3,
+#line 284 "json.m"
+  MR_Word json__param_4,
+#line 284 "json.m"
+  MR_Word * json__param_5,
+#line 284 "json.m"
+  MR_Box json__param_6,
+#line 284 "json.m"
+  MR_Box * json__param_7);
+
+#line 272 "json.m"
+void MR_CALL 
+json__init_reader_4_p_0(
+#line 272 "json.m"
+  MR_Word json__param_1,
+#line 272 "json.m"
+  MR_Word json__param_2,
+#line 272 "json.m"
+  MR_Box json__param_3,
+#line 272 "json.m"
+  MR_Word * json__param_4,
+#line 272 "json.m"
+  MR_Box json__param_5,
+#line 272 "json.m"
+  MR_Box * json__param_6);
+
+#line 223 "json.m"
+MR_Word MR_CALL 
+json__reader_params_4_f_0(
+#line 223 "json.m"
+  MR_Word json__param_1,
+#line 223 "json.m"
+  MR_Word json__param_2,
+#line 223 "json.m"
+  MR_Word json__param_3,
+#line 223 "json.m"
+  MR_Word json__param_4);
+
+#line 199 "json.m"
+MR_Word MR_CALL 
+json__det_resolve_2_f_0(
+#line 199 "json.m"
+  MR_Word json__param_1,
+#line 199 "json.m"
+  MR_Word json__param_2);
+
+#line 193 "json.m"
+MR_bool MR_CALL 
+json__resolve_3_p_0(
+#line 193 "json.m"
+  MR_Word json__param_1,
+#line 193 "json.m"
+  MR_Word json__param_2,
+#line 193 "json.m"
+  MR_Word * json__param_3);
+
+#line 187 "json.m"
+MR_String MR_CALL 
+json__pointer_to_string_1_f_0(
+#line 187 "json.m"
+  MR_Word json__param_1);
+
+#line 185 "json.m"
+MR_Word MR_CALL 
+json__det_string_to_pointer_1_f_0(
+#line 185 "json.m"
+  MR_String json__param_1);
+
+#line 179 "json.m"
+MR_bool MR_CALL 
+json__string_to_pointer_2_p_0(
+#line 179 "json.m"
+  MR_String json__param_1,
+#line 179 "json.m"
+  MR_Word * json__param_2);
+
+#line 166 "json.m"
+MR_Word MR_CALL 
+json__search_array_or_null_3_f_0(
+#line 166 "json.m"
+  MR_Word json__param_1,
+#line 166 "json.m"
+  MR_String json__param_2,
+#line 166 "json.m"
+  MR_Word json__param_3);
+
+#line 165 "json.m"
+MR_Word MR_CALL 
+json__search_object_or_null_3_f_0(
+#line 165 "json.m"
+  MR_Word json__param_1,
+#line 165 "json.m"
+  MR_String json__param_2,
+#line 165 "json.m"
+  MR_Word json__param_3);
+
+#line 164 "json.m"
+MR_String MR_CALL 
+json__search_string_or_null_3_f_0(
+#line 164 "json.m"
+  MR_Word json__param_1,
+#line 164 "json.m"
+  MR_String json__param_2,
+#line 164 "json.m"
+  MR_String json__param_3);
+
+#line 155 "json.m"
+MR_Integer MR_CALL 
+json__search_int_3_f_0(
+#line 155 "json.m"
+  MR_Word json__param_1,
+#line 155 "json.m"
+  MR_String json__param_2,
+#line 155 "json.m"
+  MR_Integer json__param_3);
+
+#line 153 "json.m"
+MR_Word MR_CALL 
+json__search_array_3_f_0(
+#line 153 "json.m"
+  MR_Word json__param_1,
+#line 153 "json.m"
+  MR_String json__param_2,
+#line 153 "json.m"
+  MR_Word json__param_3);
+
+#line 152 "json.m"
+MR_Word MR_CALL 
+json__search_object_3_f_0(
+#line 152 "json.m"
+  MR_Word json__param_1,
+#line 152 "json.m"
+  MR_String json__param_2,
+#line 152 "json.m"
+  MR_Word json__param_3);
+
+#line 151 "json.m"
+MR_Float MR_CALL 
+json__search_number_3_f_0(
+#line 151 "json.m"
+  MR_Word json__param_1,
+#line 151 "json.m"
+  MR_String json__param_2,
+#line 151 "json.m"
+  MR_Float json__param_3);
+
+#line 150 "json.m"
+MR_String MR_CALL 
+json__search_string_3_f_0(
+#line 150 "json.m"
+  MR_Word json__param_1,
+#line 150 "json.m"
+  MR_String json__param_2,
+#line 150 "json.m"
+  MR_String json__param_3);
+
+#line 149 "json.m"
+MR_Word MR_CALL 
+json__search_bool_3_f_0(
+#line 149 "json.m"
+  MR_Word json__param_1,
+#line 149 "json.m"
+  MR_String json__param_2,
+#line 149 "json.m"
+  MR_Word json__param_3);
+
+#line 141 "json.m"
+MR_Integer MR_CALL 
+json__lookup_int_2_f_0(
+#line 141 "json.m"
+  MR_Word json__param_1,
+#line 141 "json.m"
+  MR_String json__param_2);
+
+#line 139 "json.m"
+MR_Word MR_CALL 
+json__lookup_array_2_f_0(
+#line 139 "json.m"
+  MR_Word json__param_1,
+#line 139 "json.m"
+  MR_String json__param_2);
+
+#line 138 "json.m"
+MR_Word MR_CALL 
+json__lookup_object_2_f_0(
+#line 138 "json.m"
+  MR_Word json__param_1,
+#line 138 "json.m"
+  MR_String json__param_2);
+
+#line 137 "json.m"
+MR_Float MR_CALL 
+json__lookup_number_2_f_0(
+#line 137 "json.m"
+  MR_Word json__param_1,
+#line 137 "json.m"
+  MR_String json__param_2);
+
+#line 136 "json.m"
+MR_String MR_CALL 
+json__lookup_string_2_f_0(
+#line 136 "json.m"
+  MR_Word json__param_1,
+#line 136 "json.m"
+  MR_String json__param_2);
+
+#line 135 "json.m"
+MR_Word MR_CALL 
+json__lookup_bool_2_f_0(
+#line 135 "json.m"
+  MR_Word json__param_1,
+#line 135 "json.m"
+  MR_String json__param_2);
+
+#line 122 "json.m"
+MR_Integer MR_CALL 
+json__det_get_int_1_f_0(
+#line 122 "json.m"
+  MR_Word json__param_1);
+
+#line 120 "json.m"
+MR_Word MR_CALL 
+json__det_get_array_1_f_0(
+#line 120 "json.m"
+  MR_Word json__param_1);
+
+#line 119 "json.m"
+MR_Word MR_CALL 
+json__det_get_object_1_f_0(
+#line 119 "json.m"
+  MR_Word json__param_1);
+
+#line 118 "json.m"
+MR_Float MR_CALL 
+json__det_get_number_1_f_0(
+#line 118 "json.m"
+  MR_Word json__param_1);
+
+#line 117 "json.m"
+MR_String MR_CALL 
+json__det_get_string_1_f_0(
+#line 117 "json.m"
+  MR_Word json__param_1);
+
+#line 116 "json.m"
+MR_Word MR_CALL 
+json__det_get_bool_1_f_0(
+#line 116 "json.m"
+  MR_Word json__param_1);
+
+#line 111 "json.m"
+MR_bool MR_CALL 
+json__get_int_2_p_0(
+#line 111 "json.m"
+  MR_Word json__param_1,
+#line 111 "json.m"
+  MR_Integer * json__param_2);
+
+#line 106 "json.m"
+MR_bool MR_CALL 
+json__get_array_2_p_0(
+#line 106 "json.m"
+  MR_Word json__param_1,
+#line 106 "json.m"
+  MR_Word * json__param_2);
+
+#line 105 "json.m"
+MR_bool MR_CALL 
+json__get_object_2_p_0(
+#line 105 "json.m"
+  MR_Word json__param_1,
+#line 105 "json.m"
+  MR_Word * json__param_2);
+
+#line 104 "json.m"
+MR_bool MR_CALL 
+json__get_number_2_p_0(
+#line 104 "json.m"
+  MR_Word json__param_1,
+#line 104 "json.m"
+  MR_Float * json__param_2);
+
+#line 103 "json.m"
+MR_bool MR_CALL 
+json__get_string_2_p_0(
+#line 103 "json.m"
+  MR_Word json__param_1,
+#line 103 "json.m"
+  MR_String * json__param_2);
+
+#line 102 "json.m"
+MR_bool MR_CALL 
+json__get_bool_2_p_0(
+#line 102 "json.m"
+  MR_Word json__param_1,
+#line 102 "json.m"
+  MR_Word * json__param_2);
+
+#line 95 "json.m"
+MR_bool MR_CALL 
+json__is_array_1_p_0(
+#line 95 "json.m"
+  MR_Word json__param_1);
+
+#line 94 "json.m"
+MR_bool MR_CALL 
+json__is_object_1_p_0(
+#line 94 "json.m"
+  MR_Word json__param_1);
+
+#line 93 "json.m"
+MR_bool MR_CALL 
+json__is_number_1_p_0(
+#line 93 "json.m"
+  MR_Word json__param_1);
+
+#line 92 "json.m"
+MR_bool MR_CALL 
+json__is_string_1_p_0(
+#line 92 "json.m"
+  MR_Word json__param_1);
+
+#line 91 "json.m"
+MR_bool MR_CALL 
+json__is_bool_1_p_0(
+#line 91 "json.m"
+  MR_Word json__param_1);
+
+#line 90 "json.m"
+MR_bool MR_CALL 
+json__is_null_1_p_0(
+#line 90 "json.m"
+  MR_Word json__param_1);
+
+#line 80 "json.m"
+MR_Word MR_CALL 
+json__det_make_object_1_f_0(
+#line 80 "json.m"
+  MR_Word json__param_1);
+
+#line 74 "json.m"
+MR_bool MR_CALL 
+json__make_object_2_p_0(
+#line 74 "json.m"
+  MR_Word json__param_1,
+#line 74 "json.m"
+  MR_Word * json__param_2);
+
+#line 67 "json.m"
+MR_Word MR_CALL 
+json__int_1_f_0(
+#line 67 "json.m"
+  MR_Integer json__param_1);
+
+void mercury__json__init(void);
+void mercury__json__init_type_tables(void);
+void mercury__json__init_debugger(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* MR_HEADER_GUARD_json */
+
+/* :- end_interface json. */

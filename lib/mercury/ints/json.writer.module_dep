@@ -1,0 +1,13 @@
+module(1, "json.writer.m",
+	(json.writer),
+	{json},
+	{builtin, private_builtin},
+	{builtin, assoc_list, exception, float, int, pair, (stream.string_writer), private_builtin},
+	{},
+	{},
+	{},
+	{},
+	{},
+	no_foreign_export,
+	no_main
+).

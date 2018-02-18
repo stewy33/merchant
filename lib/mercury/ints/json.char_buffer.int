@@ -1,0 +1,23 @@
+:- module (json.char_buffer).
+:- interface.
+:- type char_buffer.
+:- pred add(json.char_buffer.char_buffer, char.char, S, S).
+:- mode add((builtin.in), (builtin.in), (builtin.di), (builtin.uo)) is det.
+:- func det_to_float(json.char_buffer.char_buffer, S) = float.
+:- mode det_to_float((builtin.in), (builtin.ui)) = (builtin.out) is det.
+:- impure pred init(json.char_buffer.char_buffer).
+:- mode init((builtin.out)) is det.
+:- pred last(json.char_buffer.char_buffer, char.char, S).
+:- mode last((builtin.in), (builtin.out), (builtin.ui)) is semidet.
+:- pred reset(json.char_buffer.char_buffer, S, S).
+:- mode reset((builtin.in), (builtin.di), (builtin.uo)) is det.
+:- func to_string(json.char_buffer.char_buffer, S) = string.
+:- mode to_string((builtin.in), (builtin.ui)) = (builtin.out) is det.
+:- implementation.
+:- import_module mutvar.
+:- type char_buffer
+	--->	char_buffer(mutvar.mutvar(json.char_buffer.char_buffer_rep)).
+:- pragma foreign_type(c, char_buffer, "MJSON_buffer *", [can_pass_as_mercury_type]).
+:- type char_buffer_rep.
+:- pragma foreign_import_module("C", (json.char_buffer)).
+:- pragma foreign_import_module("C", (json.char_buffer)).

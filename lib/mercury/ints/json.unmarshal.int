@@ -1,0 +1,34 @@
+:- module (json.unmarshal).
+:- interface.
+:- func array2d_from_json(json.value) = maybe.maybe_error(array2d.array2d(T)) <= (json.from_json(T)).
+:- func array_from_json(json.value) = maybe.maybe_error(array.array(T)) <= (json.from_json(T)).
+:- func bag_from_json(json.value) = maybe.maybe_error(bag.bag(T)) <= (json.from_json(T)).
+:- func bimap_from_json(json.value) = maybe.maybe_error(bimap.bimap(K, V)) <= (json.from_json(K), json.from_json(V)).
+:- func bitmap_from_json(json.value) = maybe.maybe_error(bitmap.bitmap).
+:- func bool_from_json(json.value) = maybe.maybe_error(bool.bool).
+:- func char_from_json(json.value) = maybe.maybe_error(char.char).
+:- func cord_from_json(json.value) = maybe.maybe_error(cord.cord(T)) <= (json.from_json(T)).
+:- func date_time_from_json(json.value) = maybe.maybe_error(calendar.date).
+:- func digraph_from_json(json.value) = maybe.maybe_error(digraph.digraph(T)) <= (json.from_json(T)).
+:- func duration_from_json(json.value) = maybe.maybe_error(calendar.duration).
+:- func float_from_json(json.value) = maybe.maybe_error(float).
+:- func int_from_json(json.value) = maybe.maybe_error(int).
+:- func integer_from_json(json.value) = maybe.maybe_error(integer.integer).
+:- func json_pointer_from_json(json.value) = maybe.maybe_error(json.pointer).
+:- func list_from_json(json.value) = maybe.maybe_error(list.list(T)) <= (json.from_json(T)).
+:- func map_from_json(json.value) = maybe.maybe_error(map.map(K, V)) <= (json.from_json(K), json.from_json(V)).
+:- func maybe_error_from_json(json.value) = maybe.maybe_error(maybe.maybe_error(T, E)) <= (json.from_json(T), json.from_json(E)).
+:- func maybe_from_json(json.value) = maybe.maybe_error(maybe.maybe(T)) <= (json.from_json(T)).
+:- func pair_from_json(json.value) = maybe.maybe_error(pair.pair(A, B)) <= (json.from_json(A), json.from_json(B)).
+:- func pqueue_from_json(json.value) = maybe.maybe_error(pqueue.pqueue(K, V)) <= (json.from_json(K), json.from_json(V)).
+:- func queue_from_json(json.value) = maybe.maybe_error(queue.queue(T)) <= (json.from_json(T)).
+:- func rational_from_json(json.value) = maybe.maybe_error(rational.rational).
+:- func rbtree_from_json(json.value) = maybe.maybe_error(rbtree.rbtree(K, V)) <= (json.from_json(K), json.from_json(V)).
+:- func set_bbbtree_from_json(json.value) = maybe.maybe_error(set_bbbtree.set_bbbtree(T)) <= (json.from_json(T)).
+:- func set_ctree234_from_json(json.value) = maybe.maybe_error(set_ctree234.set_ctree234(T)) <= (json.from_json(T)).
+:- func set_ordlist_from_json(json.value) = maybe.maybe_error(set_ordlist.set_ordlist(T)) <= (json.from_json(T)).
+:- func set_tree234_from_json(json.value) = maybe.maybe_error(set_tree234.set_tree234(T)) <= (json.from_json(T)).
+:- func set_unordlist_from_json(json.value) = maybe.maybe_error(set_unordlist.set_unordlist(T)) <= (json.from_json(T)).
+:- func string_from_json(json.value) = maybe.maybe_error(string).
+:- func unit_from_json(json.value) = maybe.maybe_error(unit.unit).
+:- func version_array_from_json(json.value) = maybe.maybe_error(version_array.version_array(T)) <= (json.from_json(T)).

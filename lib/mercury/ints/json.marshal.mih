@@ -1,0 +1,405 @@
+/*
+** Automatically generated from `json.marshal.m'
+** by the Mercury compiler,
+** version 14.01.1-2jessie0, configured for x86_64-pc-linux-gnu.
+** Do not edit.
+**
+** The autoconfigured grade settings governing
+** the generation of this C file were
+**
+** TAG_BITS=3
+** UNBOXED_FLOAT=yes
+** PREGENERATED_DIST=no
+** HIGHLEVEL_CODE=yes
+**
+** END_OF_C_GRADE_INFO
+*/
+
+
+/* :- module json.marshal. */
+/* :- interface. */
+
+#ifndef MR_HEADER_GUARD_json__marshal
+#define MR_HEADER_GUARD_json__marshal
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "mercury.h"
+
+
+#ifndef JSON__MARSHAL_DECL_GUARD
+#define JSON__MARSHAL_DECL_GUARD
+#include "json.mih"
+
+#endif
+
+
+
+
+#line 46 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__f_85_110_117_115_101_100_65_114_103_115_95_95_102_117_110_99_95_95_117_110_105_116_95_116_111_95_106_115_111_110_95_95_91_49_93_95_48_1_f_0(void);
+
+#line 193 "json.marshal.m"
+void MR_CALL 
+json__marshal__version_array_to_values_5_p_0(
+#line 193 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 193 "json.marshal.m"
+  MR_Box json__marshal__param_2,
+#line 193 "json.marshal.m"
+  MR_Integer json__marshal__param_3,
+#line 193 "json.marshal.m"
+  MR_Integer json__marshal__param_4,
+#line 193 "json.marshal.m"
+  MR_Word json__marshal__param_5,
+#line 193 "json.marshal.m"
+  MR_Word * json__marshal__param_6);
+
+#line 174 "json.marshal.m"
+void MR_CALL 
+json__marshal__row_elems_to_values_5_p_0(
+#line 174 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 174 "json.marshal.m"
+  MR_Word json__marshal__param_2,
+#line 174 "json.marshal.m"
+  MR_Integer json__marshal__param_3,
+#line 174 "json.marshal.m"
+  MR_Integer json__marshal__param_4,
+#line 174 "json.marshal.m"
+  MR_Word json__marshal__param_5,
+#line 174 "json.marshal.m"
+  MR_Word * json__marshal__param_6);
+
+#line 161 "json.marshal.m"
+void MR_CALL 
+json__marshal__array2d_to_rows_5_p_0(
+#line 161 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 161 "json.marshal.m"
+  MR_Word json__marshal__param_2,
+#line 161 "json.marshal.m"
+  MR_Integer json__marshal__param_3,
+#line 161 "json.marshal.m"
+  MR_Integer json__marshal__param_4,
+#line 161 "json.marshal.m"
+  MR_Word json__marshal__param_5,
+#line 161 "json.marshal.m"
+  MR_Word * json__marshal__param_6);
+
+#line 143 "json.marshal.m"
+void MR_CALL 
+json__marshal__array_to_values_5_p_0(
+#line 143 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 143 "json.marshal.m"
+  MR_ArrayPtr json__marshal__param_2,
+#line 143 "json.marshal.m"
+  MR_Integer json__marshal__param_3,
+#line 143 "json.marshal.m"
+  MR_Integer json__marshal__param_4,
+#line 143 "json.marshal.m"
+  MR_Word json__marshal__param_5,
+#line 143 "json.marshal.m"
+  MR_Word * json__marshal__param_6);
+
+#line 119 "json.marshal.m"
+void MR_CALL 
+json__marshal__list_of_pairs_to_values_5_p_0(
+#line 119 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 119 "json.marshal.m"
+  MR_Word json__marshal__param_2,
+#line 119 "json.marshal.m"
+  MR_String json__marshal__param_3,
+#line 119 "json.marshal.m"
+  MR_String json__marshal__param_4,
+#line 119 "json.marshal.m"
+  MR_Word json__marshal__param_5,
+#line 119 "json.marshal.m"
+  MR_Word json__marshal__param_6,
+#line 119 "json.marshal.m"
+  MR_Word * json__marshal__param_7);
+
+#line 111 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__list_of_pairs_to_json_3_f_0(
+#line 111 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 111 "json.marshal.m"
+  MR_Word json__marshal__param_2,
+#line 111 "json.marshal.m"
+  MR_String json__marshal__param_3,
+#line 111 "json.marshal.m"
+  MR_String json__marshal__param_4,
+#line 111 "json.marshal.m"
+  MR_Word json__marshal__param_5);
+
+#line 102 "json.marshal.m"
+void MR_CALL 
+json__marshal__list_to_values_3_p_0(
+#line 102 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 102 "json.marshal.m"
+  MR_Word json__marshal__param_2,
+#line 102 "json.marshal.m"
+  MR_Word json__marshal__param_3,
+#line 102 "json.marshal.m"
+  MR_Word * json__marshal__param_4);
+
+#line 50 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__json_pointer_to_json_1_f_0(
+#line 50 "json.marshal.m"
+  MR_Word json__marshal__param_1);
+
+#line 49 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__pqueue_to_json_1_f_0(
+#line 49 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 49 "json.marshal.m"
+  MR_Word json__marshal__param_2,
+#line 49 "json.marshal.m"
+  MR_Word json__marshal__param_3);
+
+#line 48 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__digraph_to_json_1_f_0(
+#line 48 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 48 "json.marshal.m"
+  MR_Word json__marshal__param_2);
+
+#line 47 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__queue_to_json_1_f_0(
+#line 47 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 47 "json.marshal.m"
+  MR_Word json__marshal__param_2);
+
+#line 46 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__unit_to_json_1_f_0(void);
+
+#line 45 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__bimap_to_json_1_f_0(
+#line 45 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 45 "json.marshal.m"
+  MR_Word json__marshal__param_2,
+#line 45 "json.marshal.m"
+  MR_Word json__marshal__param_3);
+
+#line 44 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__rbtree_to_json_1_f_0(
+#line 44 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 44 "json.marshal.m"
+  MR_Word json__marshal__param_2,
+#line 44 "json.marshal.m"
+  MR_Word json__marshal__param_3);
+
+#line 43 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__map_to_json_1_f_0(
+#line 43 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 43 "json.marshal.m"
+  MR_Word json__marshal__param_2,
+#line 43 "json.marshal.m"
+  MR_Word json__marshal__param_3);
+
+#line 41 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__maybe_error_to_json_1_f_0(
+#line 41 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 41 "json.marshal.m"
+  MR_Word json__marshal__param_2,
+#line 41 "json.marshal.m"
+  MR_Word json__marshal__param_3);
+
+#line 40 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__maybe_to_json_1_f_0(
+#line 40 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 40 "json.marshal.m"
+  MR_Word json__marshal__param_2);
+
+#line 39 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__set_bbbtree_to_json_1_f_0(
+#line 39 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 39 "json.marshal.m"
+  MR_Word json__marshal__param_2);
+
+#line 38 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__set_ctree234_to_json_1_f_0(
+#line 38 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 38 "json.marshal.m"
+  MR_Word json__marshal__param_2);
+
+#line 37 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__set_tree234_to_json_1_f_0(
+#line 37 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 37 "json.marshal.m"
+  MR_Word json__marshal__param_2);
+
+#line 36 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__set_unordlist_to_json_1_f_0(
+#line 36 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 36 "json.marshal.m"
+  MR_Word json__marshal__param_2);
+
+#line 35 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__set_ordlist_to_json_1_f_0(
+#line 35 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 35 "json.marshal.m"
+  MR_Word json__marshal__param_2);
+
+#line 34 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__rational_to_json_1_f_0(
+#line 34 "json.marshal.m"
+  MR_Word json__marshal__param_1);
+
+#line 33 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__bitmap_to_json_1_f_0(
+#line 33 "json.marshal.m"
+  MR_Box json__marshal__param_1);
+
+#line 32 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__version_array_to_json_1_f_0(
+#line 32 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 32 "json.marshal.m"
+  MR_Box json__marshal__param_2);
+
+#line 31 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__array2d_to_json_1_f_0(
+#line 31 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 31 "json.marshal.m"
+  MR_Word json__marshal__param_2);
+
+#line 30 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__array_to_json_1_f_0(
+#line 30 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 30 "json.marshal.m"
+  MR_ArrayPtr json__marshal__param_2);
+
+#line 29 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__cord_to_json_1_f_0(
+#line 29 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 29 "json.marshal.m"
+  MR_Word json__marshal__param_2);
+
+#line 28 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__list_to_json_1_f_0(
+#line 28 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 28 "json.marshal.m"
+  MR_Word json__marshal__param_2);
+
+#line 27 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__pair_to_json_1_f_0(
+#line 27 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 27 "json.marshal.m"
+  MR_Word json__marshal__param_2,
+#line 27 "json.marshal.m"
+  MR_Word json__marshal__param_3);
+
+#line 26 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__duration_to_json_1_f_0(
+#line 26 "json.marshal.m"
+  MR_Word json__marshal__param_1);
+
+#line 25 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__date_time_to_json_1_f_0(
+#line 25 "json.marshal.m"
+  MR_Word json__marshal__param_1);
+
+#line 24 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__integer_to_json_1_f_0(
+#line 24 "json.marshal.m"
+  MR_Word json__marshal__param_1);
+
+#line 23 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__bool_to_json_1_f_0(
+#line 23 "json.marshal.m"
+  MR_Word json__marshal__param_1);
+
+#line 22 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__char_to_json_1_f_0(
+#line 22 "json.marshal.m"
+  MR_Char json__marshal__param_1);
+
+#line 21 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__string_to_json_1_f_0(
+#line 21 "json.marshal.m"
+  MR_String json__marshal__param_1);
+
+#line 20 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__float_to_json_1_f_0(
+#line 20 "json.marshal.m"
+  MR_Float json__marshal__param_1);
+
+#line 19 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__int_to_json_1_f_0(
+#line 19 "json.marshal.m"
+  MR_Integer json__marshal__param_1);
+
+#line 18 "json.marshal.m"
+MR_Word MR_CALL 
+json__marshal__bag_to_json_1_f_0(
+#line 18 "json.marshal.m"
+  MR_Word json__marshal__param_1,
+#line 18 "json.marshal.m"
+  MR_Word json__marshal__param_2);
+
+void mercury__json__marshal__init(void);
+void mercury__json__marshal__init_type_tables(void);
+void mercury__json__marshal__init_debugger(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* MR_HEADER_GUARD_json.marshal */
+
+/* :- end_interface json.marshal. */

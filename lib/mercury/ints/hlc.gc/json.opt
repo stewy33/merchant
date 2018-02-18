@@ -1,0 +1,479 @@
+:- module json.
+:- use_module array, array2d, assoc_list, bag, bimap, bitmap, bool, builtin, calendar, char, cord, digraph, float, int, integer, io, list, map, maybe, mutvar, pair, pqueue, private_builtin, queue, rational, rbtree, require, set_bbbtree, set_ctree234, set_ordlist, set_tree234, set_unordlist, stream, string, unit, univ, version_array, (json.char_buffer), (json.json_lexer), (json.json_parser), (json.marshal), (json.pointer), (json.string_reader), (json.unmarshal), (json.writer), (string.builder).
+:- type json.writer(Stream)
+	--->	json_writer((json.json_writer_stream) :: Stream, (json.json_output_style) :: json.output_style, (json.json_output_infinities) :: json.allow_infinities, (json.json_member_filter) :: json.member_filter).
+:- type json.reader(Stream)
+	--->	json_reader((json.json_reader_stream) :: Stream, (json.json_comments) :: json.allow_comments, (json.json_trailing_commas) :: json.allow_trailing_commas, (json.json_repeated_members) :: json.allow_repeated_members, (json.json_infinities) :: json.allow_infinities, (json.json_maximum_nesting_depth) :: json.maximum_nesting_depth, (json.json_column_number) :: mutvar.mutvar(int), (json.json_char_buffer) :: json.char_buffer.char_buffer).
+:- type json.pointer
+	--->	pointer(list.list(string)).
+:- instance (stream.input(json.reader(Stream), io.state)) <= (stream.input(Stream, io.state)) where [
+
+].
+:- instance (stream.error(json.error(Error))) <= (stream.error(Error)) where [
+	func((stream.error_message)/1) is (json.make_error_message)
+].
+:- instance (json.to_json(bag.bag(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).bag_to_json)
+].
+:- instance (json.to_json(int)) where [
+	func((json.to_json)/1) is ((json.marshal).int_to_json)
+].
+:- instance (json.to_json(float)) where [
+	func((json.to_json)/1) is ((json.marshal).float_to_json)
+].
+:- instance (json.to_json(character)) where [
+	func((json.to_json)/1) is ((json.marshal).char_to_json)
+].
+:- instance (json.to_json(string)) where [
+	func((json.to_json)/1) is ((json.marshal).string_to_json)
+].
+:- instance (json.to_json(bool.bool)) where [
+	func((json.to_json)/1) is ((json.marshal).bool_to_json)
+].
+:- instance (json.to_json(integer.integer)) where [
+	func((json.to_json)/1) is ((json.marshal).integer_to_json)
+].
+:- instance (json.to_json(calendar.date)) where [
+	func((json.to_json)/1) is ((json.marshal).date_time_to_json)
+].
+:- instance (json.to_json(calendar.duration)) where [
+	func((json.to_json)/1) is ((json.marshal).duration_to_json)
+].
+:- instance (json.to_json(pair.pair(A, B))) <= (json.to_json(A), json.to_json(B)) where [
+	func((json.to_json)/1) is ((json.marshal).pair_to_json)
+].
+:- instance (json.to_json(list.list(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).list_to_json)
+].
+:- instance (json.to_json(cord.cord(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).cord_to_json)
+].
+:- instance (json.to_json(array.array(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).array_to_json)
+].
+:- instance (json.to_json(array2d.array2d(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).array2d_to_json)
+].
+:- instance (json.to_json(version_array.version_array(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).version_array_to_json)
+].
+:- instance (json.to_json(bitmap.bitmap)) where [
+	func((json.to_json)/1) is ((json.marshal).bitmap_to_json)
+].
+:- instance (json.to_json(pqueue.pqueue(K, V))) <= (json.to_json(K), json.to_json(V)) where [
+	func((json.to_json)/1) is ((json.marshal).pqueue_to_json)
+].
+:- instance (json.to_json(rational.rational)) where [
+	func((json.to_json)/1) is ((json.marshal).rational_to_json)
+].
+:- instance (json.to_json(set_ordlist.set_ordlist(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).set_ordlist_to_json)
+].
+:- instance (json.to_json(set_unordlist.set_unordlist(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).set_unordlist_to_json)
+].
+:- instance (json.to_json(set_tree234.set_tree234(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).set_tree234_to_json)
+].
+:- instance (json.to_json(set_ctree234.set_ctree234(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).set_ctree234_to_json)
+].
+:- instance (json.to_json(set_bbbtree.set_bbbtree(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).set_bbbtree_to_json)
+].
+:- instance (json.to_json(maybe.maybe(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).maybe_to_json)
+].
+:- instance (json.to_json(maybe.maybe_error(T, E))) <= (json.to_json(T), json.to_json(E)) where [
+	func((json.to_json)/1) is ((json.marshal).maybe_error_to_json)
+].
+:- instance (json.to_json(tree234.tree234(K, V))) <= (json.to_json(K), json.to_json(V)) where [
+	func((json.to_json)/1) is ((json.marshal).map_to_json)
+].
+:- instance (json.to_json(rbtree.rbtree(K, V))) <= (json.to_json(K), json.to_json(V)) where [
+	func((json.to_json)/1) is ((json.marshal).rbtree_to_json)
+].
+:- instance (json.to_json(bimap.bimap(K, V))) <= (json.to_json(K), json.to_json(V)) where [
+	func((json.to_json)/1) is ((json.marshal).bimap_to_json)
+].
+:- instance (json.to_json(unit.unit)) where [
+	func((json.to_json)/1) is ((json.marshal).unit_to_json)
+].
+:- instance (json.to_json(queue.queue(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).queue_to_json)
+].
+:- instance (json.to_json(digraph.digraph(T))) <= (json.to_json(T)) where [
+	func((json.to_json)/1) is ((json.marshal).digraph_to_json)
+].
+:- instance (json.to_json(json.pointer)) where [
+	func((json.to_json)/1) is ((json.marshal).json_pointer_to_json)
+].
+:- instance (json.from_json(bag.bag(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).bag_from_json)
+].
+:- instance (json.from_json(int)) where [
+	func((json.from_json)/1) is ((json.unmarshal).int_from_json)
+].
+:- instance (json.from_json(float)) where [
+	func((json.from_json)/1) is ((json.unmarshal).float_from_json)
+].
+:- instance (json.from_json(character)) where [
+	func((json.from_json)/1) is ((json.unmarshal).char_from_json)
+].
+:- instance (json.from_json(string)) where [
+	func((json.from_json)/1) is ((json.unmarshal).string_from_json)
+].
+:- instance (json.from_json(bool.bool)) where [
+	func((json.from_json)/1) is ((json.unmarshal).bool_from_json)
+].
+:- instance (json.from_json(integer.integer)) where [
+	func((json.from_json)/1) is ((json.unmarshal).integer_from_json)
+].
+:- instance (json.from_json(calendar.date)) where [
+	func((json.from_json)/1) is ((json.unmarshal).date_time_from_json)
+].
+:- instance (json.from_json(calendar.duration)) where [
+	func((json.from_json)/1) is ((json.unmarshal).duration_from_json)
+].
+:- instance (json.from_json(pair.pair(A, B))) <= (json.from_json(A), json.from_json(B)) where [
+	func((json.from_json)/1) is ((json.unmarshal).pair_from_json)
+].
+:- instance (json.from_json(list.list(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).list_from_json)
+].
+:- instance (json.from_json(cord.cord(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).cord_from_json)
+].
+:- instance (json.from_json(array.array(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).array_from_json)
+].
+:- instance (json.from_json(array2d.array2d(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).array2d_from_json)
+].
+:- instance (json.from_json(version_array.version_array(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).version_array_from_json)
+].
+:- instance (json.from_json(rational.rational)) where [
+	func((json.from_json)/1) is ((json.unmarshal).rational_from_json)
+].
+:- instance (json.from_json(bitmap.bitmap)) where [
+	func((json.from_json)/1) is ((json.unmarshal).bitmap_from_json)
+].
+:- instance (json.from_json(pqueue.pqueue(K, V))) <= (json.from_json(K), json.from_json(V)) where [
+	func((json.from_json)/1) is ((json.unmarshal).pqueue_from_json)
+].
+:- instance (json.from_json(set_ordlist.set_ordlist(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).set_ordlist_from_json)
+].
+:- instance (json.from_json(set_unordlist.set_unordlist(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).set_unordlist_from_json)
+].
+:- instance (json.from_json(set_tree234.set_tree234(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).set_tree234_from_json)
+].
+:- instance (json.from_json(set_ctree234.set_ctree234(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).set_ctree234_from_json)
+].
+:- instance (json.from_json(set_bbbtree.set_bbbtree(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).set_bbbtree_from_json)
+].
+:- instance (json.from_json(maybe.maybe(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).maybe_from_json)
+].
+:- instance (json.from_json(maybe.maybe_error(T, E))) <= (json.from_json(T), json.from_json(E)) where [
+	func((json.from_json)/1) is ((json.unmarshal).maybe_error_from_json)
+].
+:- instance (json.from_json(tree234.tree234(K, V))) <= (json.from_json(K), json.from_json(V)) where [
+	func((json.from_json)/1) is ((json.unmarshal).map_from_json)
+].
+:- instance (json.from_json(rbtree.rbtree(K, V))) <= (json.from_json(K), json.from_json(V)) where [
+	func((json.from_json)/1) is ((json.unmarshal).rbtree_from_json)
+].
+:- instance (json.from_json(bimap.bimap(K, V))) <= (json.from_json(K), json.from_json(V)) where [
+	func((json.from_json)/1) is ((json.unmarshal).bimap_from_json)
+].
+:- instance (json.from_json(unit.unit)) where [
+	func((json.from_json)/1) is ((json.unmarshal).unit_from_json)
+].
+:- instance (json.from_json(queue.queue(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).queue_from_json)
+].
+:- instance (json.from_json(digraph.digraph(T))) <= (json.from_json(T)) where [
+	func((json.from_json)/1) is ((json.unmarshal).digraph_from_json)
+].
+:- instance (json.from_json(json.pointer)) where [
+	func((json.from_json)/1) is ((json.unmarshal).json_pointer_from_json)
+].
+:- pragma foreign_import_module("C", array).
+:- pragma foreign_import_module("C#", array).
+:- pragma foreign_import_module("Java", array).
+:- pragma foreign_import_module("IL", array).
+:- pragma foreign_import_module("Erlang", array).
+:- pragma foreign_import_module("C", array).
+:- pragma foreign_import_module("C#", array).
+:- pragma foreign_import_module("Java", array).
+:- pragma foreign_import_module("IL", array).
+:- pragma foreign_import_module("Erlang", array).
+:- pragma foreign_import_module("C", bitmap).
+:- pragma foreign_import_module("C#", bitmap).
+:- pragma foreign_import_module("Java", bitmap).
+:- pragma foreign_import_module("IL", bitmap).
+:- pragma foreign_import_module("Erlang", bitmap).
+:- pragma foreign_import_module("C", bitmap).
+:- pragma foreign_import_module("C#", bitmap).
+:- pragma foreign_import_module("Java", bitmap).
+:- pragma foreign_import_module("IL", bitmap).
+:- pragma foreign_import_module("Erlang", bitmap).
+:- pragma foreign_import_module("C", io).
+:- pragma foreign_import_module("C#", io).
+:- pragma foreign_import_module("Java", io).
+:- pragma foreign_import_module("IL", io).
+:- pragma foreign_import_module("Erlang", io).
+:- pragma foreign_import_module("C", io).
+:- pragma foreign_import_module("C#", io).
+:- pragma foreign_import_module("Java", io).
+:- pragma foreign_import_module("IL", io).
+:- pragma foreign_import_module("Erlang", io).
+:- pragma foreign_import_module("C", time).
+:- pragma foreign_import_module("C", string).
+:- pragma foreign_import_module("C", version_array).
+:- pragma foreign_import_module("C#", version_array).
+:- pragma foreign_import_module("Java", version_array).
+:- pragma foreign_import_module("C", version_array).
+:- pragma foreign_import_module("C#", version_array).
+:- pragma foreign_import_module("Java", version_array).
+:- pragma foreign_import_module("C#", mutvar).
+:- pragma foreign_import_module("Java", mutvar).
+:- pragma foreign_import_module("Erlang", mutvar).
+:- pragma foreign_import_module("C#", mutvar).
+:- pragma foreign_import_module("Java", mutvar).
+:- pragma foreign_import_module("Erlang", mutvar).
+:- pragma foreign_import_module("C", (json.char_buffer)).
+:- pragma foreign_import_module("C", (json.char_buffer)).
+:- pragma foreign_import_module("C", time).
+:- pragma foreign_import_module("C#", time).
+:- pragma foreign_import_module("Java", time).
+:- pragma foreign_import_module("IL", time).
+:- pragma foreign_import_module("Erlang", time).
+:- pragma foreign_import_module("C", time).
+:- pragma foreign_import_module("C#", time).
+:- pragma foreign_import_module("Java", time).
+:- pragma foreign_import_module("IL", time).
+:- pragma foreign_import_module("Erlang", time).
+:- pragma foreign_import_module("C#", rtti_implementation).
+:- pragma foreign_import_module("Java", rtti_implementation).
+:- pragma foreign_import_module("C#", rtti_implementation).
+:- pragma foreign_import_module("Java", rtti_implementation).
+:- func (json.default_reader_params) = json.reader_params.
+:- mode (json.default_reader_params) = (builtin.out) is det.
+:- pred json.cast_member_filter_to_pred(json.member_filter, json.member_filter).
+:- mode json.cast_member_filter_to_pred((builtin.in), builtin.out((json.member_filter))) is det.
+:- pred json.make_unexpected_eof_error(json.reader(Stream_1), maybe.maybe(string), json.error(Error_2), State_3, State_3) <= (stream.line_oriented(Stream_1, State_3), stream.putback(Stream_1, character, State_3, Error_2)).
+:- mode json.make_unexpected_eof_error((builtin.in), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- pred json.make_syntax_error(json.reader(Stream_1), string, maybe.maybe(string), json.error(Error_2), State_3, State_3) <= (stream.line_oriented(Stream_1, State_3), stream.putback(Stream_1, character, State_3, Error_2)).
+:- mode json.make_syntax_error((builtin.in), (builtin.in), (builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- pred json.make_error_context(json.reader(Stream_1), json.context, State_2, State_2) <= (stream.line_oriented(Stream_1, State_2), stream.putback(Stream_1, character, State_2, Error_3)).
+:- mode json.make_error_context((builtin.in), (builtin.out), (builtin.di), (builtin.uo)) is det.
+:- func json.make_error_message(json.error(Error_1)) = string <= (stream.error(Error_1)).
+:- mode json.make_error_message((builtin.in)) = (builtin.out) is det.
+:- pred json.semidet_add_member(pair.pair(string, json.value), tree234.tree234(string, json.value), tree234.tree234(string, json.value)).
+:- mode json.semidet_add_member((builtin.in), (builtin.in), (builtin.out)) is semidet.
+:- pred json.det_add_member(pair.pair(string, json.value), tree234.tree234(string, json.value), tree234.tree234(string, json.value)).
+:- mode json.det_add_member((builtin.in), (builtin.in), (builtin.out)) is det.
+json.int(I_3) = json.number(V_4) :-
+    V_4 = float.float(I_3).
+json.make_object(Members_3, Value_4) :-
+    V_6 = json.semidet_add_member : pred(pair.pair(string, json.value), tree234.tree234(string, json.value), tree234.tree234(string, json.value)),
+    V_7 = map.init,
+    list.foldl(V_6, Members_3, V_7, Object_5),
+    Value_4 = json.object(Object_5) : json.value.
+json.det_make_object(Members_3) = Value_4 :-
+    V_6 = json.det_add_member : pred(pair.pair(string, json.value), tree234.tree234(string, json.value), tree234.tree234(string, json.value)),
+    V_7 = map.init,
+    list.foldl(V_6, Members_3, V_7, Object_5),
+    Value_4 = json.object(Object_5) : json.value.
+json.is_null(json.null).
+json.is_bool(json.bool(V_2)).
+json.is_string(json.string(V_2)).
+json.is_number(json.number(V_2)).
+json.is_object(json.object(V_2)).
+json.is_array(json.array(V_2)).
+json.get_bool(json.bool(Bool_3), Bool_3).
+json.get_string(json.string(String_3), String_3).
+json.get_number(json.number(Number_3), Number_3).
+json.get_object(json.object(Object_3), Object_3).
+json.get_array(json.array(Array_3), Array_3).
+json.get_int(json.number(Number_3), Int_4) :-
+    Int_4 = float.truncate_to_int(Number_3).
+json.lookup_bool(Object_4, Member_5) = Bool_6 :-
+    Value_7 = map.lookup(Object_4, Member_5),
+    Bool_6 = json.det_get_bool(Value_7).
+json.lookup_string(Object_4, Member_5) = String_6 :-
+    Value_7 = map.lookup(Object_4, Member_5),
+    String_6 = json.det_get_string(Value_7).
+json.lookup_number(Object_4, Member_5) = Number_6 :-
+    Value_7 = map.lookup(Object_4, Member_5),
+    Number_6 = json.det_get_number(Value_7).
+json.lookup_object(Object_4, Member_5) = ObjectPrime_6 :-
+    Value_7 = map.lookup(Object_4, Member_5),
+    ObjectPrime_6 = json.det_get_object(Value_7).
+json.lookup_array(Object_4, Member_5) = Array_6 :-
+    Value_7 = map.lookup(Object_4, Member_5),
+    Array_6 = json.det_get_array(Value_7).
+json.lookup_int(Object_4, Member_5) = Int_6 :-
+    Value_7 = map.lookup(Object_4, Member_5),
+    Int_6 = json.det_get_int(Value_7).
+json.search_bool(Object_5, Member_6, Default_7) = Bool_8 :-
+    (if
+      map.search(Object_5, Member_6, Value_9)
+    then
+      Bool_8 = json.det_get_bool(Value_9)
+    else
+      Bool_8 = Default_7
+    ).
+json.search_string(Object_5, Member_6, Default_7) = String_8 :-
+    (if
+      map.search(Object_5, Member_6, Value_9)
+    then
+      String_8 = json.det_get_string(Value_9)
+    else
+      String_8 = Default_7
+    ).
+json.search_number(Object_5, Member_6, Default_7) = Number_8 :-
+    (if
+      map.search(Object_5, Member_6, Value_9)
+    then
+      Number_8 = json.det_get_number(Value_9)
+    else
+      Number_8 = Default_7
+    ).
+json.search_object(Object_5, Member_6, Default_7) = ObjectPrime_8 :-
+    (if
+      map.search(Object_5, Member_6, Value_9)
+    then
+      ObjectPrime_8 = json.det_get_object(Value_9)
+    else
+      ObjectPrime_8 = Default_7
+    ).
+json.search_array(Object_5, Member_6, Default_7) = Array_8 :-
+    (if
+      map.search(Object_5, Member_6, Value_9)
+    then
+      Array_8 = json.det_get_array(Value_9)
+    else
+      Array_8 = Default_7
+    ).
+json.search_int(Object_5, Member_6, Default_7) = Int_8 :-
+    (if
+      map.search(Object_5, Member_6, Value_9)
+    then
+      Int_8 = json.det_get_int(Value_9)
+    else
+      Int_8 = Default_7
+    ).
+json.string_to_pointer(String_3, Pointer_4) :-
+    (json.pointer).string_to_reference_tokens(String_3, RefComps_5),
+    Pointer_4 = json.pointer(RefComps_5) : json.pointer.
+json.det_string_to_pointer(String_3) = HeadVar__2_2 :-
+    (if
+      json.string_to_pointer(String_3, Pointer_4)
+    then
+      HeadVar__2_2 = Pointer_4
+    else
+      HeadVar__2_2 = require.func_error(V_5),
+      V_5 = "json.det_string_to_pointer: string_to_pointer failed" : string
+    ).
+json.pointer_to_string(Pointer_3) = String_4 :-
+    Pointer_3 = json.pointer(RefTokens_5) : json.pointer,
+    String_4 = (json.pointer).reference_tokens_to_string(RefTokens_5).
+json.resolve(Pointer_4, Doc_5, Value_6) :-
+    (json.pointer).do_resolve(Pointer_4, Doc_5, Value_6).
+json.det_resolve(Pointer_4, Doc_5) = HeadVar__3_3 :-
+    (if
+      (json.pointer).do_resolve(Pointer_4, Doc_5, Value_6)
+    then
+      HeadVar__3_3 = Value_6
+    else
+      HeadVar__3_3 = require.func_error(V_7),
+      V_7 = "json.det_resolve: resolve failed" : string
+    ).
+json.reader_params(Comments_6, TrailingCommas_7, RepeatedMembers_8, Infinities_9) = json.reader_params(Comments_6, TrailingCommas_7, RepeatedMembers_8, Infinities_9, V_10) :-
+    V_10 = json.no_maximum_nesting_depth : json.maximum_nesting_depth.
+json.init_reader(Stream_5, Reader_6, STATE_VARIABLE_State_0_9, STATE_VARIABLE_State_10) :-
+    Params_8 = json.default_reader_params,
+    json.init_reader(Stream_5, Params_8, Reader_6, STATE_VARIABLE_State_0_9, STATE_VARIABLE_State_10).
+json.read_value(Reader_5, Result_6, STATE_VARIABLE_State_0_9, STATE_VARIABLE_State_10) :-
+    (json.json_lexer).get_token(Reader_5, Token_8, STATE_VARIABLE_State_0_9, STATE_VARIABLE_State_11_11),
+    (json.json_parser).do_read_value(Reader_5, Token_8, Result_6, STATE_VARIABLE_State_11_11, STATE_VARIABLE_State_10).
+json.object_fold(Reader_7, Pred_8, STATE_VARIABLE_Acc_0_12, Result_10, STATE_VARIABLE_State_0_13, STATE_VARIABLE_State_14) :-
+    (json.json_parser).do_object_fold(Reader_7, Pred_8, STATE_VARIABLE_Acc_0_12, Result_10, STATE_VARIABLE_State_0_13, STATE_VARIABLE_State_14).
+json.object_fold_state(Reader_7, Pred_8, STATE_VARIABLE_Acc_0_12, Result_10, STATE_VARIABLE_State_0_13, STATE_VARIABLE_State_14) :-
+    (json.json_parser).do_object_fold_state(Reader_7, Pred_8, STATE_VARIABLE_Acc_0_12, Result_10, STATE_VARIABLE_State_0_13, STATE_VARIABLE_State_14).
+json.array_fold(Reader_7, Pred_8, STATE_VARIABLE_Acc_0_12, Result_10, STATE_VARIABLE_State_0_13, STATE_VARIABLE_State_14) :-
+    (json.json_parser).do_array_fold(Reader_7, Pred_8, STATE_VARIABLE_Acc_0_12, Result_10, STATE_VARIABLE_State_0_13, STATE_VARIABLE_State_14).
+json.array_fold_state(Reader_7, Pred_8, STATE_VARIABLE_Acc_0_12, Result_10, STATE_VARIABLE_State_0_13, STATE_VARIABLE_State_14) :-
+    (json.json_parser).do_array_fold_state(Reader_7, Pred_8, STATE_VARIABLE_Acc_0_12, Result_10, STATE_VARIABLE_State_0_13, STATE_VARIABLE_State_14).
+json.writer_params(OutputStyle_4, AllowInfinities_5) = json.writer_params(OutputStyle_4, AllowInfinities_5, V_6) :-
+    V_6 = json.no_member_filter : json.member_filter.
+json.init_writer(Stream_5, Writer_6, STATE_VARIABLE_State_0_8, STATE_VARIABLE_State_9) :-
+    Writer_6 = json.json_writer(Stream_5, V_10, V_11, V_12) : json.writer(Stream_1),
+    V_10 = json.compact : json.output_style,
+    V_11 = json.do_not_allow_infinities : json.allow_infinities,
+    V_12 = json.no_member_filter : json.member_filter,
+    STATE_VARIABLE_State_9 = STATE_VARIABLE_State_0_8.
+json.init_writer(Stream_6, Parameters_7, Writer_8, STATE_VARIABLE_State_0_13, STATE_VARIABLE_State_14) :-
+    Parameters_7 = json.writer_params(OutputStyle_10, AllowInfinities_11, MemberFilter_12) : json.writer_params,
+    Writer_8 = json.json_writer(Stream_6, OutputStyle_10, AllowInfinities_11, MemberFilter_12) : json.writer(Stream_1),
+    STATE_VARIABLE_State_14 = STATE_VARIABLE_State_0_13.
+json.write_compact(Value_4, STATE_VARIABLE_IO_0_7, STATE_VARIABLE_IO_8) :-
+    io.output_stream(File_6, STATE_VARIABLE_IO_0_7, STATE_VARIABLE_IO_9_9),
+    json.write_compact(File_6, Value_4, STATE_VARIABLE_IO_9_9, STATE_VARIABLE_IO_8).
+json.write_pretty(Value_4, STATE_VARIABLE_IO_0_7, STATE_VARIABLE_IO_8) :-
+    io.output_stream(File_6, STATE_VARIABLE_IO_0_7, STATE_VARIABLE_IO_9_9),
+    json.write_pretty(File_6, Value_4, STATE_VARIABLE_IO_9_9, STATE_VARIABLE_IO_8).
+json.from_string(String_3, Value_4) :-
+    Params_5 = json.default_reader_params,
+    json.from_string(Params_5, String_3, Value_4).
+json.det_from_string(String_3) = Value_4 :-
+    Params_5 = json.default_reader_params,
+    Value_4 = json.det_from_string(Params_5, String_3).
+json.maybe_from_string(String_3) = Result_4 :-
+    Params_5 = json.default_reader_params,
+    Result_4 = json.maybe_from_string(Params_5, String_3).
+json.from_type(T_3) = HeadVar__2_2 :-
+    HeadVar__2_2 = json.to_json(T_3).
+json.to_type(V_3) = HeadVar__2_2 :-
+    HeadVar__2_2 = json.from_json(V_3).
+json.default_reader_params = Params_2 :-
+    (
+    % from_ground_term [Params_2, initial]
+      ( % conjunction
+        Params_2 = json.reader_params(V_3, V_4, V_5, V_6, V_7) : json.reader_params
+        ,
+        V_3 = json.do_not_allow_comments : json.allow_comments
+        ,
+        V_4 = json.do_not_allow_trailing_commas : json.allow_trailing_commas
+        ,
+        V_5 = json.do_not_allow_repeated_members : json.allow_repeated_members
+        ,
+        V_6 = json.do_not_allow_infinities : json.allow_infinities
+        ,
+        V_7 = json.maximum_nesting_depth(V_8) : json.maximum_nesting_depth
+        ,
+        V_8 = 64 : int
+      )
+    ).
+:- pragma foreign_proc("C", json.cast_member_filter_to_pred(A :: (builtin.in), B :: builtin.out((json.member_filter))), [will_not_call_mercury, thread_safe, not_tabled_for_io, promise_pure, will_not_modify_trail], "
+    B = A;
+").
+json.make_unexpected_eof_error(Reader_6, MaybeMsg_7, Error_8, STATE_VARIABLE_State_0_11, STATE_VARIABLE_State_12) :-
+    json.make_error_context(Reader_6, Context_10, STATE_VARIABLE_State_0_11, STATE_VARIABLE_State_12),
+    Error_8 = json.json_error(Context_10, V_14) : json.error(Error_2),
+    V_14 = json.unexpected_eof(MaybeMsg_7) : json.error_desc.
+json.make_syntax_error(Reader_7, Where_8, MaybeMsg_9, Error_10, STATE_VARIABLE_State_0_13, STATE_VARIABLE_State_14) :-
+    json.make_error_context(Reader_7, Context_12, STATE_VARIABLE_State_0_13, STATE_VARIABLE_State_14),
+    Error_10 = json.json_error(Context_12, V_16) : json.error(Error_2),
+    V_16 = json.syntax_error(Where_8, MaybeMsg_9) : json.error_desc.
+json.semidet_add_member(Member_4, STATE_VARIABLE_Object_0_8, STATE_VARIABLE_Object_9) :-
+    Member_4 = pair.(Name_6 - Value_7) : pair.pair(string, json.value),
+    map.insert(Name_6, Value_7, STATE_VARIABLE_Object_0_8, STATE_VARIABLE_Object_9).

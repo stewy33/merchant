@@ -14,3 +14,5 @@ Mercury.modules
 .DS_Store
 *.swp
 .packages
+json-src/
+lib/
