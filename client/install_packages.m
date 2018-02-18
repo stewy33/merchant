@@ -27,12 +27,7 @@ install_packages(ManifestFile, DepArgs, !IO) :-
     (
       MaybeManifest = ok(Manifest),
       map.foldl(install_package, Manifest ^ dependencies, !IO),
-<<<<<<< HEAD:client/install_packages.m
-      DepArgs = map.foldl(concat_to_string, Manifest ^ dependencies, ""),
-      io.write_string("ok", !IO)
-=======
       DepArgs = map.foldl(concat_to_string, Manifest ^ dependencies, "")
->>>>>>> eea82b19b43aeae47317627e847e14853294a30a:client/install_packages.m
     ;
       MaybeManifest = error(ErrorMsg),
       io_write_error(

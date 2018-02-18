@@ -2,29 +2,37 @@
 
 ![merchant-logo](merchant-logo.png "Merchant Logo")
 
-=======================================================================
-Package manager for the Mercury logic programming language.
+# ## A package manager for the Mercury logic programming language.
 
 Commands:
 
     --init
         creates a blank manifest file and a ".package" directory
-
+    
     --install
         installs all dependencies specified in the manifest
         using mmc --make
-
+    
     --build
         builds your project using the dependencies downloaded
         by the package manager with mmc --make
-
+    
     --help
         returns a help message
-========================================================================
+
 
 Installation
 
-Recommended: cd into the "hophacks2018" folder then run the 
+Recommended:
+
+```bash
+git clone https://github.com/stewy33/hophacks2018
+./hophacks2018
+```
+
+
+
+cd into the "hophacks2018" folder then run the 
 command 'chmod +x install_merchant.sh' then run './install_merchant.sh'
 afterwards, you should be able to use merchant commands.
 
