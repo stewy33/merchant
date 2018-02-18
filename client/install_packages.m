@@ -28,7 +28,7 @@ install_packages(ManifestFile, DepArgs, !IO) :-
       MaybeManifest = ok(Manifest),
       map.foldl(install_package, Manifest ^ dependencies, !IO),
       DepArgs = map.foldl(concat_to_string, Manifest ^ dependencies, ""),
-      io.write_string("ok")
+      io.write_string("ok", !IO)
     ;
       MaybeManifest = error(ErrorMsg),
       io_write_error(ErrorMsg, !IO),
