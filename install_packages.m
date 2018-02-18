@@ -26,7 +26,7 @@ install_packages(ManifestFile, !IO) :-
     manifest_from_file(ManifestFile, MaybeManifest, !IO),
     (
       MaybeManifest = ok(Manifest),
-      map.foldl(clone_package, Manifest ^ dependencies, !IO)
+      map.foldl(install_package, Manifest ^ dependencies, !IO)
     ;
       MaybeManifest = error(ErrorMsg),
       io_write_error(ErrorMsg, !IO),
@@ -46,4 +46,4 @@ install_package(PackageName, PackageUrl, !IO) :-
       Result = error(_)
     ),
     install_packages(string.format("%s/manifest.json", [s(SrcDir)]), !IO),
-    util.system(string.format("./installing_files.sh %s", [s(PackageName)], !IO).
+    util.system(string.format("./install_library.sh %s", [s(PackageName)]), !IO).
