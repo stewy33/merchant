@@ -2,6 +2,6 @@
     "name": "package_name",
     "author": "package_author",
     "dependencies": {
-        "mercury_json": "https://github.com/juliensf/mercury-json.git"
+        "package_a": "https://github.com/stewy33/package-a.git"
     }
 }

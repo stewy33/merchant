@@ -18,7 +18,7 @@
     manifest.
 
 init_package(!IO) :-
-    dir.make_single_directory(".packages", Res, !IO),
+    dir.make_single_directory(".packages", _, !IO),
     io.open_output("manifest.json", MaybeFile, !IO),
     (
       MaybeFile = ok(File),
@@ -33,6 +33,5 @@ default_manifest =
     \"name\": \"package_name\",
     \"author\": \"package_author\",
     \"dependencies\": {
-        \"mercury_json\": \"https://github.com/juliensf/mercury-json.git\"
     }
 }\n".

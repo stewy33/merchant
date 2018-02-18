@@ -14,7 +14,7 @@
                     author :: string,
                     dependencies :: map(string,string) ).
 
-:- pred manifest_from_file(maybe_error(manifest)::out, io::di, io::uo) is det.
+:- pred manifest_from_file(string::in, maybe_error(manifest)::out, io::di, io::uo) is det.
 
 :- pred io_write_manifest(manifest::in, io::di, io::uo) is det.
 
@@ -25,8 +25,8 @@
     list,
     stream.
 
-manifest_from_file(MaybeManifest, !IO) :-
-    read_json_from_file(MaybeJson, !IO),
+manifest_from_file(FileName, MaybeManifest, !IO) :-
+    read_json_from_file(FileName, MaybeJson, !IO),
     (
       MaybeJson = ok(Val),
       MaybeManifest = manifest_from_json(Val)
@@ -54,9 +54,9 @@ manifest_from_json(JsonVal) =
      ).
 
 
-:- pred read_json_from_file(maybe_error(json.value)::out, io::di, io::uo) is det.
-read_json_from_file(JsonResult, !IO) :- 
-    io.open_input("manifest.json", MaybeFile, !IO),
+:- pred read_json_from_file(string::in, maybe_error(json.value)::out, io::di, io::uo) is det.
+read_json_from_file(FileName, JsonResult, !IO) :- 
+    io.open_input(FileName, MaybeFile, !IO),
     (
       MaybeFile = ok(InputFile),
       json.init_reader(InputFile, Reader, !IO),
