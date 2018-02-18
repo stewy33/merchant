@@ -1,7 +1,0 @@
-{
-    "name": "package_name",
-    "author": "package_author",
-    "dependencies": {
-        "mercury_json": "https://github.com/stewy33/mercury-json"
-    }
-}
