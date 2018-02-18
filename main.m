@@ -37,7 +37,7 @@ main(!IO) :-
       getopt.lookup_bool_option(OptionTable, install, Install),
       (
         Install = yes,
-        install_packages("manifest.json", !IO)
+        install_packages("manifest.json", _, !IO)
       ;
         Install = no
       ),
