@@ -1,7 +1,0 @@
-:- module (json.pointer).
-:- interface.
-:- pred do_resolve(json.pointer, json.value, json.value).
-:- mode do_resolve((builtin.in), (builtin.in), (builtin.out)) is semidet.
-:- func reference_tokens_to_string(list.list(string)) = string.
-:- pred string_to_reference_tokens(string, list.list(string)).
-:- mode string_to_reference_tokens((builtin.in), (builtin.out)) is semidet.

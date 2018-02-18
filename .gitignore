@@ -12,7 +12,7 @@ Mercury.modules
 *.d
 *.c_date
 .DS_Store
+.directory
 *.swp
 .packages
-json-src/
 lib/

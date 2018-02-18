@@ -1,7 +1,0 @@
-:- module (json.pointer).
-:- use_module array, array2d, assoc_list, bag, bimap, bitmap, bool, builtin, calendar, char, cord, digraph, float, int, integer, io, list, map, maybe, mutvar, pair, pqueue, private_builtin, queue, rational, rbtree, require, set_bbbtree, set_ctree234, set_ordlist, set_tree234, set_unordlist, stream, string, unit, univ, version_array, (json.char_buffer), (json.json_lexer), (json.json_parser), (json.marshal), (json.pointer), (json.string_reader), (json.unmarshal), (json.writer), (string.builder).
-:- pred (json.pointer).do_resolve_token(list.list(string), json.value, json.value).
-:- mode (json.pointer).do_resolve_token((builtin.in), (builtin.in), (builtin.out)) is semidet.
-(json.pointer).do_resolve(Pointer_4, Value_5, Result_6) :-
-    Pointer_4 = json.pointer(RefTokens_7) : json.pointer,
-    (json.pointer).do_resolve_token(RefTokens_7, Value_5, Result_6).
