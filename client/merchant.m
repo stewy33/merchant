@@ -1,4 +1,4 @@
-:- module main.
+:- module merchant.
 :- interface.
 
 :- import_module io.
