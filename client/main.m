@@ -83,7 +83,25 @@ handle_command_line_args(MaybeOptionTable, !IO) :-
 
 :- pred usage(io::di, io::uo) is det.
 usage(!IO) :-
-   util.io_write_error("help message\n", !IO). 
+util.io_write_error(
+   "
+   Commands
+   ===========================================================
+   --init
+        creates a \".package\" directory which will store your
+        dependencies and will create a blank manifest
+
+   --install
+        installs all dependencies specified in the manifest
+        using mmc --make
+
+   --build
+        builds your project using the dependencies downloaded
+        by the package manager with mmc --make
+
+   --help
+        you just did this
+   ", !IO).
 
 :- type option ---> init
                ;    install

@@ -24,7 +24,7 @@ init_package(!IO) :-
       MaybeFile = ok(File),
       io.write_string(File, default_manifest, !IO)
     ;
-      MaybeFile = error(ErrorCode)
+      MaybeFile = error(_)
     ).
  
 :- func default_manifest = string.
