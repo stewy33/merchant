@@ -42,20 +42,20 @@ main(!IO) :-
         Install = no
       ),
 
-      getopt.lookup_bool_option(OptionTable, clean, Clean),
-      (
-        Clean = yes,
-        util.system("rm *.mh *.err", !IO)
-      ;
-        Clean = no
-      ),
-
       getopt.lookup_bool_option(OptionTable, build, Build),
       (
         Build = yes,
         build_package(!IO)
       ;
         Build = no
+      ),
+
+      getopt.lookup_bool_option(OptionTable, clean, Clean),
+      (
+        Clean = yes,
+        util.system("rm *.mh *.err", !IO)
+      ;
+        Clean = no
       ),
 
       getopt.lookup_bool_option(OptionTable, help, Help),
