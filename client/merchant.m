@@ -33,6 +33,9 @@ main(!IO) :-
         if Arg1 = "build"
         then build_package(!IO)
 
+        else if ( Arg1 = "clean"
+        then util.system("rm *.mh *.err")
+
         else ( if Arg1 = "deps"
         then list_dependencies(!IO)
 
@@ -56,7 +59,7 @@ main(!IO) :-
               [s(list.det_head(Args))]),
           util.write_error_string(ErrorMsg, !IO),
           usage(!IO)
-      ))))))
+      )))))))
     ;
       Args = [],
       usage(!IO)
@@ -76,6 +79,7 @@ Global options:
 
 Available commands:
   build       Build package with dependencies according to manifest.json.
+  clean       rm those pesky *.mh and *.err files.
   deps        Print package dependencies.
   install     Install the current package's dependencies.
   help        Display help information for merchant.

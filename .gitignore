@@ -14,5 +14,5 @@ Mercury.modules
 .DS_Store
 .directory
 *.swp
-.packages
+.merchant
 lib/
