@@ -25,11 +25,11 @@ build_package(!IO) :-
     manifest_from_file("manifest.json", MaybeManifest, !IO),
     (
       MaybeManifest = ok(Manifest),
-      DepArgs = map.foldl(func(N, _, A) = N ++ " " ++ A,
+      DepArgs = map.foldl(func(DepName, _, Acc) = DepName ++ " " ++ Acc,
         Manifest ^ dependencies, ""),
-      util.system(string.format("./build_package.sh %s %s", [s(Manifest ^ name),
-          s(DepArgs)]), !IO)
+      util.system(string.format("/usr/local/lib/merchant/build_package.sh %s %s",
+        [s(Manifest ^ name), s(DepArgs)]), !IO)
     ;
       MaybeManifest = error(ErrorMsg),
-      io_write_error(ErrorMsg, !IO)
+      util.write_error_string(ErrorMsg, !IO)
     ).

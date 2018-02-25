@@ -1,4 +1,6 @@
 :- module merchant.
+
+
 :- interface.
 
 :- import_module io.
@@ -9,121 +11,80 @@
 :- import_module
     bool,
     char,
+    dir,
     getopt,
     list,
     maybe,
     string.
 
 :- import_module
-    init_package,
-    install_packages,
     build_package,
+    dependency,
+    init_package,
+    install_deps,
     manifest,
     util.
 
 main(!IO) :-
-    handle_command_line_args(MaybeOptionTable, !IO),
-    (
-      MaybeOptionTable = ok(OptionTable),
-
-      getopt.lookup_bool_option(OptionTable, init, Init),
-      (
-        Init = yes,
-        init_package(!IO)
-      ;
-        Init = no
-      ),
-
-      getopt.lookup_bool_option(OptionTable, install, Install),
-      (
-        Install = yes,
-        install_packages("manifest.json", _, !IO)
-      ;
-        Install = no
-      ),
-
-      getopt.lookup_bool_option(OptionTable, build, Build),
-      (
-        Build = yes,
-        build_package(!IO)
-      ;
-        Build = no
-      ),
-
-      getopt.lookup_bool_option(OptionTable, clean, Clean),
-      (
-        Clean = yes,
-        util.system("rm *.mh *.err", !IO)
-      ;
-        Clean = no
-      ),
-
-      getopt.lookup_bool_option(OptionTable, help, Help),
-      (
-        Help = yes,
-        usage(!IO)
-      ;
-        Help = no
-      )
-    ;
-      MaybeOptionTable = error(OptionErrorMsg),
-      string.format("error: %s.\n", [s(OptionErrorMsg)], ErrorMsg),
-      util.io_write_error(ErrorMsg, !IO)
-    ).
-
-:- pred handle_command_line_args(maybe_option_table(option)::out, io::di, io::uo) is det.
-handle_command_line_args(MaybeOptionTable, !IO) :-
     io.command_line_arguments(Args, !IO),
-    OptionOps = option_ops_multi(
-        short_option,
-        long_option,
-        option_default
-    ),
-    getopt.process_options(OptionOps, Args, _, MaybeOptionTable).
+    (
+      Args = [Arg1 | RemainingArgs],
+      (
+        if Arg1 = "build"
+        then build_package(!IO)
+
+        else ( if Arg1 = "deps"
+        then list_dependencies(!IO)
+
+        else ( if Arg1 = "init"
+        then init_package(!IO)
+
+        else ( if Arg1 = "install"
+        then install_deps(RemainingArgs, !IO)
+
+        else ( if Arg1 = "help"
+                ; Arg1 = "--help"
+                ; Arg1 = "-h"
+        then usage(!IO)
+
+        else ( if Arg1 = "version"
+                ; Arg1 = "--version"
+        then version(!IO)
+
+        else
+          ErrorMsg = string.format("error: unrecognized option \"%s\"\n",
+              [s(list.det_head(Args))]),
+          util.write_error_string(ErrorMsg, !IO),
+          usage(!IO)
+      ))))))
+    ;
+      Args = [],
+      usage(!IO)
+    ).
 
 :- pred usage(io::di, io::uo) is det.
 usage(!IO) :-
-util.io_write_error(
-   "
-   Commands
-   ===========================================================
-   --init
-        creates a \".package\" directory which will store your
-        dependencies and will create a blank manifest
+    util.write_error_string(
+"
+Merchant: A package manager for the Mercury logic programming language.
 
-   --install
-        installs all dependencies specified in the manifest
-        using mmc --make
+Usage: merchant <command> [arguments]
 
-   --build
-        builds your project using the dependencies downloaded
-        by the package manager with mmc --make
+Global options:
+-h, --help             Print this usage information.
+    --version          Print merchant version.
 
-   --help
-        you just did this
-   ", !IO).
+Available commands:
+  build       Build package with dependencies according to manifest.json.
+  deps        Print package dependencies.
+  install     Install the current package's dependencies.
+  help        Display help information for merchant.
+  run         Run an executable from a package.
+  version     Print merchant version.
 
-:- type option ---> init
-               ;    install
-               ;    build
-               ;    clean
-               ;    help.
+"
+    , !IO).
 
-:- pred short_option(char::in, option::out) is semidet.
-short_option('i', install).
-short_option('b', build).
-short_option('h', help).
-
-:- pred long_option(string::in, option::out) is semidet.
-long_option("init", init).
-long_option("install", install).
-long_option("build", build).
-long_option("clean", clean).
-long_option("help", help).
-
-:- pred option_default(option::out, option_data::out) is multi.
-option_default(init, bool(no)).
-option_default(install, bool(no)).
-option_default(build, bool(no)).
-option_default(clean, bool(no)).
-option_default(help, bool(no)).
+:- pred version(io::di, io::uo) is det.
+version(!IO) :-
+    io.write_string("Merchant 0.0.1\n", !IO).
