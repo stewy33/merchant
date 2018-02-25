@@ -8,6 +8,8 @@
 
 :- pred init_package(io::di, io::uo) is det.
 
+:- pred init_package_first_warning(io::di, io::uo) is det.
+
 
 :- implementation.
 
@@ -15,10 +17,10 @@
     dir.
 
 :- import_module
-    manifest.
+    manifest,
+    util.
 
 init_package(!IO) :-
-    dir.make_single_directory(".packages", _, !IO),
     io.open_output("manifest.json", MaybeFile, !IO),
     (
       MaybeFile = ok(File),
@@ -35,3 +37,10 @@ default_manifest =
     \"dependencies\": {
     }
 }\n".
+
+init_package_first_warning(!IO) :-
+    util.write_error_string(
+"
+Manifest file does not exist, try running \"merchant init\" first.
+"
+    , !IO).
