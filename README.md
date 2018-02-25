@@ -4,37 +4,32 @@
 
 ## Merchant: A package manager for the Mercury logic programming language.
 
-Commands:
+```bash
+$ merchant
 
-    --init
-        creates a blank manifest file and a ".package" directory
-    
-    --install
-        installs all dependencies specified in the manifest
-        using mmc --make
-    
-    --build
-        builds your project using the dependencies downloaded
-        by the package manager with mmc --make
-    
-    --help
-        returns a help message
+Usage: merchant <command> [arguments]
+
+Global options:
+-h, --help             Print this usage information.
+    --version          Print merchant version.
+
+Available commands:
+  build       Build package with dependencies according to manifest.json.
+  clean       rm those pesky *.mh and *.err files.
+  deps        Print package dependencies.
+  install     Install the current package's dependencies.
+  help        Display help information for merchant.
+  run         Run an executable from a package.
+  version     Print merchant version.
+```
 
 
 ### Installation
-
-Easy Installation
 
 ```bash
 git clone https://github.com/stewy33/hophacks2018
 ./hophacks2018/install.sh
 ```
-
-
-Alternatively, we provide experimental binaries for Linux and Mac.
-
-ALSO: make sure you have install_packages.sh and build_libraries.sh
-        in the project folder before running the merchant command
 
 NOTE: this project has never been tested on Windows.  Mac and Linux
 only
