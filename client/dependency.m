@@ -4,41 +4,15 @@
 :- interface.
 
 :- import_module
-    io.
+    json,
+    map,
+    string.
 
-:- pred list_dependencies(io::di, io::uo) is det.
+:- func deps_from_json(json.value) = map(string, string) is semidet.
 
 
 :- implementation.
 
-:- import_module
-    dir,
-    map,
-    maybe,
-    string.
-
-:- import_module
-    init_package,
-    manifest,
-    util.
-
-list_dependencies(!IO) :-
-    dir.current_directory(Res, !IO),
-    (
-      Res = ok(CurrentDir),
-      manifest_from_file(CurrentDir ++ "/manifest.json", MaybeManifest, !IO),
-      (
-        MaybeManifest = ok(Manifest),
-        map.foldl(
-            (pred(DepName::in, _::in, di, uo) is det -->
-                    io.write_string(DepName),
-                    io.nl
-            ), Manifest ^ dependencies, !IO)
-      ;
-        MaybeManifest = error(_),
-        init_package_first_warning(!IO)
-      )
-    ;
-      Res = error(ErrorMsg),
-      util.write_error(ErrorMsg, !IO)
-    ).
+deps_from_json(JsonVal) = DepMap :-
+    JsonVal = json.object(DepObj),
+    map.map_values_only(json.get_string, DepObj, DepMap).

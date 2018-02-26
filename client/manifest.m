@@ -5,6 +5,7 @@
 
 :- import_module
     io,
+    list,
     map,
     maybe,
     string.
@@ -12,7 +13,8 @@
 :- type manifest
     ---> manifest(  name :: string,
                     author :: string,
-                    dependencies :: map(string,string) ).
+                    dependencies :: map(string, string),
+                    library_grades:: list(string) ).
 
 :- pred manifest_from_file(string::in, maybe_error(manifest)::out, io::di, io::uo) is det.
 
@@ -22,8 +24,10 @@
 
 :- import_module
     json,
-    list,
     stream.
+
+:- import_module
+    dependency.
 
 manifest_from_file(FileName, MaybeManifest, !IO) :-
     read_json_from_file(FileName, MaybeJson, !IO),
@@ -35,24 +39,20 @@ manifest_from_file(FileName, MaybeManifest, !IO) :-
       MaybeManifest = error(Error)
     ).
 
-:- func object_to_string_map(json.object) = map(string, string) is semidet.
-object_to_string_map(Obj) = Map :-
-    map.map_values_only(json.get_string, Obj, Map).
-
 :- func manifest_from_json(json.value) = maybe_error(manifest).
 manifest_from_json(JsonVal) =
     ( if
-         JsonVal = json.object(OuterObj),
-         map.search(OuterObj, "name") = json.string(Name),
-         map.search(OuterObj, "author") = json.string(Author),
-         map.search(OuterObj, "dependencies") = json.object(DepMap),
-         object_to_string_map(DepMap) = Dependencies
+        JsonVal = json.object(OuterObj),
+        map.search(OuterObj, "name") = json.string(Name),
+        map.search(OuterObj, "author") = json.string(Author),
+        Deps = deps_from_json(map.search(OuterObj, "dependencies")),
+        map.search(OuterObj, "library_grades") = json.array(GradeObjs),
+        list.map(json.get_string, GradeObjs, Grades)
       then
-         ok(manifest(Name, Author, Dependencies))
-       else
-         error("There is a syntax error.")
+        ok(manifest(Name, Author, Deps, Grades))
+      else
+        error("There is a syntax error.")
      ).
-
 
 :- pred read_json_from_file(string::in, maybe_error(json.value)::out, io::di, io::uo) is det.
 read_json_from_file(FileName, JsonResult, !IO) :- 
@@ -82,8 +82,9 @@ read_json_from_file(FileName, JsonResult, !IO) :-
     ).
 
 io_write_manifest(Manifest, !IO) :-
-      io.format("Name: %s\nAuthor: %s\n", [s(Manifest ^ name), s(Manifest ^ author)], !IO),
-      map.foldl(write_map2, Manifest ^ dependencies, !IO).
+      io.format("Name: %s\nAuthor: %s\n", [s(Manifest ^ name), s(Manifest ^
+      author)], !IO).
+%      map.foldl(write_map2, Manifest ^ dependencies, !IO).
 
 :- pred write_map2(string::in, string::in, io::di, io::uo) is det.
 write_map2(K, V, !IO) :-

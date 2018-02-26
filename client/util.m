@@ -5,11 +5,14 @@
 
 :- import_module
     io,
+    list,
     string.
 
 :- pred id(A::di, A::uo) is det.
 
 :- pred system(string::in, io::di, io::uo) is det.
+
+:- pred exec_commands(list(string)::in, io::di, io::uo) is det.
 
 :- pred write_error(io.error::in, io::di, io::uo) is det.
 
@@ -22,9 +25,12 @@ id(!S).
 :- pragma foreign_proc("C", system(String::in, IO0::di, IO::uo),
     [will_not_call_mercury, promise_pure], 
 "
-    IO = IO0;
     system(String);
+    IO = IO0;
 ").
+
+exec_commands(Commands, !IO) :-
+    util.system(string.join_list("\n", Commands), !IO).
 
 write_error(Error, !IO) :-
     write_error_string(io.error_message(Error), !IO).

@@ -1,7 +1,16 @@
 {
     "name": "test",
     "author": "package_author",
+
+    "supported_backends": "all",
+
     "dependencies": {
         "mercury_json": "https://github.com/stewy33/mercury-json"
-    }
+    },
+
+    "build_profiles": {
+        "default": "--grade hlc.gc"
+    },
+
+    "library_grades": ["hlc.gc"]
 }

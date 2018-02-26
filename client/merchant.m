@@ -18,10 +18,10 @@
     string.
 
 :- import_module
-    build_package,
-    dependency,
+    command_build,
+    command_deps,
+    command_install,
     init_package,
-    install_deps,
     manifest,
     util.
 
@@ -31,19 +31,19 @@ main(!IO) :-
       Args = [Arg1 | RemainingArgs],
       (
         if Arg1 = "build"
-        then build_package(!IO)
+        then command_build(RemainingArgs, !IO)
 
-        else if ( Arg1 = "clean"
-        then util.system("rm *.mh *.err")
+        else ( if Arg1 = "clean"
+        then util.system("rm *.mh *.err", !IO)
 
         else ( if Arg1 = "deps"
-        then list_dependencies(!IO)
+        then command_deps(!IO)
 
         else ( if Arg1 = "init"
         then init_package(!IO)
 
         else ( if Arg1 = "install"
-        then install_deps(RemainingArgs, !IO)
+        then command_install(RemainingArgs, !IO)
 
         else ( if Arg1 = "help"
                 ; Arg1 = "--help"
