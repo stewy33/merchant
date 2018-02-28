@@ -15,4 +15,4 @@ Mercury.modules
 .DS_Store
 .directory
 *.swp
-.merchant
+.merchant/
