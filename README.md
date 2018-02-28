@@ -28,7 +28,7 @@ Available commands:
 
 ```bash
 git clone https://github.com/stewy33/hophacks2018
-sh hophacks2018/install/install.sh
+sh hophacks2018/install.sh
 ```
 
 NOTE: this project has never been tested on Windows.  Mac and Linux
