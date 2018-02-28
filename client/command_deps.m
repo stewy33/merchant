@@ -18,7 +18,7 @@
     string.
 
 :- import_module
-    init_package,
+    command_init,
     manifest,
     util.
 

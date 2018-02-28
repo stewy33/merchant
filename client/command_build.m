@@ -22,6 +22,8 @@
     string.builder.
 
 :- import_module
+    config,
+    command_init,
     manifest,
     util.
 
@@ -29,10 +31,11 @@ command_build(Args, !IO) :-
     manifest_from_file("manifest.json", MaybeManifest, !IO),
     (
       MaybeManifest = ok(Manifest),
-      exec_build(Manifest, Args, !IO)
+      config.get_config(Config, !IO),
+      exec_build(Manifest, [Config ^ default_build_profile | Args], !IO)
     ;
-      MaybeManifest = error(ErrorMsg),
-      util.write_error_string(ErrorMsg, !IO)
+      MaybeManifest = error(_),
+      init_package_first_warning(!IO)
     ).
 
 :- pred exec_build(manifest, list(string), io, io).
@@ -57,5 +60,5 @@ exec_build(Manifest, Args, !IO) :-
                     [s(DepName), s(DepName)], LibOpts),
             string_writer.print(builder.handle, LibOpts, !S)
     ), Manifest ^ dependencies, S2, S),
-    
+
     util.system(builder.to_string(S), !IO).

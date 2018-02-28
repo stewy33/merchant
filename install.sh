@@ -1,5 +1,3 @@
-#!/bin/bash
-
 sudo echo -n
 
 scriptdir="$(command dirname -- "${0}")"

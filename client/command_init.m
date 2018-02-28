@@ -1,4 +1,4 @@
-:- module init_package.
+:- module command_init.
 
 
 :- interface.
@@ -6,7 +6,7 @@
 :- import_module
     io.
 
-:- pred init_package(io::di, io::uo) is det.
+:- pred command_init(io::di, io::uo) is det.
 
 :- pred init_package_first_warning(io::di, io::uo) is det.
 
@@ -20,7 +20,7 @@
     manifest,
     util.
 
-init_package(!IO) :-
+command_init(!IO) :-
     io.open_output("manifest.json", MaybeFile, !IO),
     (
       MaybeFile = ok(File),

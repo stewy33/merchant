@@ -11,8 +11,9 @@ Mercury.modules
 *.beams
 *.d
 *.c_date
+
 .DS_Store
 .directory
 *.swp
 .merchant
-lib/
+merchant

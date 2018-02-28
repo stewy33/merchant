@@ -10,7 +10,5 @@
 
     "build_profiles": {
         "default": "--grade hlc.gc"
-    },
-
-    "library_grades": ["hlc.gc"]
+    }
 }
