@@ -6,11 +6,12 @@
 :- import_module
     json,
     io,
+    map,
     string.
 
 :- type config
-    ---> config( default_install_profile :: string,
-                 default_build_profile :: string ).
+    ---> config( install_profiles :: map(string, string),
+                 build_profiles :: map(string, string) ).
 
 :- pred get_config(config::out, io::di, io::uo) is det.
 
@@ -43,10 +44,16 @@ Try running \"merchant configure\" to reset ~/.merchant/config.json.\n",
 
 get_OS_default_config(Config, !IO) :-
     Config = config(
-            % default_install_profile
-            "--no-libgrade --libgrade none.gc.decldebug.stseg",
-            % default_build_profile
-            "--grade none.gc.decldebug.stseg" ).
+            % install_profiles
+            map.from_assoc_list([
+                "default" - "--no-libgrade --libgrade none.gc.decldebug.stseg",
+                "dev" - "--no-libgrade --libgrade none.gc.decldebug.stseg"
+            ]),
+            % build_profiles
+            map.from_assoc_list([
+                "default" - "--grade none.gc.decldebug.stseg",
+                "dev" - "--grade none.gc.decldebug.stseg"
+            ])).
 
 :- pred config_from_file(maybe_error(config), io, io).
 :- mode config_from_file(out, di, uo) is det.
@@ -72,10 +79,15 @@ config_from_file(MaybeConfig, !IO) :-
     from_json(JsonVal) =
         ( if
           JsonVal = json.object(OuterObj),
-          map.search(OuterObj, "default_install_profile") = json.string(InsProf),
-          map.search(OuterObj, "default_build_profile") = json.string(BuildProf)
+
+          map.search(OuterObj, "install_profiles") = json.object(InsObj),
+          map.map_values_only(json.get_string, InsObj, InsProfs),
+
+          map.search(OuterObj, "build_profiles") = json.object(BuildObj),
+          map.map_values_only(json.get_string, BuildObj, BuildProfs)
+
         then
-          ok(config(InsProf, BuildProf))
+          ok(config(InsProfs, BuildProfs))
         else
           error("Warning, malformed ~/.merchant/config.json.")
         )
@@ -83,7 +95,13 @@ config_from_file(MaybeConfig, !IO) :-
 
 :- instance json.to_json(config) where [
     to_json(Config) = json.det_make_object([
-        "default_install_profile" - json.string(Config ^ default_install_profile),
-        "default_build_profile" - json.string(Config ^ default_build_profile)
+
+        "install_profiles" - json.object(
+            map.map_values_only(func(Str) = json.string(Str),
+                Config ^ install_profiles)),
+
+        "build_profiles" - json.object(
+            map.map_values_only(func(Str) = json.string(Str),
+                Config ^ build_profiles))
         ])
 ].

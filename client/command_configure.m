@@ -10,10 +10,10 @@
 
 :- pred command_configure(list(string)::in, io::di, io::uo) is det.
 
-
 :- implementation.
 
 :- import_module
+    dir,
     json,
     maybe.
 
@@ -25,8 +25,8 @@ command_configure(_, !IO) :-
     io.get_environment_var("HOME", MaybeHome, !IO),
     (
       MaybeHome = yes(Home),
-      ConfigFile = Home ++ "/.merchant/config.json",
-      io.open_output(ConfigFile, Res, !IO),
+      dir.make_single_directory(Home ++ "/.merchant", _, !IO),
+      io.open_output(Home ++ "/.merchant/config.json", Res, !IO),
       (
         Res = ok(File),
         config.get_OS_default_config(Config, !IO),

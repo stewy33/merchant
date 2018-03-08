@@ -38,7 +38,9 @@ command_install(_, !IO) :-
         dir.make_single_directory(CurrentDir ++ "/.merchant", _, !IO),
 
         config.get_config(Config, !IO),
-        map.foldl(install_library(Config ^ default_install_profile, CurrentDir),
+        map.foldl(
+            install_library(
+                map.lookup(Config ^ install_profiles, "default"), CurrentDir),
             Manifest ^ dependencies, !IO)
       ;
         MaybeManifest = error(_),
