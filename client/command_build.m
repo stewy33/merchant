@@ -29,6 +29,7 @@
     config,
     command_init,
     manifest,
+    profile,
     util.
 
 :- type option ---> profile
@@ -41,36 +42,12 @@ short_option('h', help).
 :- pred long_option(string::in, option::out) is semidet.
 long_option("profile", profile).
 long_option("help", help).
-long_option("mmc_option", mmc_option).
+long_option("mmc-option", mmc_option).
 
 :- pred option_default(option::out, option_data::out) is multi.
 option_default(profile, string_special).
 option_default(help, bool(no)).
 option_default(mmc_option, accumulating([])).
-
-:- func special_handler_from_config(config) =
-    (pred(option, special_data,
-          option_table(option), maybe_option_table(option))).
-special_handler_from_config(Config) =
-    (pred(profile::in, string(Profile)::in,
-          OptTable0::in, MaybeOptTable::out) is semidet :-
-     (
-       if
-           map.search(Config ^ build_profiles, Profile, ProfVal)
-       then
-           map.transform_value(
-               (pred(Opts0::in, Opts::out) is det :-
-                Opts =
-                  ( if Opts0 = accumulating(OptsList)
-                    then accumulating([ProfVal | OptsList])
-                    else Opts0 )),
-               mmc_option, OptTable0, OptTable),
-           MaybeOptTable = ok(OptTable)
-       else
-           ErrorMsg = string.format(
-               "Profile %s not found in config.", [s(Profile)]),
-           MaybeOptTable = error(ErrorMsg)
-     )).
 
 command_build(Args, !IO) :-
     manifest_from_file("manifest.json", MaybeManifest, !IO),
@@ -78,8 +55,8 @@ command_build(Args, !IO) :-
       MaybeManifest = ok(Manifest),
       config.get_config(Config, !IO),
 
-      OptionOps = option_ops_multi(short_option, long_option,
-          option_default, special_handler_from_config(Config)),
+      OptionOps = option_ops_multi(short_option, long_option, option_default,
+          profile.special_handler(Config ^ build_profiles, profile, mmc_option)),
       getopt.process_options(OptionOps, Args, _, MaybeOptTable),
       (
         MaybeOptTable = ok(OptTable),
@@ -90,7 +67,7 @@ command_build(Args, !IO) :-
         ;
           Help = no,
           getopt.lookup_accumulating_option(OptTable, mmc_option, MmcOptions),
-          exec_build(Manifest, MmcOptions, !IO)
+          exec_build(Manifest, string.join_list(" ", MmcOptions), !IO)
         )
       ;
         MaybeOptTable = error(OptErrorMsg),
@@ -102,8 +79,7 @@ command_build(Args, !IO) :-
       init_package_first_warning(!IO)
     ).
 
-:- pred exec_build(manifest, list(string), io, io).
-:- mode exec_build(in, in, di, uo) is det.
+:- pred exec_build(manifest::in, string::in, io::di, io::uo) is det.
 exec_build(Manifest, Args, !IO) :-
     S0 = string.builder.init,
 
@@ -114,8 +90,7 @@ exec_build(Manifest, Args, !IO) :-
     string_writer.print(builder.handle, BaseCommand, S0, S1),
 
     % add other args
-    ArgsStr = string.join_list(" ", ["" | Args]),
-    string_writer.print(builder.handle, ArgsStr, S1, S2),
+    string_writer.print(builder.handle, " " ++ Args, S1, S2),
 
     % add dependency options
     map.foldl((
@@ -125,7 +100,7 @@ exec_build(Manifest, Args, !IO) :-
             string_writer.print(builder.handle, LibOpts, !S)
     ), Manifest ^ dependencies, S2, S),
 
-    io.write_string(builder.to_string(S) ++ "\n", !IO).
+    util.system(builder.to_string(S) ++ "\n", !IO).
 
 :- pred usage(io::di, io::uo).
 usage(!IO) :-

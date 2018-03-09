@@ -89,7 +89,7 @@ config_from_file(MaybeConfig, !IO) :-
         then
           ok(config(InsProfs, BuildProfs))
         else
-          error("Warning, malformed ~/.merchant/config.json.")
+          error("Warning, malformed config.json.")
         )
 ].
 
