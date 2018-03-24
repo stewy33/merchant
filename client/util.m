@@ -11,13 +11,15 @@
     string.
 
 :- pred id(A::di, A::uo) is det.
-
+:- func id(A) = A.  
 :- pred read_json_from_file(string, maybe_error(json.value), io, io) is det.
 :- mode read_json_from_file(in, out, di, uo) is det.
 
 :- pred write_error(io.error::in, io::di, io::uo) is det.
 
 :- pred write_error_string(string::in, io::di, io::uo) is det.
+
+:- pred write_error_msg(string::in, io::di, io::uo) is det.
 
 :- pred system(string::in, io::di, io::uo) is det.
 
@@ -30,6 +32,7 @@
     stream.
 
 id(!S).
+id(A) = A.
 
 read_json_from_file(FileName, JsonResult, !IO) :- 
     io.open_input(FileName, MaybeFile, !IO),
@@ -61,8 +64,12 @@ write_error_string(ErrorMsg, !IO) :-
     io.stderr_stream(Stderr, !IO),
     io.write_string(Stderr, ErrorMsg, !IO).
 
+write_error_msg(ErrorMsg, !IO) :-
+    ErrorStr = string.format("error: %s.\n", [s(ErrorMsg)]),
+    write_error_string(ErrorStr, !IO).
+
 :- pragma foreign_proc("C", system(String::in, IO0::di, IO::uo),
-    [will_not_call_mercury, promise_pure], 
+    [will_not_call_mercury, promise_pure],
 "
     system(String);
     IO = IO0;

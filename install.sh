@@ -10,6 +10,6 @@ sudo cp merchant /usr/local/bin/
 sudo chmod +x /usr/local/bin/merchant
 
 printf "Configuring...\n"
-merchant configure
 
-printf "Done\n"
+printf "Done.\n"
+printf "run \"merchant configure --reset-config\" to generate user config.\n"

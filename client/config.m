@@ -46,13 +46,13 @@ get_OS_default_config(Config, !IO) :-
     Config = config(
             % install_profiles
             map.from_assoc_list([
-                "default" - "--no-libgrade --libgrade none.gc.decldebug.stseg",
-                "dev" - "--no-libgrade --libgrade none.gc.decldebug.stseg"
+                "default" - "-- --no-libgrade --libgrade none.gc.decldebug.stseg",
+                "dev" - "-- --no-libgrade --libgrade none.gc.decldebug.stseg --opt-level 0"
             ]),
             % build_profiles
             map.from_assoc_list([
-                "default" - "--grade none.gc.decldebug.stseg",
-                "dev" - "--grade none.gc.decldebug.stseg"
+                "default" - "-- --grade none.gc.decldebug.stseg",
+                "dev" - "-- --grade none.gc.decldebug.stseg --opt-level 0"
             ])).
 
 :- pred config_from_file(maybe_error(config), io, io).

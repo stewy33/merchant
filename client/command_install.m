@@ -33,36 +33,43 @@
 command_install(Args, !IO) :-
     config.get_config(Config, !IO),
 
-    OptionOps = option_ops_multi(short_option, long_option, option_default,
-        profile.special_handler(Config ^ install_profiles, profile, mmc_option)),
-    getopt.process_options(OptionOps, Args, _, MaybeOptTable),
+    OptionOps = option_ops_multi(short_option, long_option, option_default),
+    getopt.process_options(OptionOps, Args, _, MaybeOptTable0),
     (
-      MaybeOptTable = ok(OptTable),
-      getopt.lookup_accumulating_option(OptTable, mmc_option, MmcOptions),
-
-      dir.current_directory(DirRes, !IO),
+      MaybeOptTable0 = ok(OptTable0),
+      adjust_options_with_profile(OptionOps, profile,
+          Config ^ install_profiles, OptTable0, MaybeOptTable, MmcOpts),
       (
-        DirRes = ok(CurrentDir),
-        manifest_from_file(CurrentDir ++ "/manifest.json", MaybeManifest, !IO),
+        MaybeOptTable = ok(OptTable),
+
+        dir.current_directory(DirRes, !IO),
         (
-          MaybeManifest = ok(Manifest),
+          DirRes = ok(CurrentDir),
+          manifest_from_file(CurrentDir ++ "/manifest.json", MaybeManifest, !IO),
+          (
+            MaybeManifest = ok(Manifest),
 
-          % if .merchant directory already exists, nothing will happen
-          dir.make_single_directory(CurrentDir ++ "/.merchant", _, !IO),
+            % if .merchant directory already exists, nothing will happen
+            dir.make_single_directory(CurrentDir ++ "/.merchant", _, !IO),
 
-          map.foldl(
-              install_library(string.join_list(" ", MmcOptions), CurrentDir),
-              Manifest ^ dependencies, !IO)
+            map.foldl(
+                install_library(string.join_list(" ", [MmcOpts]), CurrentDir),
+                Manifest ^ dependencies, !IO)
+          ;
+            MaybeManifest = error(_),
+            init_package_first_warning(!IO)
+          )
         ;
-          MaybeManifest = error(_),
-          init_package_first_warning(!IO)
+          DirRes = error(ErrorMsg),
+          util.write_error(ErrorMsg, !IO)
         )
       ;
-        DirRes = error(ErrorMsg),
-        util.write_error(ErrorMsg, !IO)
+        MaybeOptTable = error(OptErrorMsg),
+        ErrorMsg = string.format("error: %s.\n", [s(OptErrorMsg)]),
+        util.write_error_string(ErrorMsg, !IO)
       )
     ;
-      MaybeOptTable = error(OptErrorMsg),
+      MaybeOptTable0 = error(OptErrorMsg),
       ErrorMsg = string.format("error: %s.\n", [s(OptErrorMsg)]),
       util.write_error_string(ErrorMsg, !IO)
     ).
@@ -82,7 +89,7 @@ long_option("profile", profile).
 :- pred option_default(option::out, option_data::out) is multi.
 option_default(help, bool(no)).
 option_default(mmc_option, accumulating([])).
-option_default(profile, string_special).
+option_default(profile, string("default")).
 
 :- pred install_deps(string, string, list(string), io, io).
 :- mode install_deps(in, in, out, di, uo) is det.

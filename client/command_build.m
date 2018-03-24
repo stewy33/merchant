@@ -32,22 +32,20 @@
     profile,
     util.
 
-:- type option ---> profile
-               ;    help
-               ;    mmc_option.
+:- type option ---> help
+               ;    profile.
 
 :- pred short_option(char::in, option::out) is semidet.
 short_option('h', help).
+short_option('p', profile).
 
 :- pred long_option(string::in, option::out) is semidet.
-long_option("profile", profile).
 long_option("help", help).
-long_option("mmc-option", mmc_option).
+long_option("profile", profile).
 
 :- pred option_default(option::out, option_data::out) is multi.
-option_default(profile, string_special).
+option_default(profile, string("default")).
 option_default(help, bool(no)).
-option_default(mmc_option, accumulating([])).
 
 command_build(Args, !IO) :-
     manifest_from_file("manifest.json", MaybeManifest, !IO),
@@ -55,24 +53,30 @@ command_build(Args, !IO) :-
       MaybeManifest = ok(Manifest),
       config.get_config(Config, !IO),
 
-      OptionOps = option_ops_multi(short_option, long_option, option_default,
-          profile.special_handler(Config ^ build_profiles, profile, mmc_option)),
-      getopt.process_options(OptionOps, Args, _, MaybeOptTable),
+      OptionOps = option_ops_multi(short_option, long_option, option_default),
+      getopt.process_options(OptionOps, Args, _, MaybeOptTable0),
       (
-        MaybeOptTable = ok(OptTable),
-        getopt.lookup_bool_option(OptTable, help, Help),
+        MaybeOptTable0 = ok(OptTable0),
+        adjust_options_with_profile(OptionOps, profile,
+            Config ^ build_profiles, OptTable0, MaybeOptTable, MmcOpts),
         (
-          Help = yes,
-          usage(!IO)
+          MaybeOptTable = ok(OptTable),
+
+          getopt.lookup_bool_option(OptTable, help, Help),
+          (
+            Help = yes,
+            usage(!IO)
+          ;
+            Help = no,
+            exec_build(Manifest, string.join_list(" ", [MmcOpts]), !IO)
+          )
         ;
-          Help = no,
-          getopt.lookup_accumulating_option(OptTable, mmc_option, MmcOptions),
-          exec_build(Manifest, string.join_list(" ", MmcOptions), !IO)
+          MaybeOptTable = error(ErrorMsg),
+          util.write_error_msg(ErrorMsg, !IO)
         )
       ;
-        MaybeOptTable = error(OptErrorMsg),
-        ErrorMsg = string.format("error: %s.\n", [s(OptErrorMsg)]),
-        util.write_error_string(ErrorMsg, !IO)
+        MaybeOptTable0 = error(ErrorMsg),
+        util.write_error_msg(ErrorMsg, !IO)
       )
     ;
       MaybeManifest = error(_),
@@ -106,7 +110,10 @@ exec_build(Manifest, Args, !IO) :-
 usage(!IO) :-
     util.write_error_string(
 "
-Usage: merchant build [arguments]
+Usage: merchant build [options]
+-h, --help     Print this usage information.
+
+-p, --profile  Choose a specific build profile from ~/.merchant/config.json.
 
 "
     , !IO).

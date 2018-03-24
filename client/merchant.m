@@ -37,28 +37,28 @@ main(!IO) :-
         if Arg1 = "build"
         then command_build(RemainingArgs, !IO)
 
-        else ( if Arg1 = "clean"
+        else if Arg1 = "clean"
         then util.system("rm *.mh *.err", !IO)
 
-        else ( if Arg1 = "configure"
+        else if Arg1 = "configure"
         then command_configure(RemainingArgs, !IO)
 
-        else ( if Arg1 = "deps"
+        else if Arg1 = "deps"
         then command_deps(!IO)
 
-        else ( if Arg1 = "init"
+        else if Arg1 = "init"
         then command_init(!IO)
 
-        else ( if Arg1 = "install"
+        else if Arg1 = "install"
         then command_install(RemainingArgs, !IO)
 
-        else ( if Arg1 = "help"
-                ; Arg1 = "--help"
-                ; Arg1 = "-h"
+        else if Arg1 = "help"
+              ; Arg1 = "--help"
+              ; Arg1 = "-h"
         then usage(!IO)
 
-        else ( if Arg1 = "version"
-                ; Arg1 = "--version"
+        else if Arg1 = "version"
+              ; Arg1 = "--version"
         then version(!IO)
 
         else
@@ -66,7 +66,7 @@ main(!IO) :-
               [s(list.det_head(Args))]),
           util.write_error_string(ErrorMsg, !IO),
           usage(!IO)
-      ))))))))
+      )
     ).
 
 /*main(!IO) :-
@@ -118,7 +118,7 @@ usage(!IO) :-
 "
 Merchant: A package manager for the Mercury logic programming language.
 
-Usage: merchant <command> [arguments]
+Usage: merchant <command> [options]
 
 Global options:
 -h, --help             Print this usage information.
@@ -127,9 +127,9 @@ Global options:
 Available commands:
   build       Build package with dependencies according to manifest.json.
   clean       rm those pesky *.mh and *.err files.
+  configure   Configure merchant settings.
   deps        Print package dependencies.
   install     Install the current package's dependencies.
-  help        Display help information for merchant.
   run         Run an executable from a package.
   version     Print merchant version.
 
