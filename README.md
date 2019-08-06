@@ -9,8 +9,8 @@ Merchant is a command line tool that downloads your [Mercury](http://mercurylang
 ### Installing Merchant
 
 ```bash
-$ git clone https://github.com/stewy33/hophacks2018
-$ sh hophacks2018/install.sh
+$ git clone https://github.com/stewy33/merchant
+$ sh merchant/install.sh
 ```
 
 Test that Merchant is installed by running:
