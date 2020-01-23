@@ -1,4 +1,6 @@
-![merchant-logo](merchant-logo.png "Merchant Logo")
+<p align="center">
+    <img src="merchant-logo.png" alt="Merchant Logo" />
+</p>
 
 ## Merchant: A package manager for the Mercury logic programming language.
 
